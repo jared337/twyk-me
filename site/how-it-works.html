@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How it works | twyk.me</title>
+  <meta name="description" content="How the twyk 3D editor works, step by step: choose shapes, set exact mm dimensions, combine and cut, then export STL or 3MF or publish to the community." />
+  <link rel="canonical" href="https://twyk.me/how-it-works.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="How it works | twyk.me" />
+  <meta property="og:description" content="How the twyk 3D editor works, step by step: choose shapes, set exact mm dimensions, combine and cut, then export STL or 3MF or publish to the community." />
+  <meta property="og:url" content="https://twyk.me/how-it-works.html" />
+  <meta property="og:image" content="https://twyk.me/img/editor/full-editor.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How it works | twyk.me" />
+  <meta name="twitter:description" content="How the twyk 3D editor works, step by step: choose shapes, set exact mm dimensions, combine and cut, then export STL or 3MF or publish to the community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "How it works", "item": "https://twyk.me/how-it-works.html"}]}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "twyk 3D editor",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any (runs in a web browser)",
+    "url": "https://twyk.me/how-it-works.html",
+    "description": "A free browser-based 3D design editor: build models from solid and hole shapes with exact millimetre sizing, then export STL or 3MF or publish to the twyk.me community.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+  <section class="guide-hero">
+    <div class="container">
+      <h1>From blank workplane to printed part</h1>
+      <p>twyk is a full 3D editor that runs in your browser. Here is the whole workflow, start to finish, using the actual product.</p>
+      <div class="editor-frame reveal">
+        <div class="frame-bar"><span></span><span></span><span></span></div>
+        <img src="img/editor/full-editor.webp" alt="The twyk.me editor: shape library on the left, workplane in the middle, properties panel on the right" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 32px;">
+    <div class="container">
+
+      <div class="guide-row">
+        <div class="guide-copy reveal">
+          <div class="guide-num"><b>1</b> Choose your shapes</div>
+          <h2>Every design starts in the shape library</h2>
+          <p>Click a shape to drop it on the workplane. The library goes far past the basics, organised into ten categories:</p>
+          <ul>
+            <li><b>Basic</b> &amp; <b>Curved</b> for boxes, cylinders, cones and smooth solids</li>
+            <li><b>Polyhedra</b> &amp; <b>Profiles</b> for dice, prisms and extrusion outlines</li>
+            <li><b>Symbols</b>, <b>Parts</b>, <b>Home</b>, <b>Building</b> and <b>Fun</b> for ready-made pieces</li>
+            <li><b>Text</b> for names, labels and embossing</li>
+          </ul>
+          <p>There is also a search box when you know what you're after.</p>
+        </div>
+        <div class="guide-shot reveal">
+          <img src="img/editor/shapes-menu.png" alt="The shape library categories: Basic, Curved, Polyhedra, Profiles, Symbols, Parts, Home, Building, Fun and Text" />
+        </div>
+      </div>
+
+      <div class="guide-row flip">
+        <div class="guide-copy reveal">
+          <div class="guide-num"><b>2</b> Dial in the details</div>
+          <h2>Real dimensions, not guesswork</h2>
+          <p>Select any shape and the properties panel gives you exact control:</p>
+          <ul>
+            <li><b>Solid or Hole</b> &mdash; flip a shape into a cutter to carve cavities and slots</li>
+            <li><b>Size in mm</b> on all three axes, with keep-aspect and resize %</li>
+            <li><b>Position and rotation</b> typed in exactly, or dragged with handles</li>
+            <li><b>Colour per shape</b>, ready for multi-colour printing</li>
+          </ul>
+          <p>Parts fit the first time because you told them exactly how big to be.</p>
+        </div>
+        <div class="guide-shot reveal">
+          <img src="img/editor/properties.png" alt="The properties panel: Solid/Hole toggle, size in mm, keep aspect ratio, resize %, position, rotation and colour swatches" />
+        </div>
+      </div>
+
+      <div class="guide-row">
+        <div class="guide-copy reveal">
+          <div class="guide-num"><b>3</b> Combine and edit</div>
+          <h2>One toolbar for the whole build</h2>
+          <p>Move, rotate and resize with direct handles, then shape the design with the tools that do the heavy lifting:</p>
+          <ul>
+            <li><b>Group</b> shapes to move them as one, <b>Merge</b> to fuse them into a single solid</li>
+            <li><b>Align</b> on any axis and <b>Duplicate</b> for repeats</li>
+            <li><b>Split</b> and <b>Cut</b> to take a design apart, <b>Push face</b> to pull a single face in or out</li>
+          </ul>
+          <p>And the "Saved" badge on the left is doing exactly what it says: your work saves as you go.</p>
+        </div>
+        <div class="guide-shot wide reveal">
+          <img src="img/editor/toolbar.png" alt="The editor toolbar: Saved indicator, Move, Rotate, Resize, Group, Merge, Align, Split, Cut, Push face and Duplicate" />
+        </div>
+      </div>
+
+      <div class="guide-row flip">
+        <div class="guide-copy reveal">
+          <div class="guide-num"><b>4</b> Export or publish</div>
+          <h2>Straight to your slicer, or straight to the world</h2>
+          <p>When the design is done, export it in the format your workflow needs:</p>
+          <ul>
+            <li><b>Export 3MF</b> &mdash; keeps the separate objects, ideal for multi-colour printing</li>
+            <li><b>Export STL</b> &mdash; one mesh that opens in any slicer or CAD tool</li>
+          </ul>
+          <p>Or publish it to twyk.me instead: your model gets a live 3D page, a gallery, print files and a place on your creator profile &mdash; and anyone can open it back up in the editor and remix it, with credit linking back to you.</p>
+          <p style="margin-top:16px;"><a class="learn" href="model.html?id=knight">See a published model with a remix chain <span class="chev">&rsaquo;</span></a></p>
+        </div>
+        <div class="guide-shot reveal">
+          <img src="img/editor/export-menu.png" alt="The Export menu offering Export 3MF (keeps the separate objects) and Export STL (one mesh, opens anywhere)" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Now try it yourself</h2>
+      <p>No install, no sign-up to start. Open the editor, drop a shape, and you're five minutes from something printable.</p>
+      <a class="btn btn-primary btn-lg" href="#">Open the editor <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    renderHeader("how");
+    renderFooter();
+    observeReveals();
+  </script>
+</body>
+</html>

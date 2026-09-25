@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>twyk.me | Free Online 3D Design Editor &amp; Printing Community</title>
+  <meta name="description" content="twyk.me is a free browser 3D editor and model-sharing community. Design 3D models online, publish them in one click, and let anyone remix and print your work." />
+  <link rel="canonical" href="https://twyk.me/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="twyk.me | Free Online 3D Design Editor &amp; Printing Community" />
+  <meta property="og:description" content="twyk.me is a free browser 3D editor and model-sharing community. Design 3D models online, publish them in one click, and let anyone remix and print your work." />
+  <meta property="og:url" content="https://twyk.me/" />
+  <meta property="og:image" content="https://twyk.me/img/editor/full-editor.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="twyk.me | Free Online 3D Design Editor &amp; Printing Community" />
+  <meta name="twitter:description" content="twyk.me is a free browser 3D editor and model-sharing community. Design 3D models online, publish them in one click, and let anyone remix and print your work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "twyk.me",
+    "url": "https://twyk.me/",
+    "logo": "https://twyk.me/img/editor/full-editor.webp",
+    "description": "twyk.me is a free browser-based 3D design editor and model-sharing community: design a model with no install, publish it in one click, and let anyone download, print, or remix it with credit tracked automatically."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "twyk.me",
+    "url": "https://twyk.me/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": { "@type": "EntryPoint", "urlTemplate": "https://twyk.me/explore.html?q={search_term_string}" },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-canvas-wrap">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="blob blob-4"></div>
+    </div>
+    <div class="hero-scene" id="hero-scene"></div>
+    <div class="container">
+      <h1>Design in the browser.<br />Share with the world.</h1>
+      <p class="tagline">
+        twyk.me is where 3D design and 3D printing meet. Build models in a powerful
+        browser editor, publish them in one click, and let anyone remix and print your work.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#">Start designing <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-ghost btn-lg" href="explore.html">Explore models</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="editor-showcase">
+    <div class="container">
+      <a class="editor-frame reveal" href="how-it-works.html" title="See how the editor works">
+        <div class="frame-bar"><span></span><span></span><span></span></div>
+        <img src="img/editor/full-editor.webp" alt="The twyk.me editor: shape library on the left, a model on the workplane, and the properties panel with exact mm dimensions on the right" />
+      </a>
+      <p class="showcase-caption">The twyk editor, running in the browser. <a href="how-it-works.html">See how it works &rsaquo;</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="why" style="padding-bottom: 40px;">
+    <div class="container">
+      <div class="value-grid">
+        <div class="value reveal">
+          <div class="icon">
+            <svg width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="18" y="12" width="84" height="66" rx="7" stroke="#2563eb" stroke-width="3"/>
+              <path d="M18 28h84" stroke="#2563eb" stroke-width="3"/>
+              <circle cx="28" cy="20" r="2.4" fill="#2563eb"/>
+              <circle cx="37" cy="20" r="2.4" fill="#2563eb"/>
+              <path d="M30 66l14-7M46 72l18-9M78 68l14-7" stroke="#a8cfec" stroke-width="2" stroke-linecap="round"/>
+              <g class="icon-cube">
+                <path d="M60 38l16 8-16 8-16-8 16-8Z" fill="#bfd4ff" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M44 46v14l16 8V54L44 46Z" fill="#e3edff" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M76 46v14l-16 8V54l16-8Z" fill="#d0defc" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
+              </g>
+              <path class="icon-cursor" d="M88 84l6 14 4-6 7-1-17-7Z" fill="#fff" stroke="#0a2540" stroke-width="2.4" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Nothing to install</h3>
+          <p>The full editor runs in your browser. Open a tab, drag a shape onto the workplane, and you're designing.</p>
+          <a class="learn" href="#">Open the editor <span class="chev">&rsaquo;</span></a>
+        </div>
+        <div class="value reveal">
+          <div class="icon">
+            <svg width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="14" y="24" width="36" height="36" rx="9" fill="#fde7f0" stroke="#e85c8f" stroke-width="3"/>
+              <rect x="70" y="44" width="36" height="36" rx="9" fill="#f1e9ff" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="7 6"/>
+              <g class="icon-cycle">
+                <path d="M56 26c14-12 34-8 40 8" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
+                <path d="M96 26l1 9-9 1" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M64 80c-14 12-34 8-40-8" stroke="#e85c8f" stroke-width="3" stroke-linecap="round"/>
+                <path d="M24 80l-1-9 9-1" stroke="#e85c8f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </g>
+              <path d="M28 38h8M32 34v8" stroke="#e85c8f" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M83 57l5 5 9-9" stroke="#8b5cf6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Made to be remixed</h3>
+          <p>Nothing here is a frozen file. Any published model opens back up in the editor, and credit follows your work wherever it travels.</p>
+          <a class="learn" href="model.html?id=knight">See a remix chain <span class="chev">&rsaquo;</span></a>
+        </div>
+        <div class="value reveal">
+          <div class="icon">
+            <svg width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 84V16h72v68" stroke="#35c4a8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M24 30h72" stroke="#35c4a8" stroke-width="3"/>
+              <g class="icon-nozzle">
+                <rect x="52" y="24" width="16" height="13" rx="3" fill="#d9f5ec" stroke="#35c4a8" stroke-width="3"/>
+                <path d="M56 37h8l-4 8-4-8Z" fill="#35c4a8"/>
+              </g>
+              <path class="icon-fil" d="M60 49v3M60 56v3" stroke="#58b368" stroke-width="2.6" stroke-linecap="round"/>
+              <rect x="48" y="63" width="24" height="17" rx="4" fill="#e2f7ef" stroke="#58b368" stroke-width="3"/>
+              <path d="M14 84h92" stroke="#35c4a8" stroke-width="3" stroke-linecap="round"/>
+              <path class="icon-star" d="M100 46l3 6 6 1-5 4 2 7-6-4-6 4 2-7-5-4 6-1 3-6Z" fill="#fff" stroke="#58b368" stroke-width="2.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Ready for your printer</h3>
+          <p>Every model exports as clean STL or 3MF that slices the first time. Design here, print anywhere.</p>
+          <a class="learn" href="explore.html">Explore models <span class="chev">&rsaquo;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Community</div>
+          <h2>Featured this week</h2>
+        </div>
+        <a class="btn btn-ghost" href="explore.html">Browse all models <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="model-grid" id="featured-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="how">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">How it works</div>
+          <h2>A full 3D editor, in the tab you already have open</h2>
+          <p>Every model on twyk.me is built with these tools, and every published model opens back up in them. Drag shapes, punch holes, size things in millimetres, export to your printer.</p>
+        </div>
+        <a class="btn btn-ghost" href="how-it-works.html">Read the step-by-step guide <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="feature-grid">
+        <div class="feature reveal">
+          <div class="fi fi-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="12" width="9" height="9" rx="1.5"/><circle cx="16.5" cy="7" r="4.5"/><path d="M8 9.5 11.5 3l3.5 6.5H8Z"/></svg>
+          </div>
+          <h3>A shape for everything</h3>
+          <p>Boxes, rounded solids, cylinders, cones, tapers, wedges and tubes, plus a searchable library. Click to drop one on the workplane and start.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="fi fi-pink">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="4.5" stroke-dasharray="3 3"/></svg>
+          </div>
+          <h3>Solid or hole</h3>
+          <p>Flip any shape into a hole and merge to cut it away. Complex cavities, threads and slots come from the same simple shapes.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="fi fi-teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="2"/><path d="M6.5 8v3.5M10.5 8v2.5M14.5 8v3.5M18.5 8v2.5"/></svg>
+          </div>
+          <h3>Millimetre precision</h3>
+          <p>Exact size, position and rotation in mm, an adjustable snap grid, rulers and keep-aspect resize. Parts fit because you told them to.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="fi fi-amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M12 3l-2.5 2.5M12 3l2.5 2.5M12 21l-2.5-2.5M12 21l2.5-2.5M3 12l2.5-2.5M3 12l2.5 2.5M21 12l-2.5-2.5M21 12l-2.5 2.5"/></svg>
+          </div>
+          <h3>Move, rotate, resize, push</h3>
+          <p>Direct handles for every transform, plus push face to pull a single face in or out without rebuilding the shape.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="fi fi-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="12" height="12" rx="2.5"/><rect x="9" y="9" width="12" height="12" rx="2.5"/></svg>
+          </div>
+          <h3>Group, merge, split, cut</h3>
+          <p>Combine shapes into reusable groups, merge them into one solid, or split and cut to take a design apart again.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="fi fi-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v18"/><rect x="7" y="5" width="10" height="4" rx="1.5"/><rect x="7" y="12" width="14" height="4" rx="1.5"/><path d="M19 5.5v3"/></svg>
+          </div>
+          <h3>Align &amp; duplicate</h3>
+          <p>One-click alignment on any axis and smart duplicate for rows, stacks and radial patterns. No more nudging by eye.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="fi fi-cyan">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><circle cx="12" cy="16.5" r="3"/></svg>
+          </div>
+          <h3>Colour per part</h3>
+          <p>Give every shape its own colour, ready for multi-colour printing and clean, readable assemblies.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="fi fi-navy">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v8m0 0L5 8.2M8 11l3-2.8M16 21v-8m0 0-3 2.8M16 13l3 2.8M3 21h7M14 3h7"/></svg>
+          </div>
+          <h3>Import &amp; export</h3>
+          <p>Bring in existing STL files, export clean STL or 3MF that slices the first time. Your work is never locked in.</p>
+        </div>
+      </div>
+      <div class="editor-cta reveal">
+        <a class="btn btn-primary btn-lg" href="#">Try the editor, no sign-up <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Fresh off the workplane</div>
+          <h2>Newest models</h2>
+        </div>
+      </div>
+      <div class="model-grid" id="newest-grid"></div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Your next design is one click away</h2>
+      <p>Free forever for makers. Open the editor, drag a shape onto the workplane, and see where it takes you.</p>
+      <a class="btn btn-primary btn-lg" href="#">Open the editor <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, renderCards, MODELS } from "./js/app.js";
+    renderHeader("home");
+    renderFooter();
+    const featured = [...MODELS].sort((a, b) => (b.featured - a.featured) || (b.likes - a.likes)).slice(0, 4);
+    renderCards(document.getElementById("featured-grid"), featured);
+    const newest = MODELS.filter(m => !featured.includes(m)).slice(0, 4);
+    renderCards(document.getElementById("newest-grid"), newest);
+
+    // animated editor workplane behind the hero (falls back to gradient if CDN unavailable)
+    import("./js/hero3d.js")
+      .then(m => m.mountHeroScene(document.getElementById("hero-scene")))
+      .catch(() => {});
+  </script>
+</body>
+</html>

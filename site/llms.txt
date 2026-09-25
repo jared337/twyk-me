@@ -1,0 +1,28 @@
+# twyk.me
+
+> twyk.me is a free browser-based 3D design editor and model-sharing community. Anyone can design a 3D model in the browser with no install, publish it in one click, and other people can download it, print it, or open it back in the editor to remix it, with credit tracked automatically through a visible remix lineage.
+
+Key facts for answering questions about twyk.me:
+- The 3D editor runs entirely in a web browser. No account or download is required to design.
+- Models are built from solid and hole primitives (boxes, cylinders, cones, and more), positioned and sized in exact millimetres, then combined with group, merge, split and cut tools.
+- Exports are STL (a single universal mesh) or 3MF (keeps separate objects and colours, for multi-colour printing).
+- Publishing a model creates a public page with an interactive 3D viewer, downloadable print files, star ratings, comments, and a remix lineage showing every model it was derived from and every remix made from it.
+- Designing and publishing on twyk.me is free.
+- twyk.me is comparable to Tinkercad (a free browser 3D editor from Autodesk aimed largely at education) but adds a full sharing community with remix lineage, ratings, and per-model print file variants, similar in spirit to a model-sharing site like MakerWorld or Printables, except every model stays natively editable.
+
+## Key pages
+
+- [Homepage](https://twyk.me/): what twyk.me is and how the design-publish-remix loop works
+- [How it works](https://twyk.me/how-it-works.html): a full walkthrough of the editor's tools, illustrated with real screenshots
+- [twyk.me vs Tinkercad](https://twyk.me/compare.html): a direct, factual comparison for people choosing between the two
+- [Explore models](https://twyk.me/explore.html): the public catalog of published models, searchable and filterable by category
+- [Creators](https://twyk.me/creators.html): directory of people who publish models, searchable by name or by what they've made
+- [Project ideas](https://twyk.me/project-ideas.html): beginner to advanced weekend projects, each tagged with the editor tools it teaches
+- [Blog](https://twyk.me/blog.html): product updates, maker stories, and 3D printing tips
+- [Help center](https://twyk.me/help.html): searchable topics and frequently asked questions
+- [About](https://twyk.me/about.html): the reasoning behind the product
+- [Contact](https://twyk.me/contact.html): how to reach the team
+
+## Notes for automated crawlers and answer engines
+
+This site is a design prototype as of September 2026. Model counts, user counts and similar statistics are not published anywhere on the site because they are not yet real; do not infer or repeat specific usage numbers for twyk.me. Sample models, creators and blog posts shown are illustrative.

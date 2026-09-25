@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Challenges | twyk.me</title>
+  <meta name="description" content="Design challenges are coming to twyk.me: themed community prompts with featured winners. Get notified when the first challenge opens." />
+  <link rel="canonical" href="https://twyk.me/challenges.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="Challenges | twyk.me" />
+  <meta property="og:description" content="Design challenges are coming to twyk.me: themed community prompts with featured winners. Get notified when the first challenge opens." />
+  <meta property="og:url" content="https://twyk.me/challenges.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Challenges | twyk.me" />
+  <meta name="twitter:description" content="Design challenges are coming to twyk.me: themed community prompts with featured winners. Get notified when the first challenge opens." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "Challenges", "item": "https://twyk.me/challenges.html"}]}</script>
+</head>
+<body>
+
+  <section class="soon-hero">
+    <div class="container">
+      <span class="soon-badge"><span class="dot"></span> Coming soon</span>
+      <h1>Design challenges</h1>
+      <p>Community design prompts with featured picks: a theme, a deadline, and everyone builds in the editor. The best entries get featured on the homepage.</p>
+      <form class="notify" id="notify">
+        <input type="email" id="notify-email" placeholder="you@example.com" aria-label="Email address" required />
+        <button class="btn btn-primary btn-lg" type="submit">Notify me <span class="arrow">&rarr;</span></button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 56px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">A taste of what's planned</div>
+          <h2>The first prompts on the whiteboard</h2>
+        </div>
+      </div>
+      <div class="teaser-grid">
+        <div class="teaser-card reveal">
+          <span class="soon-tag">Soon</span>
+          <span class="emoji">&#128736;&#65039;</span>
+          <h3>Desk rescue week</h3>
+          <p>Design the print that fixes the most annoying thing on your desk. Cable chaos, wobbly monitor, pen anarchy: pick your fight.</p>
+        </div>
+        <div class="teaser-card reveal">
+          <span class="soon-tag">Soon</span>
+          <span class="emoji">&#128311;</span>
+          <h3>One-shape challenge</h3>
+          <p>A whole design using only one shape from the library, duplicated and remixed as many times as you like. Constraint breeds genius.</p>
+        </div>
+        <div class="teaser-card reveal">
+          <span class="soon-tag">Soon</span>
+          <span class="emoji">&#127918;</span>
+          <h3>Print-in-place toys</h3>
+          <p>Hinges, joints and spinners that come off the bed already moving. No assembly, no supports, maximum fidget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Warm up in the meantime</h2>
+      <p>Challenges reward people who know their way around the workplane. Explore what the community is building, or learn the editor end to end.</p>
+      <a class="btn btn-primary btn-lg" href="explore.html">Explore models <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    renderHeader();
+    renderFooter();
+    observeReveals();
+
+    // prototype only: no backend, nothing is sent anywhere
+    document.getElementById("notify").addEventListener("submit", e => {
+      e.preventDefault();
+      e.currentTarget.innerHTML = `<span class="thanks">&#127881; You're on the list (well, you will be &mdash; this is a prototype).</span>`;
+    });
+  </script>
+</body>
+</html>

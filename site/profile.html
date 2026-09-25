@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator | twyk.me</title>
+  <meta name="description" content="Creator profile on twyk.me: published 3D models, followers, downloads and remixes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+</head>
+<body>
+
+  <section class="profile-hero">
+    <div class="container">
+      <div class="profile-avatar" id="avatar"></div>
+      <div>
+        <h1 id="name"></h1>
+        <p class="bio" id="bio"></p>
+      </div>
+      <div class="profile-stats" id="stats"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 48px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Published work</div>
+          <h2 id="models-title">Models</h2>
+        </div>
+        <a class="btn btn-primary" href="#">Follow <span class="arrow">+</span></a>
+      </div>
+      <div class="model-grid" id="grid"></div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, renderCards, MODELS, USERS, fmt } from "./js/app.js";
+    import { truncate, injectMeta, injectJSONLD, breadcrumbLD } from "./js/seo.js";
+
+    renderHeader();
+    renderFooter();
+
+    const uid = new URLSearchParams(location.search).get("u") || "adin";
+    const u = USERS[uid] || USERS.adin;
+    const models = MODELS.filter(m => m.author === u.id);
+    const totalLikes = models.reduce((s, m) => s + m.likes, 0);
+    const totalDl = models.reduce((s, m) => s + m.downloads, 0);
+    const totalRemixes = models.reduce((s, m) => s + m.remixes, 0);
+    const canonical = `${location.origin}${location.pathname}?u=${u.id}`;
+
+    injectMeta({
+      title: `${u.name} | twyk.me`,
+      description: truncate(`${u.name} on twyk.me: ${u.bio} ${models.length} published models, ${fmt(u.followers)} followers.`),
+      canonical,
+      type: "profile",
+    });
+    injectJSONLD({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      mainEntity: { "@type": "Person", name: u.name, description: u.bio, url: canonical },
+    });
+    injectJSONLD(breadcrumbLD([
+      { name: "Home", url: `${location.origin}/index.html` },
+      { name: "Creators", url: `${location.origin}/creators.html` },
+      { name: u.name, url: canonical },
+    ]));
+    document.getElementById("avatar").textContent = u.name[0];
+    document.getElementById("avatar").style.background = u.color;
+    document.getElementById("name").textContent = u.name;
+    document.getElementById("bio").textContent = u.bio;
+    document.getElementById("stats").innerHTML = `
+      <div><b>${models.length}</b><span>models</span></div>
+      <div><b>${fmt(u.followers)}</b><span>followers</span></div>
+      <div><b>${fmt(totalDl)}</b><span>downloads</span></div>
+      <div><b>${fmt(totalRemixes)}</b><span>remixes of their work</span></div>`;
+    document.getElementById("models-title").textContent = `Models (${models.length})`;
+    renderCards(document.getElementById("grid"), models);
+  </script>
+</body>
+</html>

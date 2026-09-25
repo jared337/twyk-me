@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project ideas | twyk.me</title>
+  <meta name="description" content="Hands-on 3D design project ideas for the weekend, from beginner keychains to advanced gear sets, each listing the twyk editor tools it teaches." />
+  <link rel="canonical" href="https://twyk.me/project-ideas.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="Project ideas | twyk.me" />
+  <meta property="og:description" content="Hands-on 3D design project ideas for the weekend, from beginner keychains to advanced gear sets, each listing the twyk editor tools it teaches." />
+  <meta property="og:url" content="https://twyk.me/project-ideas.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Project ideas | twyk.me" />
+  <meta name="twitter:description" content="Hands-on 3D design project ideas for the weekend, from beginner keychains to advanced gear sets, each listing the twyk editor tools it teaches." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "Project ideas", "item": "https://twyk.me/project-ideas.html"}]}</script>
+</head>
+<body>
+
+  <section class="explore-head">
+    <div class="container">
+      <h1>Project ideas</h1>
+      <p>Hands-on things to design this weekend, from first click to first print. Each idea lists the editor tools it will teach you.</p>
+      <div class="toolbar">
+        <div class="chips" id="chips">
+          <button class="chip active" data-d="all">All levels</button>
+          <button class="chip" data-d="beginner">Beginner</button>
+          <button class="chip" data-d="intermediate">Intermediate</button>
+          <button class="chip" data-d="advanced">Advanced</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 80px;">
+    <div class="container">
+      <div class="idea-grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Pick one and open the editor</h2>
+      <p>Every idea here is doable with the shapes in the library and an hour of curiosity. The printer does the rest.</p>
+      <a class="btn btn-primary btn-lg" href="#">Start designing <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    renderHeader();
+    renderFooter();
+
+    const IDEAS = [
+      { e: "&#128241;", t: "A stand for your phone", d: "beginner", time: "~30 min", uses: ["Box", "Wedge", "Align"],
+        p: "Two boxes and a wedge, aligned and merged. The classic first project: by the end you know the workplane.", see: "phone-stand" },
+      { e: "&#128273;", t: "A name tag keychain", d: "beginner", time: "~20 min", uses: ["Text", "Rounded", "Merge"],
+        p: "Drop a rounded tag, add Text on top, punch the ring hole. The most gifted print on the platform for a reason.", see: "keychain" },
+      { e: "&#128203;", t: "A stacking desk tray", d: "beginner", time: "~45 min", uses: ["Box", "Duplicate", "Group"],
+        p: "Build one tray tier as a group, then duplicate it upward. A tidy desk and a lesson in grouping, in one.", see: "desk-tray" },
+      { e: "&#127850;", t: "A custom cookie cutter", d: "intermediate", time: "~1 h", uses: ["Profiles", "Hole", "Resize"],
+        p: "Trace any outline with profile shapes, extrude a thin wall, add a wide grip band. Food-safe filament recommended." },
+      { e: "&#127793;", t: "A planter with drainage", d: "intermediate", time: "~1 h", uses: ["Cylinder", "Hole", "Solid/Hole"],
+        p: "A hex or round pot with a hole-shape cut for drainage and a matching tray. Learn boolean cutting properly.", see: "hex-planter" },
+      { e: "&#127922;", t: "Dice for game night", d: "intermediate", time: "~1.5 h", uses: ["Polyhedra", "Text", "Rotation"],
+        p: "Start from a polyhedron, inset the numbers with Text set to Hole, and rotate each face into position.", see: "d20" },
+      { e: "&#129686;", t: "A wall hook that holds a coat", d: "advanced", time: "~2 h", uses: ["Push face", "Split", "mm sizing"],
+        p: "Design for real load: wall plate, screw holes at exact spacing, and a curve shaped with Push face.", see: "wall-hook" },
+      { e: "&#9881;&#65039;", t: "A gear fidget", d: "advanced", time: "~2 h", uses: ["Parts", "Duplicate", "Align"],
+        p: "Two meshing gears on a base plate. Tooth counts, spacing and bore tolerance: this one makes you precise.", see: "gear" },
+      { e: "&#9822;", t: "A full chess piece", d: "advanced", time: "a weekend", uses: ["Profiles", "Merge", "Group"],
+        p: "Sculpt a knight from stacked profiles and curved solids. Finish it, publish it, and start your own remix chain.", see: "knight" },
+    ];
+
+    const grid = document.getElementById("grid");
+    const chips = document.getElementById("chips");
+    let level = "all";
+
+    function card(i) {
+      return `
+        <div class="idea-card reveal">
+          <span class="emoji">${i.e}</span>
+          <h3>${i.t}</h3>
+          <div class="idea-meta">
+            <span class="diff diff-${i.d}">${i.d}</span>
+            <span class="time">&#9201; ${i.time}</span>
+          </div>
+          <p>${i.p}</p>
+          <div class="uses">${i.uses.map(u => `<span>${u}</span>`).join("")}</div>
+          <div class="idea-links">
+            <a href="#">Start in the editor <span class="arrow">&rarr;</span></a>
+            ${i.see ? `<a href="model.html?id=${i.see}" style="color:var(--muted);">See one finished &rsaquo;</a>` : ""}
+          </div>
+        </div>`;
+    }
+
+    function apply() {
+      const list = IDEAS.filter(i => level === "all" || i.d === level);
+      grid.innerHTML = list.map(card).join("");
+      observeReveals();
+    }
+
+    chips.addEventListener("click", e => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      level = btn.dataset.d;
+      chips.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c === btn));
+      apply();
+    });
+
+    apply();
+  </script>
+</body>
+</html>

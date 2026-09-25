@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | twyk.me</title>
+  <meta name="description" content="About twyk.me: a full 3D editor in the browser and a community where every published model stays editable, remixable and printable." />
+  <link rel="canonical" href="https://twyk.me/about.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="About | twyk.me" />
+  <meta property="og:description" content="About twyk.me: a full 3D editor in the browser and a community where every published model stays editable, remixable and printable." />
+  <meta property="og:url" content="https://twyk.me/about.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="About | twyk.me" />
+  <meta name="twitter:description" content="About twyk.me: a full 3D editor in the browser and a community where every published model stays editable, remixable and printable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "About", "item": "https://twyk.me/about.html"}]}</script>
+</head>
+<body>
+
+  <section class="guide-hero">
+    <div class="container">
+      <h1>Design should end in your hands</h1>
+      <p>twyk.me exists because the distance between "I have an idea" and "I'm holding it" is still too long. A full 3D editor in the browser, a community that shares editable models instead of dead files, and a printer at the end of it.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">What we believe</div>
+          <h2>Three things we won't compromise on</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="num">1</span>
+          <h3>Your files are yours</h3>
+          <p>Everything you design exports as clean STL or 3MF, any time, no strings. If twyk disappeared tomorrow, your work wouldn't. Lock-in is not a business model we want.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num">2</span>
+          <h3>Remixing is how people learn</h3>
+          <p>Nobody's first design is great, and nobody learns from a file they can't open. Every model here opens back up in the editor, and credit travels with the work automatically.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num">3</span>
+          <h3>The print is the point</h3>
+          <p>We measure success in objects, not downloads. Everything about twyk, from mm-exact sizing to slicer-ready exports, is built so the thing on your screen becomes a thing on your desk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container" style="max-width: 760px;">
+      <div class="eyebrow">The story so far</div>
+      <h2 style="margin-bottom: 18px;">First the editor, now the home for what it makes</h2>
+      <p style="margin-bottom: 14px;">twyk started as an answer to a simple frustration: browser 3D tools were either toys that couldn't make real parts, or CAD packages that took a semester to learn. So we built the editor we wanted — approachable in the first ten minutes, precise enough for parts that fit.</p>
+      <p style="margin-bottom: 14px;">twyk.me is the second half of that idea. A design that stays on one person's screen is a design wasted; published here, it becomes something others can print, remix and build on, with the original creator's name attached every step of the way.</p>
+      <p>We're just getting started. If that sounds like your kind of thing, <a href="contact.html">say hello</a>.</p>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>See what people are making</h2>
+      <p>The best introduction to twyk isn't this page. It's the models.</p>
+      <a class="btn btn-primary btn-lg" href="explore.html">Explore models <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    renderHeader();
+    renderFooter();
+    observeReveals();
+  </script>
+</body>
+</html>

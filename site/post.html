@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | twyk.me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+</head>
+<body>
+
+  <article>
+    <header class="article-hero">
+      <div class="container">
+        <div class="breadcrumb" style="text-align: left;"><a href="blog.html">Blog</a> &nbsp;/&nbsp; <span id="crumb-title"></span></div>
+        <span class="cat-tag" id="a-cat"></span>
+        <h1 id="a-title"></h1>
+        <div class="post-meta" id="a-meta"></div>
+        <div class="cover" id="a-cover"></div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="article" id="a-body"></div>
+      <div class="article-foot">
+        <a href="blog.html">&larr; All posts</a>
+        <span style="color: var(--muted);">Written by the twyk team</span>
+      </div>
+    </div>
+  </article>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Keep reading</div>
+          <h2>More from the blog</h2>
+        </div>
+      </div>
+      <div class="post-grid" id="more"></div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    import { POSTS, postById } from "./js/posts.js";
+    import { injectMeta, injectJSONLD, breadcrumbLD, faqLDFromContainer } from "./js/seo.js";
+
+    renderHeader();
+    renderFooter();
+
+    const post = postById(new URLSearchParams(location.search).get("id"));
+    const canonical = `${location.origin}/post.html?id=${post.id}`;
+
+    /* SEO head tags (note: for search engines to reliably see these, serve the
+       blog server-rendered or prerendered in production; client-side injection
+       is a prototype stand-in) */
+    injectMeta({
+      title: post.metaTitle || `${post.t} | twyk.me`,
+      description: post.metaDesc,
+      canonical,
+      type: "article",
+      publishedTime: post.iso,
+    });
+    injectJSONLD({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.t,
+      description: post.metaDesc,
+      datePublished: post.iso,
+      url: canonical,
+      author: { "@type": "Organization", name: "twyk.me" },
+      publisher: { "@type": "Organization", name: "twyk.me" },
+      mainEntityOfPage: canonical,
+    });
+    injectJSONLD(breadcrumbLD([
+      { name: "Home", url: `${location.origin}/index.html` },
+      { name: "Blog", url: `${location.origin}/blog.html` },
+      { name: post.t, url: canonical },
+    ]));
+    document.getElementById("crumb-title").textContent = post.t;
+    const cat = document.getElementById("a-cat");
+    cat.textContent = post.label;
+    cat.classList.add(`cat-${post.cat}`);
+    document.getElementById("a-title").textContent = post.t;
+    document.getElementById("a-meta").innerHTML = `${post.date} &middot; ${post.read}`;
+    const cover = document.getElementById("a-cover");
+    cover.innerHTML = post.e;
+    cover.style.background = `linear-gradient(135deg, ${post.g[0]}26, ${post.g[1]}36), linear-gradient(180deg, #f6f9fc, #eef3f9)`;
+    const bodyEl = document.getElementById("a-body");
+    bodyEl.innerHTML = post.body;
+    const faqLD = faqLDFromContainer(bodyEl);
+    if (faqLD) injectJSONLD(faqLD);
+
+    document.getElementById("more").innerHTML = POSTS.filter(p => p.id !== post.id).slice(0, 3).map(p => `
+      <a class="post-card reveal" href="post.html?id=${p.id}">
+        <div class="post-cover" style="background: linear-gradient(135deg, ${p.g[0]}26, ${p.g[1]}36), linear-gradient(180deg, #f6f9fc, #eef3f9);">${p.e}</div>
+        <div class="post-body">
+          <span class="cat-tag cat-${p.cat}">${p.label}</span>
+          <h3>${p.t}</h3>
+          <p class="excerpt">${p.p}</p>
+          <div class="post-meta">${p.date} &middot; ${p.read}</div>
+        </div>
+      </a>`).join("");
+    observeReveals();
+  </script>
+</body>
+</html>

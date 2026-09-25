@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help center | twyk.me</title>
+  <meta name="description" content="twyk.me help center: guides and answers on the 3D editor, publishing, remixing, exporting STL and 3MF files, and printing." />
+  <link rel="canonical" href="https://twyk.me/help.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="Help center | twyk.me" />
+  <meta property="og:description" content="twyk.me help center: guides and answers on the 3D editor, publishing, remixing, exporting STL and 3MF files, and printing." />
+  <meta property="og:url" content="https://twyk.me/help.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Help center | twyk.me" />
+  <meta name="twitter:description" content="twyk.me help center: guides and answers on the 3D editor, publishing, remixing, exporting STL and 3MF files, and printing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "Help center", "item": "https://twyk.me/help.html"}]}</script>
+</head>
+<body>
+
+  <section class="explore-head" style="text-align: center;">
+    <div class="container">
+      <h1>How can we help?</h1>
+      <p>Guides and answers, organised by topic.</p>
+      <div class="toolbar help-search">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+          <input type="search" id="search" placeholder="Search articles and questions&hellip;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 40px;">
+    <div class="container">
+      <div class="topic-grid" id="topics"></div>
+      <div class="empty-state" id="empty" hidden>
+        <h3>Nothing matches</h3>
+        <p>Try different words, or <a href="contact.html">ask us directly</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="faq-section">
+    <div class="container">
+      <div class="section-head" style="justify-content: center; text-align: center;">
+        <div>
+          <div class="eyebrow">Quick answers</div>
+          <h2>Frequently asked</h2>
+        </div>
+      </div>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    import { injectJSONLD } from "./js/seo.js";
+    renderHeader();
+    renderFooter();
+
+    const TOPICS = [
+      { icon: "&#128640;", tint: "fi-blue", t: "Getting started", n: 4, links: [
+        ["Your first model in ten minutes", "how-it-works.html"],
+        ["Finding your way around the workplane", "how-it-works.html"],
+        ["Creating an account", "#"],
+      ]},
+      { icon: "&#128736;&#65039;", tint: "fi-purple", t: "The editor", n: 6, links: [
+        ["The shape library, category by category", "how-it-works.html"],
+        ["Solid vs Hole: cutting and combining", "how-it-works.html"],
+        ["Group, Merge, Split and Cut explained", "how-it-works.html"],
+      ]},
+      { icon: "&#128228;", tint: "fi-teal", t: "Publishing & sharing", n: 4, links: [
+        ["Publishing a model to twyk.me", "#"],
+        ["Adding photos of your prints", "#"],
+        ["Editing a model after publishing", "#"],
+      ]},
+      { icon: "&#128257;", tint: "fi-pink", t: "Remixing & credit", n: 3, links: [
+        ["How remix lineage works", "model.html?id=knight"],
+        ["Opening someone's model in the editor", "#"],
+        ["How your credit travels with remixes", "#"],
+      ]},
+      { icon: "&#128424;&#65039;", tint: "fi-amber", t: "Exporting & printing", n: 5, links: [
+        ["3MF vs STL: which to export", "how-it-works.html"],
+        ["Getting a model into your slicer", "#"],
+        ["Fixing scale problems after export", "#"],
+      ]},
+      { icon: "&#128100;", tint: "fi-green", t: "Account & profile", n: 3, links: [
+        ["Setting up your creator profile", "#"],
+        ["Followers and notifications", "#"],
+        ["Deleting your account", "#"],
+      ]},
+    ];
+
+    const FAQ = [
+      ["Is twyk.me free?", "Yes. Designing in the editor and publishing models is free. If that ever changes for advanced features, free will stay free."],
+      ["Do I need to install anything?", "No. The editor runs entirely in your browser. A mouse makes life easier, but nothing gets installed."],
+      ["What file formats can I export?", "3MF, which keeps separate objects for multi-colour printing, and STL, a single mesh that opens in any slicer or CAD tool."],
+      ["What happens when someone remixes my model?", "Their version opens in the editor as a copy, and the published remix links back to your original in its lineage. Your name travels with the work."],
+      ["Can I import models from other tools?", "Yes, the editor imports STL files. Imported meshes can be moved, scaled, combined and cut like any other shape."],
+      ["Which printers does twyk work with?", "Any printer whose slicer accepts STL or 3MF, which is effectively all of them. twyk exports the model; your slicer handles the printing."],
+    ];
+
+    const topicsEl = document.getElementById("topics");
+    const faqEl = document.getElementById("faq");
+
+    function render(query = "") {
+      const q = query.toLowerCase();
+      const topics = TOPICS.filter(t =>
+        !q || t.t.toLowerCase().includes(q) || t.links.some(l => l[0].toLowerCase().includes(q))
+      );
+      topicsEl.innerHTML = topics.map(t => `
+        <div class="topic-card reveal">
+          <div class="th">
+            <span class="di ${t.tint}" style="font-size:19px;">${t.icon}</span>
+            <span><b>${t.t}</b><span>${t.n} articles</span></span>
+          </div>
+          <ul>${t.links
+            .filter(l => !q || l[0].toLowerCase().includes(q) || t.t.toLowerCase().includes(q))
+            .map(l => `<li><a href="${l[1]}">${l[0]}</a></li>`).join("")}</ul>
+        </div>`).join("");
+
+      const faqs = FAQ.filter(f => !q || f[0].toLowerCase().includes(q) || f[1].toLowerCase().includes(q));
+      faqEl.innerHTML = faqs.map(f => `
+        <details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
+
+      document.getElementById("empty").hidden = topics.length > 0;
+      document.getElementById("faq-section").style.display = faqs.length ? "" : "none";
+      observeReveals();
+    }
+
+    document.getElementById("search").addEventListener("input", e => render(e.target.value));
+    render();
+
+    // static FAQPage schema reflects the full, unfiltered list (search only changes the visible subset)
+    injectJSONLD({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQ.map(([q, a]) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Prototype sitemap: hand-written to mirror the current mock catalog in js/data.js
+  and js/posts.js. In production this should be generated automatically from the
+  database on publish/update, not maintained by hand.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url><loc>https://twyk.me/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://twyk.me/explore.html</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://twyk.me/how-it-works.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://twyk.me/compare.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://twyk.me/creators.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://twyk.me/project-ideas.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://twyk.me/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://twyk.me/help.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/challenges.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://twyk.me/about.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://twyk.me/contact.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+  <!-- model pages -->
+  <url><loc>https://twyk.me/model.html?id=knight</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=spiral-vase</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=gear</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=phone-stand</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=hex-planter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=d20</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=cable-clip</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=keychain</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=torus-knot</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=wall-hook</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=pen-pot</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=desk-tray</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=flexi-gecko</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=wobbly-penguin</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=pill-organizer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=slim-wallet</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=page-holder</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/model.html?id=hat-rack</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- creator profiles -->
+  <url><loc>https://twyk.me/profile.html?u=adin</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://twyk.me/profile.html?u=maya</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://twyk.me/profile.html?u=luis</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://twyk.me/profile.html?u=sofia</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://twyk.me/profile.html?u=kenji</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://twyk.me/profile.html?u=amara</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+
+  <!-- blog posts -->
+  <url><loc>https://twyk.me/post.html?id=introducing-twyk-me</loc><lastmod>2026-09-10</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/post.html?id=3mf-export-colours</loc><lastmod>2026-09-02</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/post.html?id=chess-club-story</loc><lastmod>2026-08-18</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/post.html?id=snap-grid-habits</loc><lastmod>2026-08-05</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/post.html?id=remix-chains-credit</loc><lastmod>2026-07-22</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/post.html?id=push-face</loc><lastmod>2026-07-08</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://twyk.me/post.html?id=vase-mode-water</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+
+</urlset>

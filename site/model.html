@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model | twyk.me</title>
+  <meta name="description" content="View this 3D model in a live browser viewer, download print files as STL or 3MF, and remix it in the free twyk.me editor." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+</head>
+<body>
+
+  <main class="model-page">
+    <div class="container">
+      <div class="breadcrumb" id="crumb"></div>
+      <div class="model-layout">
+        <div>
+          <div class="viewer-panel" id="viewer">
+            <img class="gallery-img" id="gallery-img" alt="" hidden />
+            <div class="viewer-hint" id="viewer-hint">Drag to rotate &middot; scroll to zoom</div>
+          </div>
+          <div class="gallery-thumbs" id="gallery-thumbs"></div>
+          <div class="model-desc" style="margin-top: 32px;">
+            <h3>About this model</h3>
+            <p id="desc"></p>
+          </div>
+          <div class="lineage">
+            <h3>Remix lineage</h3>
+            <div id="lineage"></div>
+          </div>
+          <div class="comments">
+            <h3 id="comments-title">Comments</h3>
+            <textarea class="comment-box" placeholder="Share a make, ask a question&hellip;"></textarea>
+            <button class="btn btn-primary">Post comment</button>
+            <div id="comment-list" style="margin-top: 18px;"></div>
+          </div>
+        </div>
+
+        <aside class="model-sidebar">
+          <h1 id="title"></h1>
+          <div class="byline" id="byline"></div>
+          <div class="rating-row" id="rating-row"></div>
+          <div class="print-files">
+            <h3 id="pf-title">Print files</h3>
+            <div id="pf-list"></div>
+          </div>
+          <div class="action-stack">
+            <a class="btn btn-primary btn-lg btn-block" href="#">Remix in the editor <span class="arrow">&rarr;</span></a>
+            <a class="btn btn-dark btn-block" href="#">Download STL</a>
+            <a class="btn btn-ghost btn-block" href="#">&#9825; Like this model</a>
+          </div>
+          <div class="stat-row" id="stats"></div>
+          <div class="tag-list" id="tags"></div>
+        </aside>
+      </div>
+
+      <div class="more-section">
+        <h2 id="more-title">More from this creator</h2>
+        <div class="model-grid" id="more-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { renderHeader, renderFooter, renderCards, avatarHTML, starsHTML, MODELS, USERS, fmt, ratingOf, ratingCountOf } from "./js/app.js";
+    import { printFilesOf } from "./js/data.js";
+    import { truncate, injectMeta, injectJSONLD, breadcrumbLD } from "./js/seo.js";
+
+    renderHeader("explore");
+    renderFooter();
+
+    const id = new URLSearchParams(location.search).get("id") || "knight";
+    const m = MODELS.find(x => x.id === id) || MODELS[0];
+    const u = USERS[m.author];
+    const categoryLabel = m.category[0].toUpperCase() + m.category.slice(1);
+    const canonical = `${location.origin}${location.pathname}?id=${m.id}`;
+
+    injectMeta({
+      title: `${m.name} | twyk.me`,
+      description: truncate(`${m.description} Free STL/3MF download, ratings and remix in the twyk.me editor.`),
+      canonical,
+    });
+    injectJSONLD({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: m.name,
+      description: m.description,
+      category: categoryLabel,
+      url: canonical,
+      brand: { "@type": "Brand", name: "twyk.me" },
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock", url: canonical },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: ratingOf(m).toFixed(1),
+        reviewCount: ratingCountOf(m),
+        bestRating: "5",
+        worstRating: "1",
+      },
+    });
+    injectJSONLD(breadcrumbLD([
+      { name: "Home", url: `${location.origin}/index.html` },
+      { name: "Explore", url: `${location.origin}/explore.html` },
+      { name: categoryLabel, url: `${location.origin}/explore.html?cat=${m.category}` },
+      { name: m.name, url: canonical },
+    ]));
+
+    document.getElementById("crumb").innerHTML =
+      `<a href="explore.html">Explore</a> &nbsp;/&nbsp; <a href="explore.html?cat=${m.category}">${m.category[0].toUpperCase() + m.category.slice(1)}</a> &nbsp;/&nbsp; ${m.name}`;
+    document.getElementById("title").textContent = m.name;
+    document.getElementById("byline").innerHTML =
+      `by <a href="profile.html?u=${u.id}">${u.name}</a> &middot; published ${m.posted}`;
+    document.getElementById("desc").textContent = m.description;
+    document.getElementById("stats").innerHTML = `
+      <div><b>${fmt(m.likes)}</b><span>likes</span></div>
+      <div><b>${fmt(m.downloads)}</b><span>downloads</span></div>
+      <div><b>${fmt(m.remixes)}</b><span>remixes</span></div>
+      <div><b>${fmt(m.comments)}</b><span>comments</span></div>`;
+    document.getElementById("tags").innerHTML =
+      m.tags.map(t => `<span class="tag">#${t}</span>`).join("");
+
+    /* rating */
+    const rating = ratingOf(m);
+    document.getElementById("rating-row").innerHTML = `
+      <span class="score">${rating.toFixed(1)}</span>
+      ${starsHTML(rating, 17)}
+      <span class="count">${fmt(ratingCountOf(m))} ratings</span>`;
+
+    /* print files */
+    const printFiles = printFilesOf(m);
+    document.getElementById("pf-title").innerHTML = `Print files <span>(${printFiles.length})</span>`;
+    const pfList = document.getElementById("pf-list");
+    pfList.innerHTML = printFiles.map((f, i) => `
+      <div class="pf-card ${i === 0 ? "active" : ""}" data-i="${i}">
+        <img class="pf-thumb" alt="" />
+        <div class="pf-body">
+          <div class="pf-name">${f.name}</div>
+          <div class="pf-meta">
+            <span class="badge-designer">Designer</span>
+            <span>&#9201; ${f.time}</span>
+            <span>${f.plates} plate${f.plates > 1 ? "s" : ""}</span>
+            <span class="pf-rating">${starsHTML(f.rating, 11)} ${f.rating.toFixed(1)} <span style="color:var(--faint);font-weight:400">(${f.count})</span></span>
+          </div>
+        </div>
+      </div>`).join("");
+    pfList.addEventListener("click", e => {
+      const card = e.target.closest(".pf-card");
+      if (!card) return;
+      pfList.querySelectorAll(".pf-card").forEach(c => c.classList.toggle("active", c === card));
+    });
+
+    document.getElementById("lineage").innerHTML = m.lineage.map(l => `
+      <div class="lineage-item ${l.rel === "current" ? "current" : ""}">
+        <span class="dot"></span>
+        <span>${l.name}${l.rel === "current" ? " <b>(this model)</b>" : ""}${l.rel === "original" ? " (original)" : ""}${l.rel === "remix" ? " (remix)" : ""}</span>
+        <span class="who">by ${USERS[l.who].name}</span>
+      </div>`).join("");
+
+    document.getElementById("comments-title").textContent = `Comments (${m.commentsList.length})`;
+    document.getElementById("comment-list").innerHTML = m.commentsList.length
+      ? m.commentsList.map(c => `
+          <div class="comment">
+            ${avatarHTML(c.who)}
+            <div class="body">
+              <div><span class="who">${USERS[c.who].name}</span><span class="when">${c.when}</span></div>
+              ${c.text}
+            </div>
+          </div>`).join("")
+      : `<p style="color: var(--muted); font-size: 14.5px; padding-top: 8px;">No comments yet. Be the first.</p>`;
+
+    const more = MODELS.filter(x => x.author === m.author && x.id !== m.id).slice(0, 4);
+    if (more.length) {
+      renderCards(document.getElementById("more-grid"), more);
+    } else {
+      document.querySelector(".more-section").remove();
+    }
+
+    /* ---- interactive 3D viewer ---- */
+    (async () => {
+      try {
+        const THREE = await import("three");
+        const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
+        const { makeScene } = await import("./js/models3d.js");
+
+        const panel = document.getElementById("viewer");
+        const [c1, c2] = m.gradient;
+        panel.style.background = `linear-gradient(135deg, ${c1}26, ${c2}36), linear-gradient(180deg, #f6f9fc, #eef3f9)`;
+
+        const { scene, model, center, radius } = makeScene(m.kind);
+        scene.background = null; // let the panel gradient show through
+        const cam = new THREE.PerspectiveCamera(34, 4 / 3, 0.1, 500);
+        const d = radius * 3.6;
+        const home = [0.7, 0.55, 0.7];
+        cam.position.set(center.x + d * home[0], center.y + d * home[1], center.z + d * home[2]);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        panel.prepend(renderer.domElement);
+
+        const controls = new OrbitControls(cam, renderer.domElement);
+        controls.target.copy(center);
+        controls.enableDamping = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.6;
+        controls.minDistance = radius * 1.4;
+        controls.maxDistance = radius * 8;
+        renderer.domElement.addEventListener("pointerdown", () => { controls.autoRotate = false; }, { once: true });
+
+        function size() {
+          const w = panel.clientWidth, h = panel.clientHeight;
+          renderer.setSize(w, h);
+          cam.aspect = w / h;
+          cam.updateProjectionMatrix();
+        }
+        size();
+        window.addEventListener("resize", size);
+
+        /* gallery: render extra angles of the same model as still shots */
+        const angles = [home, [-0.95, 0.35, 0.45], [0.15, 1.3, 0.55], [0.85, 0.18, -0.75]];
+        const shots = angles.map(a => {
+          cam.position.set(center.x + d * a[0], center.y + d * a[1], center.z + d * a[2]);
+          cam.lookAt(center);
+          renderer.render(scene, cam);
+          return renderer.domElement.toDataURL("image/png");
+        });
+        cam.position.set(center.x + d * home[0], center.y + d * home[1], center.z + d * home[2]);
+
+        const galleryImg = document.getElementById("gallery-img");
+        const hint = document.getElementById("viewer-hint");
+        const thumbsEl = document.getElementById("gallery-thumbs");
+        const angleLabels = ["Side view", "Top view", "Back view"];
+        /* gallery order: live 3D, then the creator's real photos (m.images), then extra render angles */
+        const entries = [
+          { src: shots[0], label: "Interactive view", live: true },
+          ...(m.images || []).map((src, j) => ({ src, label: `Photo ${j + 1}` })),
+          ...shots.slice(1).map((s, j) => ({ src: s, label: angleLabels[j] })),
+        ];
+        thumbsEl.innerHTML = entries.map((en, i) => `
+          <button class="gthumb ${i === 0 ? "active" : ""}" data-i="${i}" title="${en.label}">
+            <img src="${en.src}" alt="${en.label}" />
+            ${en.live ? '<span class="live-tag">3D</span>' : ""}
+          </button>`).join("");
+        thumbsEl.addEventListener("click", e => {
+          const btn = e.target.closest(".gthumb");
+          if (!btn) return;
+          const en = entries[+btn.dataset.i];
+          thumbsEl.querySelectorAll(".gthumb").forEach(t => t.classList.toggle("active", t === btn));
+          if (en.live) {
+            galleryImg.hidden = true;
+            hint.hidden = false;
+          } else {
+            galleryImg.src = en.src;
+            galleryImg.hidden = false;
+            hint.hidden = true;
+          }
+        });
+
+        /* fill the print-file card thumbnails with the same renders */
+        document.querySelectorAll(".pf-thumb").forEach((img, i) => { img.src = shots[i % shots.length]; });
+
+        renderer.setAnimationLoop(() => {
+          controls.update();
+          renderer.render(scene, cam);
+        });
+      } catch (e) {
+        document.getElementById("viewer").insertAdjacentHTML("beforeend",
+          `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted)">3D preview unavailable offline</div>`);
+      }
+    })();
+  </script>
+</body>
+</html>

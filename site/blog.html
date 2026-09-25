@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | twyk.me</title>
+  <meta name="description" content="News, product updates, maker stories and 3D printing tips from the twyk.me team." />
+  <link rel="canonical" href="https://twyk.me/blog.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="Blog | twyk.me" />
+  <meta property="og:description" content="News, product updates, maker stories and 3D printing tips from the twyk.me team." />
+  <meta property="og:url" content="https://twyk.me/blog.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Blog | twyk.me" />
+  <meta name="twitter:description" content="News, product updates, maker stories and 3D printing tips from the twyk.me team." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://twyk.me/blog.html"}]}</script>
+</head>
+<body>
+
+  <section class="explore-head">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>News, releases and maker stories from twyk.</p>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 80px;">
+    <div class="container">
+      <a class="post-featured reveal" id="featured" href="#"></a>
+      <div class="post-grid" id="posts"></div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    import { POSTS } from "./js/posts.js";
+
+    renderHeader();
+    renderFooter();
+
+    const featured = POSTS.find(p => p.featured) || POSTS[0];
+    const rest = POSTS.filter(p => p !== featured);
+
+    const f = document.getElementById("featured");
+    f.href = `post.html?id=${featured.id}`;
+    f.innerHTML = `
+      <div class="pf-cover post-cover" style="background: linear-gradient(135deg, ${featured.g[0]}22, ${featured.g[1]}36), linear-gradient(180deg, #f6f9fc, #eef3f9);">${featured.e}</div>
+      <div class="pf-text">
+        <span class="cat-tag cat-${featured.cat}">${featured.label}</span>
+        <h2>${featured.t}</h2>
+        <p>${featured.p}</p>
+        <div class="post-meta">${featured.date} &middot; ${featured.read}</div>
+      </div>`;
+
+    document.getElementById("posts").innerHTML = rest.map(p => `
+      <a class="post-card reveal" href="post.html?id=${p.id}">
+        <div class="post-cover" style="background: linear-gradient(135deg, ${p.g[0]}26, ${p.g[1]}36), linear-gradient(180deg, #f6f9fc, #eef3f9);">${p.e}</div>
+        <div class="post-body">
+          <span class="cat-tag cat-${p.cat}">${p.label}</span>
+          <h3>${p.t}</h3>
+          <p class="excerpt">${p.p}</p>
+          <div class="post-meta">${p.date} &middot; ${p.read}</div>
+        </div>
+      </a>`).join("");
+    observeReveals();
+  </script>
+</body>
+</html>
