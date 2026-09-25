@@ -4,20 +4,24 @@ A design prototype for **twyk.me** — a community website for the twyk 3D edito
 
 This repo is the marketing/community **website prototype** (not the editor itself). It's a static, no-build-step site: plain HTML, CSS, and JavaScript ES modules, with [three.js](https://threejs.org/) (loaded from a CDN) rendering all of the 3D model previews procedurally, so there are no binary model assets checked in.
 
+**Live demo:** <https://jared337.github.io/twyk-me/> (via GitHub Pages, served from `docs/`)
+
 ## Running it locally
 
 The site uses ES module imports, which browsers block on `file://` URLs, so it needs to be served over HTTP:
 
 ```bash
-npx serve -l 4173 site
+npx serve -l 4173 docs
 ```
 
 Then open <http://localhost:4173>.
 
 ## Project structure
 
+The site lives in `docs/` (not `site/`) specifically so GitHub Pages can serve it directly from this repo with no build step.
+
 ```
-site/
+docs/
   index.html, explore.html, model.html, profile.html,
   creators.html, how-it-works.html, challenges.html,
   project-ideas.html, blog.html, post.html, help.html,
@@ -38,5 +42,5 @@ site/
 ## Notes
 
 - All models, creators, ratings, and blog content are illustrative placeholders for this prototype, not real data.
-- Canonical URLs and structured data assume a production domain of `https://twyk.me` — update this across `site/*.html`, `sitemap.xml`, `robots.txt`, and `llms.txt` if the real domain differs.
-- `site/js/seo.js` injects SEO tags client-side for the dynamic pages (`model.html`, `profile.html`, `post.html`). That works for Google, but not for crawlers that don't execute JavaScript (e.g. Twitter/Slack link previews) — production should server-render or pre-render those pages per id.
+- Canonical URLs and structured data assume a production domain of `https://twyk.me` — update this across `docs/*.html`, `sitemap.xml`, `robots.txt`, and `llms.txt` if the real domain differs (the GitHub Pages URL above is just for previewing the prototype).
+- `docs/js/seo.js` injects SEO tags client-side for the dynamic pages (`model.html`, `profile.html`, `post.html`). That works for Google, but not for crawlers that don't execute JavaScript (e.g. Twitter/Slack link previews) — production should server-render or pre-render those pages per id.
