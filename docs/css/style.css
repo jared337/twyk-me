@@ -123,6 +123,35 @@ a:hover { color: var(--purple-deep); }
 
 .header-actions { display: flex; gap: 12px; align-items: center; }
 
+/* mobile nav toggle (hamburger) */
+.nav-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  order: -1;
+}
+.nav-toggle:hover { background: var(--bg-soft); }
+.nav-toggle .bar {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-toggle .bar:nth-child(1) { transform: translateY(-6px); }
+.nav-toggle .bar:nth-child(3) { transform: translateY(6px); }
+.site-header.menu-open .nav-toggle .bar:nth-child(1) { transform: rotate(45deg); }
+.site-header.menu-open .nav-toggle .bar:nth-child(2) { opacity: 0; }
+.site-header.menu-open .nav-toggle .bar:nth-child(3) { transform: rotate(-45deg); }
+
 /* nav dropdowns */
 .nav-drop { position: relative; }
 .nav-drop > a { display: inline-flex; align-items: center; gap: 5px; }
@@ -1484,8 +1513,57 @@ select.sort {
 @media (max-width: 920px) {
   .model-layout { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
   .profile-stats { margin-left: 0; }
+
+  .nav-toggle { display: inline-flex; position: relative; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    padding: 4px 24px 18px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links > a {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--bg-soft);
+  }
+
+  .nav-drop { width: 100%; }
+  .nav-drop > a {
+    width: 100%;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--bg-soft);
+    justify-content: space-between;
+  }
+  .drop-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    padding-top: 0;
+    display: none;
+  }
+  .nav-drop.mobile-open .drop-menu { display: block; }
+  .nav-drop.mobile-open > a .caret { transform: rotate(180deg); }
+  .drop-card {
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0 0 10px 10px;
+  }
+  .drop-foot { padding-left: 10px; }
 }
 @media (max-width: 560px) {
   .hero { padding: 64px 0 100px; }

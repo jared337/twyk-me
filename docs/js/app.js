@@ -25,6 +25,9 @@ export function renderHeader(active = "") {
   el.innerHTML = `
     <div class="container">
       <a class="logo" href="index.html">${LOGO_SVG} twyk.me</a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
       <nav class="nav-links">
         <a href="explore.html" ${active === "explore" ? 'class="active"' : ""}>Explore</a>
         <a href="how-it-works.html" ${active === "how" ? 'class="active"' : ""}>How it works</a>
@@ -83,13 +86,42 @@ export function renderHeader(active = "") {
       </nav>
       <div class="header-actions">
         <a class="btn btn-ghost" href="#">Sign in</a>
-        <a class="btn btn-primary" href="#">Open the editor <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-primary" href="https://editor.twyk.me">Open the editor <span class="arrow">&rarr;</span></a>
       </div>
     </div>`;
   document.body.prepend(el);
   window.addEventListener("scroll", () => {
     el.classList.toggle("scrolled", window.scrollY > 8);
   }, { passive: true });
+
+  /* mobile nav: hamburger toggle + tap-to-expand submenus */
+  const toggle = el.querySelector(".nav-toggle");
+  const navLinks = el.querySelector(".nav-links");
+  const isMobile = () => window.matchMedia("(max-width: 920px)").matches;
+
+  function closeMenu() {
+    el.classList.remove("menu-open");
+    navLinks.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+    navLinks.querySelectorAll(".nav-drop.mobile-open").forEach(d => d.classList.remove("mobile-open"));
+  }
+
+  toggle.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("open");
+    el.classList.toggle("menu-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  navLinks.querySelectorAll(".nav-drop > a").forEach(a => {
+    a.addEventListener("click", e => {
+      if (!isMobile()) return;
+      e.preventDefault();
+      a.parentElement.classList.toggle("mobile-open");
+    });
+  });
+
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+  window.addEventListener("resize", () => { if (!isMobile()) closeMenu(); });
 }
 
 export function renderFooter() {
@@ -105,7 +137,7 @@ export function renderFooter() {
         <div>
           <h4>Platform</h4>
           <ul>
-            <li><a href="#">The editor</a></li>
+            <li><a href="how-it-works.html">The editor</a></li>
             <li><a href="explore.html">Explore models</a></li>
             <li><a href="how-it-works.html">How it works</a></li>
           </ul>
