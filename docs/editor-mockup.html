@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>twyk.me editor redesign mockup</title>
+<style>
+  :root {
+    --navy:#0a2540; --ink:#1f3350; --slate:#48586d; --muted:#5a6b82; --line:#e6ebf1; --line2:#d5dde8;
+    --bg:#fff; --panel:#fff; --canvas:#eef3fa; --soft:#f6f9fc;
+    --blue:#2563eb; --blue-deep:#1a4fd6; --tint:#e8efff; --tint-line:#c7d6fb;
+    --green:#0e8f5b; --green-tint:#e3f6ec; --amber:#b26b00; --amber-tint:#fff3d6; --pink:#ff5996;
+    --radius:8px; --shadow:0 8px 30px rgba(10,37,64,.14);
+  }
+  * { box-sizing:border-box; }
+  html,body { height:100%; margin:0; }
+  body { font:13px/1.45 Inter,system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); display:flex; flex-direction:column; overflow:hidden; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+  button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+  svg { display:block; }
+  .ico { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+  /* ---------- top bar ---------- */
+  .top { height:56px; flex:none; display:flex; align-items:center; gap:14px; padding:0 14px; background:var(--panel); border-bottom:1px solid var(--line); }
+  .logo { display:flex; align-items:center; gap:8px; font-weight:700; font-size:15px; color:var(--navy); text-decoration:none; }
+  .logo svg { width:22px; height:22px; color:var(--blue); }
+  .name-wrap { display:flex; align-items:center; gap:8px; }
+  .name { font:600 14px inherit; color:var(--navy); border:1px solid transparent; background:transparent; border-radius:6px; padding:5px 8px; width:170px; text-overflow:ellipsis; transition:.12s; }
+  .name:hover { border-color:var(--line2); background:var(--soft); }
+  .name:focus { border-color:var(--blue); background:#fff; outline:none; box-shadow:0 0 0 3px var(--tint); }
+  .pencil { color:var(--muted); margin-left:-30px; pointer-events:none; opacity:0; transition:.12s; }
+  .name-wrap:hover .pencil { opacity:1; }
+  .name:focus + .pencil { opacity:0; }
+  .chip { display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:500; padding:2px 9px 2px 7px; border-radius:99px; background:var(--green-tint); color:var(--green); white-space:nowrap; }
+  .chip i { width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .chip.saving { background:var(--amber-tint); color:var(--amber); }
+  .divider { width:1px; height:24px; background:var(--line); }
+
+  .seg { display:inline-flex; background:var(--soft); border:1px solid var(--line); border-radius:9px; padding:2px; gap:2px; }
+  .seg button { display:flex; align-items:center; gap:6px; border:0; background:transparent; padding:5px 10px; border-radius:7px; color:var(--slate); font-weight:500; }
+  .seg button:hover { background:#fff; color:var(--navy); }
+  .seg button[aria-pressed="true"] { background:#fff; color:var(--blue); box-shadow:0 1px 3px rgba(10,37,64,.15), inset 0 0 0 1px var(--tint-line); }
+  kbd { font:600 10px inherit; background:var(--line); color:var(--slate); border-radius:4px; padding:0 4px; line-height:16px; }
+  .iconbtn { width:32px; height:32px; display:grid; place-items:center; border:1px solid transparent; background:transparent; border-radius:7px; color:var(--slate); }
+  .iconbtn:hover:not(:disabled) { background:var(--soft); border-color:var(--line); }
+  .iconbtn:disabled { opacity:.35; cursor:default; }
+
+  .spacer { flex:1; }
+  .btn { display:inline-flex; align-items:center; gap:6px; height:34px; padding:0 13px; border-radius:8px; border:1px solid var(--line2); background:#fff; color:var(--navy); font-weight:600; }
+  .btn:hover { background:var(--soft); }
+  .btn.text { border-color:transparent; background:transparent; color:var(--slate); font-weight:500; }
+  .btn.text:hover { background:var(--soft); }
+  .btn.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .btn.primary:hover { background:var(--blue-deep); }
+  .btn.primary[disabled] { opacity:.5; cursor:not-allowed; }
+  .avatar { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--pink)); color:#fff; display:grid; place-items:center; font-weight:700; font-size:12px; margin-left:4px; }
+  .menu { position:relative; }
+  .pop { position:absolute; top:calc(100% + 6px); right:0; min-width:210px; background:#fff; border:1px solid var(--line); border-radius:10px; box-shadow:var(--shadow); padding:6px; display:none; z-index:30; }
+  .pop.open { display:block; }
+  .pop button { width:100%; display:flex; justify-content:space-between; align-items:center; gap:14px; border:0; background:transparent; padding:8px 10px; border-radius:6px; text-align:left; }
+  .pop button:hover { background:var(--soft); }
+  .pop .sep { height:1px; background:var(--line); margin:5px 0; }
+  .pop small { color:var(--muted); }
+  .tick { color:var(--blue); font-weight:700; }
+
+  /* ---------- workspace ---------- */
+  .work { flex:1; min-height:0; display:grid; grid-template-columns:288px 1fr 264px; transition:grid-template-columns .2s; }
+  .work.props-collapsed { grid-template-columns:288px 1fr 0px; }
+  .left,.right { background:var(--panel); min-height:0; display:flex; flex-direction:column; }
+  .left { border-right:1px solid var(--line); }
+  .right { border-left:1px solid var(--line); overflow:hidden; }
+  .tabs { display:flex; padding:10px 10px 0; gap:4px; border-bottom:1px solid var(--line); }
+  .tabs button { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 6px; border:0; background:transparent; color:var(--muted); font-weight:600; border-bottom:2px solid transparent; margin-bottom:-1px; }
+  .tabs button:hover { color:var(--navy); }
+  .tabs button[aria-selected="true"] { color:var(--blue); border-bottom-color:var(--blue); }
+  .tabs .spark { color:var(--pink); }
+  .pane { flex:1; overflow:auto; padding:14px; display:none; }
+  .pane.show { display:flex; flex-direction:column; }
+  .search { width:100%; height:34px; border:1px solid var(--line2); border-radius:8px; padding:0 10px; margin-bottom:14px; font:inherit; }
+  .label { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:2px 0 8px; }
+  .shapes { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:18px; }
+  .shape { border:1px solid var(--line); background:#fff; border-radius:10px; padding:10px 4px 7px; display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--slate); font-weight:500; font-size:12px; }
+  .shape:hover { border-color:var(--blue); box-shadow:0 0 0 3px var(--tint); color:var(--navy); }
+  .shape svg { width:34px; height:34px; color:var(--blue); }
+
+  /* AI pane */
+  .ai-intro { background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:12px; color:var(--slate); }
+  .ai-intro b { color:var(--navy); }
+  .prompts { display:flex; flex-direction:column; gap:7px; margin:12px 0; }
+  .prompts button { text-align:left; border:1px solid var(--line2); background:#fff; border-radius:9px; padding:9px 11px; color:var(--ink); }
+  .prompts button:hover { border-color:var(--blue); background:var(--tint); }
+  .composer { margin-top:auto; border:1px solid var(--line2); border-radius:10px; padding:8px; background:#fff; }
+  .composer:focus-within { border-color:var(--blue); box-shadow:0 0 0 3px var(--tint); }
+  .composer textarea { width:100%; border:0; resize:none; height:52px; font:inherit; outline:none; }
+  .composer .row { display:flex; align-items:center; gap:8px; }
+  .composer select { border:1px solid var(--line); border-radius:6px; background:var(--soft); padding:4px 6px; font:inherit; color:var(--slate); }
+  .composer .hint { color:var(--muted); font-size:11px; }
+  .btn.sm { height:28px; padding:0 11px; font-size:12px; }
+
+  /* canvas */
+  .canvas { position:relative; background:var(--canvas); overflow:hidden; min-height:0; }
+  #grid { position:absolute; inset:0; width:100%; height:100%; }
+  .float-l { position:absolute; left:14px; top:14px; display:flex; gap:2px; background:#fff; border:1px solid var(--line); border-radius:9px; padding:2px; box-shadow:0 2px 8px rgba(10,37,64,.08); }
+  .float-r { position:absolute; right:14px; top:14px; display:flex; flex-direction:column; align-items:center; gap:2px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:8px 6px; box-shadow:0 2px 8px rgba(10,37,64,.08); }
+  .cube { width:64px; height:64px; color:var(--blue); margin-bottom:4px; }
+  .empty { position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); text-align:center; background:rgba(255,255,255,.92); border:1px solid var(--line); border-radius:16px; padding:24px 28px; width:min(420px,88%); box-shadow:var(--shadow); }
+  .empty h2 { margin:0 0 6px; font-size:18px; color:var(--navy); }
+  .empty p { margin:0 0 16px; color:var(--slate); }
+  .empty .acts { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  .hintbar { position:absolute; left:50%; bottom:14px; transform:translateX(-50%); background:var(--navy); color:#fff; border-radius:99px; padding:6px 14px; font-size:12px; opacity:.92; white-space:nowrap; }
+  #obj { position:absolute; left:50%; top:52%; width:170px; height:170px; transform:translate(-50%,-50%); display:none; filter:drop-shadow(0 18px 14px rgba(10,37,64,.2)); }
+  #obj.on { display:block; }
+  #obj .sel { stroke:var(--pink); stroke-width:2; stroke-dasharray:5 4; fill:none; }
+
+  /* properties */
+  .props { width:264px; padding:16px; }
+  .props h3 { margin:0 0 12px; font-size:13px; color:var(--navy); display:flex; justify-content:space-between; align-items:center; }
+  .field { display:grid; grid-template-columns:70px 1fr; align-items:center; gap:8px; margin-bottom:9px; color:var(--slate); }
+  .field input { width:100%; height:30px; border:1px solid var(--line2); border-radius:6px; padding:0 8px; font:inherit; }
+  .swatches { display:flex; gap:7px; margin:4px 0 14px; }
+  .swatches i { width:22px; height:22px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 0 1px var(--line2); cursor:pointer; }
+  .swatches i.on { box-shadow:0 0 0 2px var(--blue); }
+
+  /* status bar */
+  .status { height:36px; flex:none; display:flex; align-items:center; gap:14px; padding:0 14px; background:var(--panel); border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+  .status label { display:flex; align-items:center; gap:6px; }
+  .status select { border:1px solid var(--line2); border-radius:6px; background:#fff; padding:2px 6px; font:inherit; color:var(--ink); }
+  .status .dot { width:3px; height:3px; border-radius:50%; background:var(--line2); }
+
+  /* ---------- share modal ---------- */
+  .scrim { position:fixed; inset:0; background:rgba(10,37,64,.5); display:none; align-items:center; justify-content:center; z-index:50; padding:16px; }
+  .scrim.open { display:flex; }
+  .modal { background:#fff; width:min(880px,100%); max-height:94vh; overflow:auto; border-radius:16px; box-shadow:0 24px 70px rgba(10,37,64,.4); display:grid; grid-template-columns:1fr 1fr; }
+  .m-left { padding:24px; background:var(--soft); border-right:1px solid var(--line); border-radius:16px 0 0 16px; }
+  .m-right { padding:52px 24px 24px; }
+  .modal h2 { margin:0 0 4px; font-size:20px; color:var(--navy); }
+  .modal .sub { margin:0 0 18px; color:var(--slate); }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(10,37,64,.08); }
+  .card .img { aspect-ratio:1200/630; background:linear-gradient(135deg,#dfe9ff,#f4f8ff); position:relative; display:grid; place-items:center; }
+  .card .img svg { width:36%; filter:drop-shadow(0 10px 8px rgba(10,37,64,.2)); }
+  .card .img .mark { position:absolute; left:10px; bottom:8px; font-weight:700; font-size:11px; color:var(--navy); display:flex; align-items:center; gap:5px; }
+  .card .img .mark svg { width:13px; height:13px; filter:none; color:var(--blue); }
+  .card .meta { padding:10px 12px; border-top:1px solid var(--line); }
+  .card .meta small { color:var(--muted); text-transform:uppercase; letter-spacing:.05em; font-size:10px; }
+  .card .meta b { display:block; color:var(--navy); font-size:14px; }
+  .card .meta span { color:var(--slate); font-size:12px; }
+  .tabs2 { display:flex; gap:6px; margin:14px 0 4px; }
+  .tabs2 button { border:1px solid var(--line2); background:#fff; border-radius:99px; padding:3px 11px; font-size:12px; color:var(--slate); }
+  .tabs2 button[aria-pressed="true"] { background:var(--tint); border-color:var(--tint-line); color:var(--blue); font-weight:600; }
+  .fld { margin-bottom:14px; }
+  .fld > span { display:block; font-weight:600; color:var(--navy); margin-bottom:5px; }
+  .fld input[type=text], .fld textarea { width:100%; border:1px solid var(--line2); border-radius:8px; padding:8px 10px; font:inherit; }
+  .fld textarea { height:62px; resize:none; }
+  .count { float:right; font-weight:400; color:var(--muted); font-size:11px; }
+  .vis { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .vis label { border:1px solid var(--line2); border-radius:9px; padding:8px 10px; cursor:pointer; display:block; }
+  .vis input { position:absolute; opacity:0; }
+  .vis label:has(input:checked) { border-color:var(--blue); background:var(--tint); box-shadow:0 0 0 1px var(--blue); }
+  .vis b { display:block; color:var(--navy); }
+  .vis small { color:var(--muted); font-size:11px; }
+  .linkrow { display:flex; gap:8px; margin-bottom:14px; }
+  .linkrow input { flex:1; height:36px; border:1px solid var(--line2); border-radius:8px; padding:0 10px; background:var(--soft); font:inherit; color:var(--slate); }
+  .targets { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
+  .t { display:flex; flex-direction:column; align-items:center; gap:5px; border:1px solid var(--line); background:#fff; border-radius:10px; padding:10px 4px; font-size:11px; color:var(--slate); font-weight:500; }
+  .t:hover { border-color:var(--blue); color:var(--navy); box-shadow:0 0 0 3px var(--tint); }
+  .t i { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; color:#fff; font:700 12px inherit; font-style:normal; }
+  .m-foot { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:6px; }
+  .m-foot .note { color:var(--muted); font-size:12px; }
+  .close { position:absolute; right:16px; top:14px; }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--navy); color:#fff; padding:9px 16px; border-radius:99px; opacity:0; transition:.2s; z-index:60; pointer-events:none; }
+  .toast.show { opacity:1; transform:translateX(-50%); }
+  .ribbon { background:var(--navy); color:#fff; font-size:12px; text-align:center; padding:6px; flex:none; }
+  .ribbon b { color:#9fc0ff; }
+
+  .btn,.chip,.seg button { white-space:nowrap; }
+  .top { min-width:0; }
+  @media (max-width:1280px) { .seg kbd { display:none; } .name { width:130px; } }
+  @media (max-width:1120px) { .seg span,.top .btn .lbl { display:none; } #newBtn { display:none; } }
+  @media (max-width:900px) {
+    .work { grid-template-columns:1fr !important; }
+    .left,.right { display:none; }
+    .modal { grid-template-columns:1fr; }
+    .m-left { border-radius:16px 16px 0 0; border-right:0; }
+    .seg span,.btn .lbl { display:none; }
+    .name { width:110px; }
+    .top { gap:8px; padding:0 10px; }
+    .top .divider,.top .menu,.top .btn:not(.primary),.top .iconbtn,.top .chip,.top .logo span { display:none; }
+    .top .seg { display:none; }
+    .spacer { flex:1; }
+    .targets { grid-template-columns:repeat(4,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon"><b>Design mockup</b> &mdash; click a shape to add it, rename the model, then open <b>Share</b>. Nothing here is saved.</div>
+
+<!-- ============ TOP BAR ============ -->
+<header class="top">
+  <a class="logo" href="index.html" aria-label="twyk.me home">
+    <svg viewBox="0 0 24 24" class="ico" style="stroke-width:2"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
+    twyk.me
+  </a>
+
+  <div class="name-wrap">
+    <input id="name" class="name" value="Untitled model" maxlength="60" aria-label="Model name" spellcheck="false" />
+    <svg class="ico pencil" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>
+    <span id="saved" class="chip"><i></i><span>Saved</span></span>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="seg" role="group" aria-label="Transform mode">
+    <button aria-pressed="true" data-mode="Move"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3M2 12l3-3M2 12l3 3M22 12l-3-3M22 12l-3 3"/></svg><span>Move</span><kbd>M</kbd></button>
+    <button aria-pressed="false" data-mode="Rotate"><svg class="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-3-6.7M21 3v6h-6"/></svg><span>Rotate</span><kbd>R</kbd></button>
+    <button aria-pressed="false" data-mode="Resize"><svg class="ico" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><span>Resize</span><kbd>S</kbd></button>
+  </div>
+
+  <button class="iconbtn" title="Undo (Ctrl+Z)" aria-label="Undo" id="undo" disabled><svg class="ico" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg></button>
+  <button class="iconbtn" title="Redo (Ctrl+Y)" aria-label="Redo" disabled><svg class="ico" viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 000 12h3"/></svg></button>
+
+  <div class="spacer"></div>
+
+  <div class="menu">
+    <button class="btn text" data-menu="viewMenu"><span class="lbl">View</span><svg class="ico" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+    <div class="pop" id="viewMenu">
+      <button>Ruler <span class="tick">&#10003;</span></button>
+      <button>Grid <span class="tick">&#10003;</span></button>
+      <button>Wireframe <small>W</small></button>
+      <div class="sep"></div>
+      <button>Keyboard shortcuts <small>?</small></button>
+    </div>
+  </div>
+  <button class="btn text" id="newBtn" title="Start a blank model">New model</button>
+  <button class="btn">Import</button>
+  <div class="menu">
+    <button class="btn" data-menu="exportMenu">Export<svg class="ico" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+    <div class="pop" id="exportMenu">
+      <button>3MF <small>keeps objects &amp; colours</small></button>
+      <button>STL <small>one mesh, opens anywhere</small></button>
+      <button>PNG image <small>transparent</small></button>
+    </div>
+  </div>
+  <button class="btn primary" id="shareBtn" disabled title="Add a shape to share">
+    <svg class="ico" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Share
+  </button>
+  <div class="avatar" title="Your account">JO</div>
+</header>
+
+<!-- ============ WORKSPACE ============ -->
+<main class="work" id="work">
+  <aside class="left">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-pane="p-shapes"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><circle cx="17" cy="7" r="4"/><path d="M12 21l-5-9-5 9z" transform="translate(5 0)"/></svg>Shapes</button>
+      <button role="tab" aria-selected="false" data-pane="p-tools"><svg class="ico" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Tools</button>
+      <button role="tab" aria-selected="false" data-pane="p-ai"><svg class="ico spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>Ask AI</button>
+    </div>
+
+    <div class="pane show" id="p-shapes">
+      <input class="search" placeholder="Search shapes&hellip;" aria-label="Search shapes" />
+      <div class="label">Basic</div>
+      <div class="shapes" id="shapeGrid">
+        <button class="shape"><svg viewBox="0 0 40 40" fill="currentColor" opacity=".9"><path d="M20 4l14 8v16l-14 8-14-8V12z" opacity=".35"/><path d="M20 4l14 8-14 8-14-8z"/><path d="M20 20v16l-14-8V12z" opacity=".6"/></svg>Box</button>
+        <button class="shape"><svg viewBox="0 0 40 40" fill="currentColor"><ellipse cx="20" cy="11" rx="12" ry="5"/><path d="M8 11v16c0 3 5 5 12 5s12-2 12-5V11c0 3-5 5-12 5S8 14 8 11z" opacity=".55"/></svg>Cylinder</button>
+        <button class="shape"><svg viewBox="0 0 40 40" fill="currentColor"><circle cx="20" cy="20" r="14" opacity=".75"/><ellipse cx="20" cy="20" rx="14" ry="5" fill="none" stroke="#fff" stroke-width="1.5" opacity=".7"/></svg>Sphere</button>
+        <button class="shape"><svg viewBox="0 0 40 40" fill="currentColor"><path d="M20 5l14 26H6z" opacity=".75"/></svg>Pyramid</button>
+        <button class="shape"><svg viewBox="0 0 40 40" fill="currentColor"><path d="M20 5l12 28H8z" opacity=".6"/><ellipse cx="20" cy="33" rx="12" ry="3.5"/></svg>Cone</button>
+        <button class="shape"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="6"><circle cx="20" cy="20" r="10"/></svg>Torus</button>
+      </div>
+      <div class="label">Holes &amp; cutters</div>
+      <div class="shapes">
+        <button class="shape"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"><rect x="7" y="7" width="26" height="26" rx="2"/></svg>Box hole</button>
+        <button class="shape"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"><circle cx="20" cy="20" r="13"/></svg>Round hole</button>
+      </div>
+    </div>
+
+    <div class="pane" id="p-tools">
+      <div class="label">Combine</div>
+      <div class="prompts" style="margin-top:0"><button>Group</button><button>Merge</button><button>Align</button><button>Split</button><button>Duplicate</button></div>
+    </div>
+
+    <div class="pane" id="p-ai">
+      <div class="ai-intro"><b>Tell me what to make, or what to change.</b><br>I use the same shapes and tools you do, so anything I do can be undone with <kbd>Ctrl+Z</kbd>.</div>
+      <div class="prompts">
+        <button class="prompt">A box 60 &times; 40 &times; 20 with four 5&nbsp;mm bolt holes, evenly in from the edges</button>
+        <button class="prompt">Hollow this out with a 2&nbsp;mm wall and open the top</button>
+        <button class="prompt">What have people shared lately?</button>
+      </div>
+      <div class="composer">
+        <textarea placeholder="Make me a&hellip;" aria-label="Ask AI"></textarea>
+        <div class="row">
+          <select aria-label="Model"><option>Sonnet 5.5</option><option>Opus 5.5</option></select>
+          <button class="btn text sm">New chat</button>
+          <span class="spacer"></span>
+          <span class="hint">Enter to send</span>
+          <button class="btn primary sm">Send</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <section class="canvas" id="canvas">
+    <svg id="grid" aria-hidden="true"></svg>
+
+    <div class="float-l" role="group" aria-label="Zoom">
+      <button class="iconbtn" title="Zoom in" aria-label="Zoom in"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></button>
+      <button class="iconbtn" title="Zoom out" aria-label="Zoom out"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M8 11h6"/></svg></button>
+      <button class="iconbtn" title="Fit to model (F)" aria-label="Fit to model"><svg class="ico" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    </div>
+
+    <div class="float-r">
+      <svg class="cube" viewBox="0 0 64 64"><path d="M32 6l22 12v26L32 58 10 44V18z" fill="#e8efff" stroke="currentColor" stroke-width="1.5"/><path d="M32 6l22 12-22 12-22-12M32 30v28" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-size="7" font-weight="700" fill="#48586d">TOP</text><text x="21" y="46" text-anchor="middle" font-size="7" font-weight="700" fill="#48586d">FRONT</text><text x="43" y="46" text-anchor="middle" font-size="7" font-weight="700" fill="#48586d">RIGHT</text></svg>
+      <button class="iconbtn" title="Home view" aria-label="Home view"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg></button>
+      <button class="iconbtn" title="Toggle properties panel" aria-label="Toggle properties panel" id="toggleProps"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg></button>
+    </div>
+
+    <div class="empty" id="empty">
+      <h2>Start your first model</h2>
+      <p>Click a shape on the left, or just describe what you want and the AI will build it.</p>
+      <div class="acts">
+        <button class="btn primary" id="emptyAdd">Add a box</button>
+        <button class="btn" id="emptyAi"><svg class="ico" viewBox="0 0 24 24" style="color:var(--pink)"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Ask AI</button>
+        <button class="btn text">Import a file</button>
+      </div>
+    </div>
+
+    <svg id="obj" viewBox="0 0 170 170" aria-label="Box">
+      <path d="M85 20l60 33v66l-60 33-60-33V53z" fill="#3b82f6"/>
+      <path d="M85 20l60 33-60 33-60-33z" fill="#93b8ff"/>
+      <path d="M85 86v66l-60-33V53z" fill="#2563eb"/>
+      <path d="M85 20l60 33v66l-60 33-60-33V53z" class="sel"/>
+    </svg>
+
+    <div class="hintbar" id="hint">Click a shape to select it &middot; drag to move &middot; scroll to zoom</div>
+  </section>
+
+  <aside class="right" aria-label="Properties">
+    <div class="props">
+      <div id="propsEmpty">
+        <h3>Workplane</h3>
+        <div class="field">Size<input value="200 &times; 200 mm" readonly /></div>
+        <div class="field">Units<input value="Millimetres" readonly /></div>
+        <p style="color:var(--muted);margin-top:14px">Select a shape to edit its size, position and colour.</p>
+      </div>
+      <div id="propsSel" style="display:none">
+        <h3>Box <span class="chip"><i></i>Solid</span></h3>
+        <div class="field">Width<input value="40 mm" /></div>
+        <div class="field">Depth<input value="40 mm" /></div>
+        <div class="field">Height<input value="20 mm" /></div>
+        <div class="label" style="margin-top:14px">Colour</div>
+        <div class="swatches"><i class="on" style="background:#3b82f6"></i><i style="background:#ff5996"></i><i style="background:#ffcb57"></i><i style="background:#0e8f5b"></i><i style="background:#0a2540"></i></div>
+        <button class="btn" style="width:100%">Convert to hole</button>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<!-- ============ STATUS ============ -->
+<footer class="status">
+  <span id="statusHint">Ready</span>
+  <span class="spacer"></span>
+  <label>Snap <select><option>1 mm</option><option>0.5 mm</option><option>0.1 mm</option><option>Off</option></select></label>
+  <span class="dot"></span>
+  <label>Workplane <select><option>Build plate</option><option>Custom&hellip;</option></select></label>
+  <span class="dot"></span>
+  <label>Zoom <select><option>100%</option><option>150%</option><option>Fit</option></select></label>
+  <span class="dot"></span>
+  <span id="count">0 objects</span>
+</footer>
+
+<!-- ============ SHARE MODAL ============ -->
+<div class="scrim" id="scrim" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+  <div class="modal" style="position:relative">
+    <button class="iconbtn close" id="closeShare" aria-label="Close"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+
+    <div class="m-left">
+      <h2 id="shareTitle">Share your model</h2>
+      <p class="sub">This is how it will look when you post it.</p>
+
+      <div class="card">
+        <div class="img">
+          <svg viewBox="0 0 170 170"><path d="M85 20l60 33v66l-60 33-60-33V53z" fill="#3b82f6"/><path d="M85 20l60 33-60 33-60-33z" fill="#93b8ff"/><path d="M85 86v66l-60-33V53z" fill="#2563eb"/></svg>
+          <div class="mark"><svg class="ico" viewBox="0 0 24 24" style="stroke-width:2"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>twyk.me</div>
+        </div>
+        <div class="meta">
+          <small>twyk.me</small>
+          <b id="cardTitle">Untitled model</b>
+          <span id="cardDesc">Made in twyk.me. Open it, remix it, print it.</span>
+        </div>
+      </div>
+
+      <div class="tabs2" role="group" aria-label="Preview angle">
+        <button aria-pressed="true">Front</button><button aria-pressed="false">Isometric</button><button aria-pressed="false">Top</button>
+      </div>
+      <small style="color:var(--muted)">Preview image is generated automatically (1200 &times; 630).</small>
+    </div>
+
+    <div class="m-right">
+      <div class="fld">
+        <span>Name <em class="count" id="nameCount">14 / 60</em></span>
+        <input type="text" id="shareName" value="Untitled model" maxlength="60" />
+      </div>
+      <div class="fld">
+        <span>Description <em class="count" id="descCount">0 / 200</em></span>
+        <textarea id="shareDesc" maxlength="200" placeholder="What is it? How do you print it?"></textarea>
+        <button class="btn text sm" id="aiWrite" style="margin-top:4px;padding:0 6px;color:var(--blue)"><svg class="ico" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Suggest name &amp; description</button>
+      </div>
+
+      <div class="fld">
+        <span>Who can see it</span>
+        <div class="vis">
+          <label><input type="radio" name="vis" checked><b>Public</b><small>Listed in Explore</small></label>
+          <label><input type="radio" name="vis"><b>Unlisted</b><small>Anyone with link</small></label>
+          <label><input type="radio" name="vis"><b>Private</b><small>Only you</small></label>
+        </div>
+      </div>
+
+      <div class="fld"><span>Link</span></div>
+      <div class="linkrow" style="margin-top:-8px">
+        <input id="link" readonly value="twyk.me/m/bolt-plate-x7k2" />
+        <button class="btn primary" id="copy">Copy link</button>
+      </div>
+
+      <div class="targets">
+        <button class="t"><i style="background:#000">X</i>X</button>
+        <button class="t"><i style="background:#1877f2">f</i>Facebook</button>
+        <button class="t"><i style="background:#0a66c2">in</i>LinkedIn</button>
+        <button class="t"><i style="background:#ff4500">r/</i>Reddit</button>
+        <button class="t"><i style="background:#25d366">W</i>WhatsApp</button>
+        <button class="t"><i style="background:#48586d">@</i>Email</button>
+        <button class="t"><i style="background:#0e8f5b">&lt;/&gt;</i>Embed</button>
+        <button class="t"><i style="background:#6b7c93">&#8681;</i>Image</button>
+      </div>
+
+      <div class="fld">
+        <span>Post text</span>
+        <textarea id="post">I just made a model on twyk.me. Open it, remix it, print it: twyk.me/m/bolt-plate-x7k2</textarea>
+      </div>
+
+      <div class="m-foot">
+        <span class="note">Nothing is posted for you. Each button opens that site to review first.</span>
+        <button class="btn" id="doneShare">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+
+  // grid
+  (function drawGrid(){
+    const svg = $('#grid'); const W = 1200, H = 800;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+    const cx = W/2, cy = H*0.56, n = 16, sx = 46, sy = 22;
+    let lines = '';
+    for (let i=-n;i<=n;i++){
+      // iso projection: point(u,v) = (cx + (u - v)*sx, cy + (u + v)*sy)
+      const p = (u,v) => [cx + (u - v)*sx/1.4, cy - 120 + (u + v)*sy/1.4];
+      const [x1,y1] = p(i,-n), [x2,y2] = p(i,n);
+      const [x3,y3] = p(-n,i), [x4,y4] = p(n,i);
+      const major = i % 4 === 0;
+      const stroke = major ? '#9db6d8' : '#c9d8ec';
+      lines += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${major?1.3:.8}"/>`;
+      lines += `<line x1="${x3}" y1="${y3}" x2="${x4}" y2="${y4}" stroke="${stroke}" stroke-width="${major?1.3:.8}"/>`;
+    }
+    const p = (u,v) => [cx + (u - v)*sx/1.4, cy - 120 + (u + v)*sy/1.4];
+    const c = [p(-n,-n),p(n,-n),p(n,n),p(-n,n)].map(a=>a.join(',')).join(' ');
+    svg.innerHTML = `<polygon points="${c}" fill="#f7faff" stroke="#9db6d8" stroke-width="1.5"/>` + lines;
+  })();
+
+  // menus
+  $$('[data-menu]').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation();
+    const m = $('#'+b.dataset.menu); const was = m.classList.contains('open');
+    $$('.pop').forEach(p => p.classList.remove('open')); if (!was) m.classList.add('open');
+  }));
+  document.addEventListener('click', () => $$('.pop').forEach(p => p.classList.remove('open')));
+
+  // tabs
+  $$('.tabs button').forEach(b => b.addEventListener('click', () => {
+    $$('.tabs button').forEach(x => x.setAttribute('aria-selected', x===b));
+    $$('.pane').forEach(p => p.classList.toggle('show', p.id === b.dataset.pane));
+  }));
+  const gotoAi = () => $('.tabs [data-pane="p-ai"]').click();
+  $('#emptyAi').onclick = gotoAi;
+  $$('.prompt').forEach(p => p.onclick = () => { addObject(); toast('AI is building that…'); });
+
+  // mode segmented
+  $$('.seg button').forEach(b => b.addEventListener('click', () => {
+    $$('.seg button').forEach(x => x.setAttribute('aria-pressed', x===b));
+    $('#statusHint').textContent = b.dataset.mode + ' mode';
+  }));
+  document.addEventListener('keydown', e => {
+    if (/input|textarea|select/i.test(e.target.tagName)) return;
+    const k = {m:'Move', r:'Rotate', s:'Resize'}[e.key.toLowerCase()];
+    if (k) $(`.seg [data-mode="${k}"]`).click();
+    if (e.key === 'Escape') closeShare();
+  });
+
+  // objects
+  let objects = 0;
+  function addObject(){
+    objects = 1;
+    $('#empty').style.display = 'none'; $('#obj').classList.add('on');
+    $('#count').textContent = '1 object';
+    $('#propsEmpty').style.display = 'none'; $('#propsSel').style.display = 'block';
+    $('#shareBtn').disabled = false; $('#shareBtn').title = 'Share your model';
+    $('#undo').disabled = false;
+    $('#hint').textContent = 'Drag to move · Shift-drag to rotate · Delete to remove';
+    $('#statusHint').textContent = 'Box added';
+    flashSaved();
+    if ($('#name').value === 'Untitled model') suggestName();
+  }
+  $$('#shapeGrid .shape').forEach(b => b.addEventListener('click', addObject));
+  $('#emptyAdd').onclick = addObject;
+  $('#undo').onclick = () => { objects = 0; $('#empty').style.display=''; $('#obj').classList.remove('on'); $('#count').textContent='0 objects';
+    $('#propsEmpty').style.display='block'; $('#propsSel').style.display='none'; $('#shareBtn').disabled=true; $('#undo').disabled=true; flashSaved(); };
+  $('#toggleProps').onclick = () => $('#work').classList.toggle('props-collapsed');
+
+  // name + saved chip
+  function flashSaved(){
+    const c = $('#saved'); c.classList.add('saving'); c.lastElementChild.textContent = 'Saving…';
+    clearTimeout(flashSaved.t); flashSaved.t = setTimeout(() => { c.classList.remove('saving'); c.lastElementChild.textContent = 'Saved just now'; }, 700);
+  }
+  const nameEl = $('#name');
+  nameEl.addEventListener('focus', () => nameEl.select());
+  nameEl.addEventListener('keydown', e => { if (e.key === 'Enter') nameEl.blur(); if (e.key === 'Escape') { nameEl.value = nameEl.dataset.prev || nameEl.value; nameEl.blur(); } });
+  nameEl.addEventListener('focus', () => nameEl.dataset.prev = nameEl.value);
+  nameEl.addEventListener('blur', () => { if (!nameEl.value.trim()) nameEl.value = 'Untitled model'; document.title = nameEl.value + ' – twyk.me'; flashSaved(); });
+  function suggestName(){
+    setTimeout(() => { nameEl.value = 'Bolt plate'; document.title = 'Bolt plate – twyk.me'; toast('Named it “Bolt plate” — click the name to change'); }, 900);
+  }
+
+  // share
+  const scrim = $('#scrim');
+  function openShare(){
+    $('#shareName').value = nameEl.value; $('#cardTitle').textContent = nameEl.value;
+    $('#nameCount').textContent = nameEl.value.length + ' / 60';
+    const slug = nameEl.value.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'model';
+    $('#link').value = `twyk.me/m/${slug}-x7k2`;
+    $('#post').value = `I just made “${nameEl.value}” on twyk.me. Open it, remix it, print it: ${$('#link').value}`;
+    scrim.classList.add('open');
+  }
+  function closeShare(){ scrim.classList.remove('open'); }
+  $('#shareBtn').onclick = openShare; $('#closeShare').onclick = closeShare; $('#doneShare').onclick = () => { closeShare(); toast('Your model is live 🎉'); };
+  scrim.addEventListener('click', e => { if (e.target === scrim) closeShare(); });
+  $('#shareName').addEventListener('input', e => { $('#cardTitle').textContent = e.target.value || 'Untitled model'; $('#nameCount').textContent = e.target.value.length + ' / 60'; });
+  $('#shareDesc').addEventListener('input', e => { $('#cardDesc').textContent = e.target.value || 'Made in twyk.me. Open it, remix it, print it.'; $('#descCount').textContent = e.target.value.length + ' / 200'; });
+  $('#aiWrite').onclick = () => { $('#shareDesc').value = 'A 40 mm box with four 5 mm bolt holes. Prints without supports in about 25 minutes.'; $('#shareDesc').dispatchEvent(new Event('input')); };
+  $$('.tabs2 button').forEach(b => b.onclick = () => $$('.tabs2 button').forEach(x => x.setAttribute('aria-pressed', x===b)));
+  $('#copy').onclick = () => { navigator.clipboard?.writeText('https://' + $('#link').value).catch(()=>{}); toast('Link copied'); const c=$('#copy'); c.textContent='Copied ✓'; setTimeout(()=>c.textContent='Copy link',1500); };
+  $$('.t').forEach(t => t.onclick = () => toast('Opens ' + t.textContent.trim() + ' with your post ready to review'));
+
+  function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2200); }
+</script>
+</body>
+</html>
