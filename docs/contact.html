@@ -55,6 +55,7 @@
               <label for="topic">What's this about?</label>
               <select id="topic">
                 <option>General question</option>
+                <option>AI generation</option>
                 <option>Editor support</option>
                 <option>Publishing or a model page</option>
                 <option>Report a model</option>
@@ -67,12 +68,12 @@
               <textarea id="message" required placeholder="Tell us what's going on&hellip;"></textarea>
             </div>
             <button class="btn btn-primary btn-lg btn-block" type="submit">Send message</button>
-            <p class="form-note">This is a prototype: submitting shows a preview of the confirmation state and nothing is actually sent. For a real reply right now, email <a href="mailto:support@twyk.me">support@twyk.me</a> directly.</p>
+            <p class="form-note">This opens your email app with your message ready to send to <a href="mailto:support@twyk.me">support@twyk.me</a>.</p>
           </form>
           <div class="form-thanks" id="thanks" hidden>
             <div class="big-check">&#10003;</div>
-            <h3>Message received</h3>
-            <p>Thanks for writing in. We read every message and get back to real ones as soon as we can.</p>
+            <h3>Almost there</h3>
+            <p>Your email app should have opened with the message filled in. Press send there and it reaches us. Nothing opened? Email <a href="mailto:support@twyk.me">support@twyk.me</a> directly.</p>
           </div>
         </div>
 
@@ -129,8 +130,13 @@
     renderFooter();
     observeReveals();
 
+    // No form backend: compose the message in the visitor's own email app.
     document.getElementById("contact-form").addEventListener("submit", e => {
       e.preventDefault();
+      const val = id => document.getElementById(id).value.trim();
+      const subject = `${val("topic")}: message from ${val("name")}`;
+      const body = `${val("message")}\n\n${val("name")}\n${val("email")}`;
+      location.href = `mailto:support@twyk.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       e.currentTarget.hidden = true;
       document.getElementById("thanks").hidden = false;
     });

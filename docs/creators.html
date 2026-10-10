@@ -61,7 +61,7 @@
     import { renderHeader, renderFooter, avatarHTML, observeReveals, MODELS, USERS, fmt } from "./js/app.js";
 
     renderHeader();
-    renderFooter();
+    renderFooter({ prototypeNote: true });
 
     const creators = Object.values(USERS).map(u => {
       const models = MODELS.filter(m => m.author === u.id);

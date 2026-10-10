@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>twyk.me | Free Online 3D Design Editor &amp; Printing Community</title>
-  <meta name="description" content="twyk.me is a free browser 3D editor and model-sharing community. Design 3D models online, publish them in one click, and let anyone remix and print your work." />
+  <title>twyk.me | Describe it. Print it. AI 3D Models You Can Actually Make</title>
+  <meta name="description" content="Describe what you want to make or upload a photo. twyk generates a 3D model you can size to the millimetre with plain-language edits, then export as STL or 3MF for your printer." />
   <link rel="canonical" href="https://twyk.me/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="twyk.me" />
-  <meta property="og:title" content="twyk.me | Free Online 3D Design Editor &amp; Printing Community" />
-  <meta property="og:description" content="twyk.me is a free browser 3D editor and model-sharing community. Design 3D models online, publish them in one click, and let anyone remix and print your work." />
+  <meta property="og:title" content="twyk.me | Describe it. Print it." />
+  <meta property="og:description" content="AI 3D that ends with a real object. Describe it, generate it, make it fit, print it, remix it." />
   <meta property="og:url" content="https://twyk.me/" />
   <meta property="og:image" content="https://twyk.me/img/editor/full-editor.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="twyk.me | Free Online 3D Design Editor &amp; Printing Community" />
-  <meta name="twitter:description" content="twyk.me is a free browser 3D editor and model-sharing community. Design 3D models online, publish them in one click, and let anyone remix and print your work." />
+  <meta name="twitter:title" content="twyk.me | Describe it. Print it." />
+  <meta name="twitter:description" content="AI 3D that ends with a real object. Describe it, generate it, make it fit, print it, remix it." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <script type="importmap">
     { "imports": {
@@ -32,7 +32,7 @@
     "name": "twyk.me",
     "url": "https://twyk.me/",
     "logo": "https://twyk.me/img/editor/full-editor.webp",
-    "description": "twyk.me is a free browser-based 3D design editor and model-sharing community: design a model with no install, publish it in one click, and let anyone download, print, or remix it with credit tracked automatically."
+    "description": "twyk.me turns an idea or photo into a 3D model you can size to the millimetre, edit in plain language, print and remix, with credit tracked automatically."
   }
   </script>
   <script type="application/ld+json">
@@ -48,10 +48,21 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "twyk.me",
+    "url": "https://twyk.me/",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Web browser",
+    "description": "Describe an object or upload a photo to generate a 3D model, size it to the millimetre with plain-language edits, and export STL or 3MF for 3D printing."
+  }
+  </script>
 </head>
 <body>
 
-  <section class="hero">
+  <section class="hero make-hero" id="top">
     <div class="hero-canvas-wrap">
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
@@ -60,213 +71,360 @@
     </div>
     <div class="hero-scene" id="hero-scene"></div>
     <div class="container">
-      <h1>Design in the browser.<br />Share with the world.</h1>
+      <div class="early-pill"><span class="tag">New</span> AI generation is live in the editor</div>
+      <h1>What do you want to make?</h1>
       <p class="tagline">
-        twyk.me is where 3D design and 3D printing meet. Build models in a powerful
-        browser editor, publish them in one click, and let anyone remix and print your work.
+        Describe it or start from a photo. twyk generates a 3D model you can size to the
+        millimetre, tweak in plain words and send straight to your printer.
       </p>
-      <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="https://editor.twyk.me">Start designing <span class="arrow">&rarr;</span></a>
-        <a class="btn btn-ghost btn-lg" href="explore.html">Explore models</a>
+
+      <form class="prompt-box" data-prompt-form data-source="hero">
+        <label for="hero-prompt" class="sr-only">Describe what you want to make</label>
+        <textarea id="hero-prompt" name="prompt" rows="2" maxlength="400"
+          placeholder="A headset stand for my Arctis Nova Pro, with my gamertag on the base…"></textarea>
+        <div class="prompt-bar">
+          <a class="attach" href="https://editor.twyk.me/" data-photo-link data-track="photo_start" data-track-source="hero">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+            <span>Start from a photo</span>
+          </a>
+          <span class="spacer"></span>
+          <button class="btn btn-primary" type="submit">Generate <span class="arrow">&rarr;</span></button>
+        </div>
+      </form>
+
+      <div class="idea-chips" aria-label="Example ideas">
+        <button class="idea-chip" type="button" data-fill="A headset stand for my SteelSeries Arctis Nova Pro, with my gamertag on the base"><span class="seg-dot dot-game"></span>Headset stand for my Arctis Nova Pro</button>
+        <button class="idea-chip" type="button" data-fill="A wall mount that holds two PS5 DualSense controllers side by side"><span class="seg-dot dot-game"></span>Wall mount for two PS5 controllers</button>
+        <button class="idea-chip" type="button" data-fill="Our channel mascot, a chubby penguin wearing a gaming headset, as a 70 mm desk figure"><span class="seg-dot dot-creator"></span>Our channel mascot as a desk figure</button>
+        <button class="idea-chip" type="button" data-fill="An Escape keycap for a Cherry MX switch with my gamertag on top"><span class="seg-dot dot-game"></span>Keycap with my gamertag</button>
+        <button class="idea-chip" type="button" data-fill="A case for a Raspberry Pi 5 with a fan vent and wall-mount tabs"><span class="seg-dot dot-build"></span>Raspberry Pi 5 case with a fan vent</button>
+        <button class="idea-chip" type="button" data-fill="Cable clips for 6, 9 and 12 mm cables that grip a 25 mm desk edge"><span class="seg-dot dot-build"></span>Cable clips for my desk edge</button>
       </div>
+
+      <p class="hero-sub">Rather build it yourself? <a href="https://editor.twyk.me/" data-track="cta_editor" data-track-source="hero">Start from scratch in the editor &rsaquo;</a></p>
+      <p class="slicers">Exports STL and 3MF for Bambu Studio, PrusaSlicer, OrcaSlicer, Cura and any other slicer.</p>
     </div>
   </section>
 
-  <section class="editor-showcase">
-    <div class="container">
-      <a class="editor-frame reveal" href="how-it-works.html" title="See how the editor works">
-        <div class="frame-bar"><span></span><span></span><span></span></div>
-        <img src="img/editor/full-editor.webp" alt="The twyk.me editor: shape library on the left, a model on the workplane, and the properties panel with exact mm dimensions on the right" />
-      </a>
-      <p class="showcase-caption">The twyk editor, running in the browser. <a href="how-it-works.html">See how it works &rsaquo;</a></p>
-    </div>
-  </section>
-
-  <section class="section" id="why" style="padding-bottom: 40px;">
-    <div class="container">
-      <div class="value-grid">
-        <div class="value reveal">
-          <div class="icon">
-            <svg width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="18" y="12" width="84" height="66" rx="7" stroke="#2563eb" stroke-width="3"/>
-              <path d="M18 28h84" stroke="#2563eb" stroke-width="3"/>
-              <circle cx="28" cy="20" r="2.4" fill="#2563eb"/>
-              <circle cx="37" cy="20" r="2.4" fill="#2563eb"/>
-              <path d="M30 66l14-7M46 72l18-9M78 68l14-7" stroke="#a8cfec" stroke-width="2" stroke-linecap="round"/>
-              <g class="icon-cube">
-                <path d="M60 38l16 8-16 8-16-8 16-8Z" fill="#bfd4ff" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
-                <path d="M44 46v14l16 8V54L44 46Z" fill="#e3edff" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
-                <path d="M76 46v14l-16 8V54l16-8Z" fill="#d0defc" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
-              </g>
-              <path class="icon-cursor" d="M88 84l6 14 4-6 7-1-17-7Z" fill="#fff" stroke="#0a2540" stroke-width="2.4" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Nothing to install</h3>
-          <p>The full editor runs in your browser. Open a tab, drag a shape onto the workplane, and you're designing.</p>
-          <a class="learn" href="https://editor.twyk.me">Open the editor <span class="chev">&rsaquo;</span></a>
-        </div>
-        <div class="value reveal">
-          <div class="icon">
-            <svg width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="14" y="24" width="36" height="36" rx="9" fill="#fde7f0" stroke="#e85c8f" stroke-width="3"/>
-              <rect x="70" y="44" width="36" height="36" rx="9" fill="#f1e9ff" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="7 6"/>
-              <g class="icon-cycle">
-                <path d="M56 26c14-12 34-8 40 8" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
-                <path d="M96 26l1 9-9 1" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <path d="M64 80c-14 12-34 8-40-8" stroke="#e85c8f" stroke-width="3" stroke-linecap="round"/>
-                <path d="M24 80l-1-9 9-1" stroke="#e85c8f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </g>
-              <path d="M28 38h8M32 34v8" stroke="#e85c8f" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M83 57l5 5 9-9" stroke="#8b5cf6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Made to be remixed</h3>
-          <p>Nothing here is a frozen file. Any published model opens back up in the editor, and credit follows your work wherever it travels.</p>
-          <a class="learn" href="model.html?id=knight">See a remix chain <span class="chev">&rsaquo;</span></a>
-        </div>
-        <div class="value reveal">
-          <div class="icon">
-            <svg width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M24 84V16h72v68" stroke="#35c4a8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M24 30h72" stroke="#35c4a8" stroke-width="3"/>
-              <g class="icon-nozzle">
-                <rect x="52" y="24" width="16" height="13" rx="3" fill="#d9f5ec" stroke="#35c4a8" stroke-width="3"/>
-                <path d="M56 37h8l-4 8-4-8Z" fill="#35c4a8"/>
-              </g>
-              <path class="icon-fil" d="M60 49v3M60 56v3" stroke="#58b368" stroke-width="2.6" stroke-linecap="round"/>
-              <rect x="48" y="63" width="24" height="17" rx="4" fill="#e2f7ef" stroke="#58b368" stroke-width="3"/>
-              <path d="M14 84h92" stroke="#35c4a8" stroke-width="3" stroke-linecap="round"/>
-              <path class="icon-star" d="M100 46l3 6 6 1-5 4 2 7-6-4-6 4 2-7-5-4 6-1 3-6Z" fill="#fff" stroke="#58b368" stroke-width="2.2" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Ready for your printer</h3>
-          <p>Every model exports as clean STL or 3MF that slices the first time. Design here, print anywhere.</p>
-          <a class="learn" href="explore.html">Explore models <span class="chev">&rsaquo;</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="featured">
+  <!-- the journey in one line -->
+  <section class="section" style="padding-top: 24px;">
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">Community</div>
-          <h2>Featured this week</h2>
+          <div class="eyebrow">Idea to object</div>
+          <h2>From a sentence to something on your desk</h2>
         </div>
-        <a class="btn btn-ghost" href="explore.html">Browse all models <span class="arrow">&rarr;</span></a>
       </div>
-      <div class="model-grid" id="featured-grid"></div>
+      <div class="flow">
+        <div class="flow-step reveal">
+          <span class="n">01</span>
+          <div class="fi fi-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+          <h3>Describe</h3>
+          <p>Type what you want, start from a photo, or open a community model.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="n">02</span>
+          <div class="fi fi-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9z"/><path d="M12 12 20 7.5M12 12v9M12 12 4 7.5"/></svg></div>
+          <h3>Generate</h3>
+          <p>AI builds a 3D model that opens straight in the editor. Not right? Ask again.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="n">03</span>
+          <div class="fi fi-teal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="2"/><path d="M6.5 8v3.5M10.5 8v2.5M14.5 8v3.5M18.5 8v2.5"/></svg></div>
+          <h3>Make it fit</h3>
+          <p>Say &ldquo;make it 72&nbsp;mm wide&rdquo; or set sizes by hand. Add holes, text and mounts.</p>
+        </div>
+        <div class="flow-step print reveal">
+          <span class="n">04</span>
+          <div class="fi fi-filament"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h16v17"/><path d="M4 8h16"/><path d="M10 8v3h4V8M12 11v2"/><rect x="8.5" y="16" width="7" height="5" rx="1"/></svg></div>
+          <h3>Print</h3>
+          <p>Export a clean STL or 3MF and send it to any slicer.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="n">05</span>
+          <div class="fi fi-pink"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="5" r="2.4"/><circle cx="18" cy="5" r="2.4"/><circle cx="12" cy="19" r="2.4"/><path d="M6 7.5v2c0 2 1.5 3 3.5 3h5c2 0 3.5-1 3.5-3v-2M12 12.5v4"/></svg></div>
+          <h3>Remix</h3>
+          <p>Publish it. Anyone can open it, make it theirs with AI, and you get the credit.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section section-soft" id="how">
+  <!-- prompt -> object -->
+  <section class="section section-soft" id="examples">
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">How it works</div>
-          <h2>A full 3D editor, in the tab you already have open</h2>
-          <p>Every model on twyk.me is built with these tools, and every published model opens back up in them. Drag shapes, punch holes, size things in millimetres, export to your printer.</p>
-        </div>
-        <a class="btn btn-ghost" href="how-it-works.html">Read the step-by-step guide <span class="arrow">&rarr;</span></a>
-      </div>
-      <div class="feature-grid">
-        <div class="feature reveal">
-          <div class="fi fi-blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="12" width="9" height="9" rx="1.5"/><circle cx="16.5" cy="7" r="4.5"/><path d="M8 9.5 11.5 3l3.5 6.5H8Z"/></svg>
-          </div>
-          <h3>A shape for everything</h3>
-          <p>Boxes, rounded solids, cylinders, cones, tapers, wedges and tubes, plus a searchable library. Click to drop one on the workplane and start.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="fi fi-pink">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="4.5" stroke-dasharray="3 3"/></svg>
-          </div>
-          <h3>Solid or hole</h3>
-          <p>Flip any shape into a hole and merge to cut it away. Complex cavities, threads and slots come from the same simple shapes.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="fi fi-teal">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="2"/><path d="M6.5 8v3.5M10.5 8v2.5M14.5 8v3.5M18.5 8v2.5"/></svg>
-          </div>
-          <h3>Millimetre precision</h3>
-          <p>Exact size, position and rotation in mm, an adjustable snap grid, rulers and keep-aspect resize. Parts fit because you told them to.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="fi fi-amber">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M12 3l-2.5 2.5M12 3l2.5 2.5M12 21l-2.5-2.5M12 21l2.5-2.5M3 12l2.5-2.5M3 12l2.5 2.5M21 12l-2.5-2.5M21 12l-2.5 2.5"/></svg>
-          </div>
-          <h3>Move, rotate, resize, push</h3>
-          <p>Direct handles for every transform, plus push face to pull a single face in or out without rebuilding the shape.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="fi fi-purple">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="12" height="12" rx="2.5"/><rect x="9" y="9" width="12" height="12" rx="2.5"/></svg>
-          </div>
-          <h3>Group, merge, split, cut</h3>
-          <p>Combine shapes into reusable groups, merge them into one solid, or split and cut to take a design apart again.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="fi fi-green">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v18"/><rect x="7" y="5" width="10" height="4" rx="1.5"/><rect x="7" y="12" width="14" height="4" rx="1.5"/><path d="M19 5.5v3"/></svg>
-          </div>
-          <h3>Align &amp; duplicate</h3>
-          <p>One-click alignment on any axis and smart duplicate for rows, stacks and radial patterns. No more nudging by eye.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="fi fi-cyan">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><circle cx="12" cy="16.5" r="3"/></svg>
-          </div>
-          <h3>Colour per part</h3>
-          <p>Give every shape its own colour, ready for multi-colour printing and clean, readable assemblies.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="fi fi-navy">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v8m0 0L5 8.2M8 11l3-2.8M16 21v-8m0 0-3 2.8M16 13l3 2.8M3 21h7M14 3h7"/></svg>
-          </div>
-          <h3>Import &amp; export</h3>
-          <p>Bring in existing STL files, export clean STL or 3MF that slices the first time. Your work is never locked in.</p>
+          <div class="eyebrow">Ideas to try</div>
+          <h2>Say it. Size it. Print it.</h2>
+          <p>Gear that fits what you own, figures your fans can print, and parts that fix the annoying stuff. Click any idea to try it.</p>
         </div>
       </div>
-      <div class="editor-cta reveal">
-        <a class="btn btn-primary btn-lg" href="https://editor.twyk.me">Try the editor, no sign-up <span class="arrow">&rarr;</span></a>
+      <div class="cases">
+        <button class="case reveal" type="button" data-fill="Headset stand for my Arctis Nova Pro, with my gamertag on the base" data-track="example_click" data-track-example="headset">
+          <span class="case-seg"><span class="seg-dot dot-game"></span>Gaming setup</span>
+          <span class="case-prompt">
+            <span class="who">Prompt</span>
+            Headset stand for my Arctis Nova Pro, with my gamertag on the base
+          </span>
+          <span class="case-render">
+            <span class="mini-thumb" data-kind="headset"></span>
+            <span class="dim" style="top: 9%; left: 50%; transform: translateX(-50%);">saddle 62.00 mm</span>
+            <span class="dim" style="top: 48%; left: 6%;">h 260.00 mm</span>
+            <span class="dim" style="bottom: 6%; right: 5%;">text &ldquo;NOVA&rdquo; 8 mm</span>
+          </span>
+          <span class="case-foot"><span class="try">Try this idea &rarr;</span></span>
+        </button>
+
+        <button class="case reveal" type="button" data-fill="Our channel mascot, a chubby penguin, 70 mm tall so fans can print it" data-track="example_click" data-track-example="mascot">
+          <span class="case-seg"><span class="seg-dot dot-creator"></span>Creators &amp; streamers</span>
+          <span class="case-prompt">
+            <span class="who">Prompt</span>
+            Our channel mascot, a chubby penguin, 70 mm tall so fans can print it
+          </span>
+          <span class="case-render">
+            <span class="mini-thumb" data-kind="penguin"></span>
+            <span class="dim" style="top: 10%; right: 8%;">h 70.00 mm</span>
+            <span class="dim" style="bottom: 9%; left: 7%;">base &Oslash;40 mm</span>
+          </span>
+          <span class="case-foot"><span class="try">Try this idea &rarr;</span></span>
+        </button>
+
+        <button class="case reveal" type="button" data-fill="Clips for 6, 9 and 12 mm cables that grip a 25 mm desk edge" data-track="example_click" data-track-example="cable_clips">
+          <span class="case-seg"><span class="seg-dot dot-build"></span>Desk &amp; cables</span>
+          <span class="case-prompt">
+            <span class="who">Prompt</span>
+            Clips for 6, 9 and 12 mm cables that grip a 25 mm desk edge
+          </span>
+          <span class="case-render">
+            <span class="mini-thumb" data-kind="clip"></span>
+            <span class="dim" style="top: 14%; left: 8%;">&Oslash;6</span>
+            <span class="dim" style="top: 8%; left: 50%; transform: translateX(-50%);">&Oslash;9</span>
+            <span class="dim" style="top: 14%; right: 8%;">&Oslash;12</span>
+            <span class="dim" style="bottom: 9%; left: 50%; transform: translateX(-50%);">grip 25.00 mm</span>
+          </span>
+          <span class="case-foot"><span class="try">Try this idea &rarr;</span></span>
+        </button>
+      </div>
+      <p class="illustrative">Example prompts. Models shown are illustrations, and generated results will vary.</p>
+    </div>
+  </section>
+
+  <!-- precision: why twyk, not just another generator -->
+  <section class="section">
+    <div class="container precision">
+      <div class="reveal">
+        <div class="eyebrow">AI that respects millimetres</div>
+        <h2>Ask in plain words. Get exact dimensions.</h2>
+        <p class="lead">AI generators guess. Fit can&rsquo;t be a guess. twyk turns what you type into real editor operations, the same millimetre tools behind every model on twyk. Ask for 72&nbsp;mm and you get <span class="mono">72.00&nbsp;mm</span>.</p>
+        <ul class="ticks">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Every AI edit is a normal editor step you can see, tweak or undo.</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Type the real measurements of your headset, controller, keyboard or desk.</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Prefer to do it by hand? <a href="how-it-works.html">The full editor</a> is right there.</span></li>
+        </ul>
+      </div>
+      <div class="edit-demo reveal" aria-label="Example of plain-language edits becoming exact dimensions">
+        <div class="ed-bar"><i></i><i></i><i></i>headset-stand.twyk</div>
+        <div class="ed-body">
+          <div class="ed-chat">
+            <div class="ed-msg" data-step="0">Make the saddle 72 mm wide<span class="ed-op">resize(saddle, x = 72.00)</span></div>
+            <div class="ed-msg" data-step="1">Add two 4 mm screw holes, 55 mm apart<span class="ed-op">hole(&Oslash;4.00) &times;2, gap 55.00</span></div>
+            <div class="ed-msg" data-step="2">Put NOVA on the base, 8 mm tall<span class="ed-op">text(&quot;NOVA&quot;, h = 8.00)</span></div>
+          </div>
+          <div class="ed-props">
+            <h4>Properties</h4>
+            <div class="prop">Saddle width <span class="v" data-prop="0" data-from="68.00 mm" data-to="72.00 mm">68.00 mm</span></div>
+            <div class="prop">Height <span class="v">260.00 mm</span></div>
+            <div class="prop">Mount holes <span class="v" data-prop="1" data-from="none" data-to="2 &times; &Oslash;4.00">none</span></div>
+            <div class="prop">Base text <span class="v" data-prop="2" data-from="none" data-to="NOVA &middot; 8.00">none</span></div>
+          </div>
+        </div>
+        <div class="ed-note">Exact changes are made by the editor, not guessed by the AI model.</div>
       </div>
     </div>
   </section>
 
+  <!-- who it's for -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Built for</div>
+          <h2>Made for people who make their space their own</h2>
+        </div>
+      </div>
+      <div class="audiences">
+        <div class="aud lead reveal">
+          <div class="k"><span class="seg-dot" style="background:#9cc0ff"></span>Gaming &amp; setup</div>
+          <h3>Your setup, exactly how you want it</h3>
+          <p>Stop hunting for a model that almost fits. Describe your gear and get one that does.</p>
+          <ul>
+            <li>Headset and controller stands sized to your gear</li>
+            <li>Keycaps and desk badges with your tag</li>
+            <li>Sim-rig button boxes, mounts and shifter knobs</li>
+            <li>Cable management that actually fits your desk</li>
+          </ul>
+          <a class="aud-cta" href="#top" data-fill="A wall mount that holds two PS5 DualSense controllers side by side" data-track="segment_cta" data-track-segment="gaming">Try a setup idea &rarr;</a>
+        </div>
+        <div class="aud reveal">
+          <div class="k" style="color: var(--pink);"><span class="seg-dot dot-creator"></span>Creators &amp; streamers</div>
+          <h3>Put your character on every fan&rsquo;s desk</h3>
+          <p>Turn your mascot or emotes into figures your community can print, remix and show off.</p>
+          <ul>
+            <li>Channel mascots and emote figures</li>
+            <li>Models your fans can remix</li>
+            <li>Credit on every remix, automatically</li>
+          </ul>
+          <a class="aud-cta" href="#top" data-fill="Our channel mascot, a fox with a crown, as a 60 mm desk figure" data-track="segment_cta" data-track-segment="creator">Make your mascot &rarr;</a>
+        </div>
+        <div class="aud reveal">
+          <div class="k" style="color: #17a68a;"><span class="seg-dot dot-build"></span>Builders</div>
+          <h3>Enclosures and parts that fit first time</h3>
+          <p>For electronics, smart home and FPV projects where 0.5 mm off means it doesn&rsquo;t close.</p>
+          <ul>
+            <li>Raspberry Pi and ESP32 cases</li>
+            <li>Sensor, camera and LED mounts</li>
+            <li>Drone and RC replacement parts</li>
+          </ul>
+          <a class="aud-cta" href="#top" data-fill="A case for an ESP32 dev board with a USB-C cutout and screw mounts" data-track="segment_cta" data-track-segment="builder">Try a builder idea &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- remix -->
   <section class="section">
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">Fresh off the workplane</div>
-          <h2>Newest models</h2>
+          <div class="eyebrow">Community</div>
+          <h2>Remix anything. Make it fit.</h2>
+          <p>Every published model opens back up. Ask AI to resize it for your gear, add your name, or turn it into something new. The original maker gets credit automatically.</p>
+        </div>
+        <a class="btn btn-ghost" href="explore.html" data-track="cta_explore">Browse community models <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="remix-flow">
+        <div class="rf-card reveal">
+          <span class="rf-label">Someone publishes</span>
+          <span class="rf-render"><span class="mini-thumb" data-kind="stand"></span></span>
+          <b>Phone stand</b>
+          <span class="rf-sub">Built for a 72 mm phone</span>
+        </div>
+        <div class="rf-arrow" aria-hidden="true">&rarr;</div>
+        <div class="rf-card rf-prompt reveal">
+          <span class="rf-label">You ask</span>
+          <span class="rf-bubble">&ldquo;Make it fit my phone in a 78&nbsp;mm case, and tilt it back 10&deg;&rdquo;</span>
+          <span class="ed-op">resize(cradle, x = 78.00)<br />rotate(back, 10&deg;)</span>
+        </div>
+        <div class="rf-arrow" aria-hidden="true">&rarr;</div>
+        <div class="rf-card reveal">
+          <span class="rf-label">You get</span>
+          <span class="rf-render rf-render-alt"><span class="mini-thumb" data-kind="stand"></span><span class="dim" style="top: 10%; right: 8%;">78.00 mm</span></span>
+          <b>Your remix</b>
+          <span class="rf-sub">Credit links back to the original</span>
         </div>
       </div>
-      <div class="model-grid" id="newest-grid"></div>
+    </div>
+  </section>
+
+  <!-- honest roadmap: these aren't live yet -->
+  <section class="section section-soft" style="padding: 56px 0;">
+    <div class="container">
+      <div class="coming">
+        <div class="coming-item reveal">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+          <span><b>Automatic print checks</b> Watertight repair, wall thickness, overhangs and fit-your-bed checks before export.</span>
+          <span class="roadmap-tag">Coming soon</span>
+        </div>
+        <div class="coming-item reveal">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>
+          <span><b>No printer? Print &amp; ship</b> Have your design printed and delivered to your door.</span>
+          <span class="roadmap-tag">Coming later</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="cta-band">
     <div class="container">
-      <h2>Your next design is one click away</h2>
-      <p>Free forever for makers. Open the editor, drag a shape onto the workplane, and see where it takes you.</p>
-      <a class="btn btn-primary btn-lg" href="https://editor.twyk.me">Open the editor <span class="arrow">&rarr;</span></a>
+      <h2>Describe it. Print it.</h2>
+      <p>Your first object is one sentence away.</p>
+      <form class="cta-prompt" data-prompt-form data-source="footer_cta">
+        <label for="cta-prompt" class="sr-only">Describe what you want to make</label>
+        <input id="cta-prompt" name="prompt" maxlength="400" placeholder="What do you want to make?" />
+        <button class="btn btn-primary" type="submit">Generate <span class="arrow">&rarr;</span></button>
+      </form>
+      <p class="cta-alt">Prefer to design by hand? <a href="https://editor.twyk.me/" data-track="cta_editor" data-track-source="footer_cta">Open the editor &rsaquo;</a></p>
     </div>
   </section>
 
   <script type="module">
-    import { renderHeader, renderFooter, renderCards, MODELS } from "./js/app.js";
+    import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    import { track, editorUrl } from "./js/track.js";
+
     renderHeader("home");
     renderFooter();
-    const featured = [...MODELS].sort((a, b) => (b.featured - a.featured) || (b.likes - a.likes)).slice(0, 4);
-    renderCards(document.getElementById("featured-grid"), featured);
-    const newest = MODELS.filter(m => !featured.includes(m)).slice(0, 4);
-    renderCards(document.getElementById("newest-grid"), newest);
+
+    const heroPrompt = document.getElementById("hero-prompt");
+    const photoLink = document.querySelector("[data-photo-link]");
+
+    // the photo button carries whatever is typed, so the editor opens with it
+    const syncPhotoLink = () => { photoLink.href = editorUrl(heroPrompt.value.trim()); };
+    heroPrompt.addEventListener("input", syncPhotoLink);
+    syncPhotoLink();
+
+    /* ---- prompt forms: hand the prompt to the live generator in the editor ---- */
+    document.querySelectorAll("[data-prompt-form]").forEach(form => {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        const field = form.elements.prompt;
+        const prompt = field.value.trim();
+        if (!prompt) { field.focus(); return; }
+        track("prompt_submit", { source: form.dataset.source, prompt_length: prompt.length });
+        location.href = editorUrl(prompt);
+      });
+    });
+
+    // Enter submits the hero prompt; Shift+Enter adds a line
+    heroPrompt.addEventListener("keydown", e => {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); heroPrompt.form.requestSubmit(); }
+    });
+
+    // example chips, idea cards and segment links fill the hero prompt
+    document.querySelectorAll("[data-fill]").forEach(el => {
+      el.addEventListener("click", e => {
+        e.preventDefault();
+        heroPrompt.value = el.dataset.fill;
+        syncPhotoLink();
+        if (el.classList.contains("idea-chip")) track("chip_click", { idea: el.textContent.trim() });
+        document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+        heroPrompt.focus({ preventScroll: true });
+      });
+    });
+
+    /* ---- precision demo: plain-language edits become exact values ---- */
+    const msgs = [...document.querySelectorAll(".ed-msg")];
+    const props = [...document.querySelectorAll(".prop .v[data-prop]")];
+    function showStep(step) {
+      msgs.forEach((m, i) => m.classList.toggle("on", i <= step));
+      props.forEach((p, i) => {
+        p.innerHTML = i <= step ? p.dataset.to : p.dataset.from;
+        p.classList.toggle("flash", i === step);
+      });
+    }
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) showStep(msgs.length - 1);
+    else {
+      let step = -1;
+      setInterval(() => { step = step >= msgs.length ? -1 : step + 1; showStep(Math.min(step, msgs.length - 1)); }, 1800);
+    }
 
     // animated editor workplane behind the hero (falls back to gradient if CDN unavailable)
     import("./js/hero3d.js")
       .then(m => m.mountHeroScene(document.getElementById("hero-scene")))
       .catch(() => {});
+    // 3D renders for the example cards
+    import("./js/thumbs.js").then(t => t.upgradeThumbs()).catch(() => {});
+    observeReveals();
   </script>
 </body>
 </html>

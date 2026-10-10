@@ -32,11 +32,10 @@
     <div class="container">
       <span class="soon-badge"><span class="dot"></span> Coming soon</span>
       <h1>Design challenges</h1>
-      <p>Community design prompts with featured picks: a theme, a deadline, and everyone builds in the editor. The best entries get featured on the homepage.</p>
-      <form class="notify" id="notify">
-        <input type="email" id="notify-email" placeholder="you@example.com" aria-label="Email address" required />
-        <button class="btn btn-primary btn-lg" type="submit">Notify me <span class="arrow">&rarr;</span></button>
-      </form>
+      <p>Community design prompts with featured picks: a theme, a deadline, and everyone makes their entry, with AI or by hand. The best entries get featured.</p>
+      <div class="hero-cta" style="justify-content:center;">
+        <a class="btn btn-primary btn-lg" href="mailto:support@twyk.me?subject=Notify%20me%20about%20twyk%20challenges">Email me when it opens <span class="arrow">&rarr;</span></a>
+      </div>
     </div>
   </section>
 
@@ -74,8 +73,8 @@
   <section class="cta-band">
     <div class="container">
       <h2>Warm up in the meantime</h2>
-      <p>Challenges reward people who know their way around the workplane. Explore what the community is building, or learn the editor end to end.</p>
-      <a class="btn btn-primary btn-lg" href="explore.html">Explore models <span class="arrow">&rarr;</span></a>
+      <p>Start on your desk rescue now: describe the fix you need and print it tonight.</p>
+      <a class="btn btn-primary btn-lg" href="index.html#top">Start making <span class="arrow">&rarr;</span></a>
     </div>
   </section>
 
@@ -85,11 +84,6 @@
     renderFooter();
     observeReveals();
 
-    // prototype only: no backend, nothing is sent anywhere
-    document.getElementById("notify").addEventListener("submit", e => {
-      e.preventDefault();
-      e.currentTarget.innerHTML = `<span class="thanks">&#127881; You're on the list (well, you will be &mdash; this is a prototype).</span>`;
-    });
   </script>
 </body>
 </html>

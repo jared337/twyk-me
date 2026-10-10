@@ -62,7 +62,7 @@
     import { CATEGORIES } from "./js/data.js";
 
     renderHeader("explore");
-    renderFooter();
+    renderFooter({ prototypeNote: true });
 
     const params = new URLSearchParams(location.search);
     let cat = params.get("cat") || "all";

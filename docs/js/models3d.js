@@ -427,7 +427,29 @@ function hatrack() {
   return g;
 }
 
-const GENERATORS = { knight, vase, gear, stand, planter, d20, clip, keychain, torusknot, hook, penpot, tray, flexi, penguin, pillbox, wallet, pageholder, hatrack };
+function headset() {
+  const g = new THREE.Group();
+  // weighted oval base
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(3.6, 3.9, 0.8, 48), mat(0x1b2b45));
+  base.scale.z = 0.7;
+  base.position.y = 0.4;
+  // upright with a slight forward lean
+  const post = new THREE.Mesh(new THREE.BoxGeometry(1.4, 9, 1.0), mat(0x2563eb));
+  post.position.y = 5.2;
+  // gently curved saddle the headband rests on (a shallow arc of a large torus)
+  const arc = 0.85, R = 5;
+  const saddle = new THREE.Mesh(new THREE.TorusGeometry(R, 0.6, 18, 48, arc), mat(0xf28c28));
+  saddle.rotation.z = Math.PI / 2 - arc / 2;
+  saddle.scale.z = 1.8; // wide front-to-back so the band sits flat
+  saddle.position.y = 9.9 - R;
+  // name plate on the base
+  const plate = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.5, 0.25), mat(0xf28c28));
+  plate.position.set(0, 0.7, 2.6);
+  g.add(base, post, saddle, plate);
+  return g;
+}
+
+const GENERATORS = { headset, knight, vase, gear, stand, planter, d20, clip, keychain, torusknot, hook, penpot, tray, flexi, penguin, pillbox, wallet, pageholder, hatrack };
 
 export function buildModel(kind) {
   const fn = GENERATORS[kind] || d20;

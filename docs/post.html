@@ -54,7 +54,7 @@
     import { injectMeta, injectJSONLD, breadcrumbLD, faqLDFromContainer } from "./js/seo.js";
 
     renderHeader();
-    renderFooter();
+    renderFooter({ prototypeNote: true });
 
     const post = postById(new URLSearchParams(location.search).get("id"));
     const canonical = `${location.origin}/post.html?id=${post.id}`;

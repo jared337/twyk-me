@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy | twyk.me</title>
+  <meta name="description" content="How the twyk.me website handles your data: optional analytics cookies, prompts passed to the editor, emails you send us, and the services the site loads." />
+  <link rel="canonical" href="https://twyk.me/privacy.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="twyk.me" />
+  <meta property="og:title" content="Privacy | twyk.me" />
+  <meta property="og:description" content="How the twyk.me website handles your data." />
+  <meta property="og:url" content="https://twyk.me/privacy.html" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://twyk.me/privacy.html"}]}</script>
+</head>
+<body>
+
+  <section class="explore-head">
+    <div class="container">
+      <h1>Privacy</h1>
+      <p>Last updated 10 October 2026</p>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 90px;">
+    <div class="container legal">
+      <p class="legal-lead">The short version: this website only uses analytics if you say yes, we never sell your data, and we don&rsquo;t show ads.</p>
+
+      <p>This policy covers the twyk.me website (the pages at twyk.me). The twyk editor at editor.twyk.me, where you generate, edit and save models, may handle your account and designs under its own terms. Questions about either: <a href="mailto:support@twyk.me">support@twyk.me</a>.</p>
+
+      <h2>Analytics, only with your consent</h2>
+      <p>When you first visit, we ask whether you accept analytics cookies. If you accept, we use Google Analytics 4 to understand how the site is used, for example which pages people visit, which example ideas they click, and where visitors came from (such as a link in a video description). Google Analytics sets cookies and receives information such as your device type, browser, approximate location and the pages you view.</p>
+      <p>We record the <em>length</em> of a prompt you submit, not its text, and we never send your email address or any form contents to analytics.</p>
+      <p>If you decline, Google Analytics is not loaded at all. We remember your choice in your browser&rsquo;s local storage so we don&rsquo;t ask again.</p>
+      <p><button class="btn btn-ghost" type="button" id="change-consent">Change my cookie choice</button></p>
+
+      <h2>Prompts you type on this site</h2>
+      <p>When you type a description and click <b>Generate</b>, or click <b>Start from a photo</b>, your text is passed to the twyk editor in the link that opens it, so the editor can create your model. This website does not store your prompt.</p>
+
+      <h2>Emails you send us</h2>
+      <p>The contact form opens your own email app with your message filled in; nothing is sent until you press send there. When you email us, we receive your name, email address and message, and use them only to reply and to help with your request.</p>
+
+      <h2>Services this site loads</h2>
+      <ul>
+        <li><b>GitHub Pages</b> hosts the site. Like any web host, it processes your IP address to deliver pages.</li>
+        <li><b>Google Fonts</b> provides the fonts, and <b>jsDelivr</b> provides the 3D viewer library. Your browser requests files from them, which shares your IP address with those providers.</li>
+        <li><b>Google Analytics</b>, only if you accept, as described above.</li>
+      </ul>
+
+      <h2>What we don&rsquo;t do</h2>
+      <ul>
+        <li>We don&rsquo;t sell or rent your personal data.</li>
+        <li>We don&rsquo;t use advertising cookies or show ads.</li>
+      </ul>
+
+      <h2>Your choices and rights</h2>
+      <p>You can change your analytics choice at any time with the button above, or by clearing this site&rsquo;s data in your browser. To ask what we hold about you, or to have it corrected or deleted, email <a href="mailto:support@twyk.me">support@twyk.me</a>.</p>
+
+      <h2>Children</h2>
+      <p>twyk.me is not directed at children under 13, and we don&rsquo;t knowingly collect their personal information. If you believe a child has sent us personal information, contact us and we&rsquo;ll delete it.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, we&rsquo;ll update this page and the date at the top.</p>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderHeader, renderFooter } from "./js/app.js";
+    import { resetConsent, GA_MEASUREMENT_ID } from "./js/track.js";
+    renderHeader();
+    renderFooter();
+    const btn = document.getElementById("change-consent");
+    if (GA_MEASUREMENT_ID) btn.addEventListener("click", resetConsent);
+    else btn.parentElement.textContent = "Analytics are currently switched off on this site, so there is no choice to change.";
+  </script>
+</body>
+</html>

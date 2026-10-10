@@ -47,7 +47,7 @@
     import { truncate, injectMeta, injectJSONLD, breadcrumbLD } from "./js/seo.js";
 
     renderHeader();
-    renderFooter();
+    renderFooter({ prototypeNote: true });
 
     const uid = new URLSearchParams(location.search).get("u") || "adin";
     const u = USERS[uid] || USERS.adin;

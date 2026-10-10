@@ -17,6 +17,7 @@
   <url><loc>https://twyk.me/challenges.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://twyk.me/about.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://twyk.me/contact.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://twyk.me/privacy.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
 
   <!-- model pages -->
   <url><loc>https://twyk.me/model.html?id=knight</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>

@@ -86,7 +86,7 @@ export function renderHeader(active = "") {
       </nav>
       <div class="header-actions">
         <a class="btn btn-ghost" href="#">Sign in</a>
-        <a class="btn btn-primary" href="https://editor.twyk.me">Open the editor <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-primary" href="https://editor.twyk.me/">Start making <span class="arrow">&rarr;</span></a>
       </div>
     </div>`;
   document.body.prepend(el);
@@ -124,7 +124,7 @@ export function renderHeader(active = "") {
   window.addEventListener("resize", () => { if (!isMobile()) closeMenu(); });
 }
 
-export function renderFooter() {
+export function renderFooter({ prototypeNote = false } = {}) {
   const el = document.createElement("footer");
   el.className = "site-footer";
   el.innerHTML = `
@@ -132,11 +132,12 @@ export function renderFooter() {
       <div class="footer-grid">
         <div>
           <a class="logo" href="index.html">${LOGO_SVG} twyk.me</a>
-          <p class="footer-tagline">Design in the browser. Publish in a click. Remix anything.</p>
+          <p class="footer-tagline">Describe it. Print it. Remix anything.</p>
         </div>
         <div>
           <h4>Platform</h4>
           <ul>
+            <li><a href="index.html">Make with AI</a></li>
             <li><a href="how-it-works.html">The editor</a></li>
             <li><a href="explore.html">Explore models</a></li>
             <li><a href="how-it-works.html">How it works</a></li>
@@ -163,10 +164,11 @@ export function renderFooter() {
             <li><a href="about.html">About</a></li>
             <li><a href="compare.html">vs Tinkercad</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">&copy; 2026 twyk.me. This is a prototype: all models shown are illustrative placeholders.</div>
+      <div class="footer-bottom">&copy; 2026 twyk.me.${prototypeNote ? " This is a prototype: all models shown are illustrative placeholders." : ""}</div>
     </div>`;
   document.body.append(el);
 }

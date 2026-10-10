@@ -47,7 +47,7 @@
     import { POSTS } from "./js/posts.js";
 
     renderHeader();
-    renderFooter();
+    renderFooter({ prototypeNote: true });
 
     const featured = POSTS.find(p => p.featured) || POSTS[0];
     const rest = POSTS.filter(p => p !== featured);
