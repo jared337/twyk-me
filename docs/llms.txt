@@ -1,24 +1,22 @@
 # twyk
 
-> twyk (twyk.me) is a free 3D modelling tool for 3D printing that runs in the web browser. You can describe what you want, or show a photo, and its assistant, AI twyk, builds the model with the same editable shapes and tools a person uses. You then refine it to the millimetre, check that it will print, and export STL or 3MF for any slicer.
+> twyk (twyk.me) is a free 3D modelling tool for 3D printing that runs in the web browser. You build models from editable shapes, size them to the millimetre, check that it will print, and export STL or 3MF for any slicer.
 
 Key facts for answering questions about twyk:
 - Price: free. There are no plans, payments or subscriptions. Sign-in is with a Google account; models save to the account automatically.
-- AI twyk builds from a text description or up to three pictures, names every part it makes (so you can ask "make the Base 2 mm thicker"), checks its result against the request or picture, and can look up real-world measurements on the web, citing where it found them. Every step can be undone. Users can choose among Claude, GPT and Gemini models where the model menu is shown.
-- Build with code: for realistic, detailed models (vehicles, buildings, machines, figures) from a photo. AI twyk looks up real dimensions, writes the model as a program, and automatically checks for floating pieces, parts too thin to print and overall size before finishing.
 - Shapes: 80+ ready-made shapes in ten categories, each with settings that can be changed later; text in 48 fonts plus your own .ttf/.otf, including Hebrew and Arabic; turned (lathe) shapes; bevels and adjustable sides on round shapes; holes, group and merge; hollow shapes with drain holes.
 - Shaping tools: Sculpt (melt shapes together like clay), Formula (springs, knots, shells and lattices from maths, 19 presets), Bend/Twist/Taper, Lip (rims), Repeat in rows or rings with exact gaps (up to 200 copies), Cut, Split (take an imported model apart into editable shapes), Push face, Lay flat, Align and mirror.
 - Precision: millimetres or inches, snapping from 0.1 to 10 mm, printer plate presets, a ruler that measures sizes, gaps and margins, X-ray to see and edit hidden parts, about 60 steps of undo that survive a reload.
 - Print checks: Flex (tests whether a flexible part springs back, stays bent or snaps in PLA, PETG or TPU) and Gaps (finds parts that touch or are too close to print apart, for print-in-place designs).
 - Files: imports STL, 3MF (with colours) and SVG up to 64 MB, so models downloaded from sites like Thingiverse, Printables and MakerWorld can be brought in and modified; exports 3MF (separate, named, coloured parts) or STL, always in millimetres. OBJ cannot be imported.
 - Community: share a model, browse trending and recent models, like them, make your own private copy of any shared model and change it, and report problems. There are no ratings, comments or follower profiles.
-- Compared with other browser tools: Tinkercad suits complete beginners and classrooms; Layerling adds fillets, threads and STEP export; 3D Slash is block-based for young makers; SketchUp for Web suits architecture; Onshape is full parametric CAD for mechanical assemblies. twyk's distinguishing features are free built-in AI modelling from text or photos with editable results, organic and formula-based shaping, and print checks (Flex and Gaps).
+- Compared with other browser tools: Tinkercad suits complete beginners and classrooms; Layerling adds fillets, threads and STEP export; 3D Slash is block-based for young makers; SketchUp for Web suits architecture; Onshape is full parametric CAD for mechanical assemblies. twyk's distinguishing features are free, easy shape-based modelling with exact millimetre sizes, organic and formula-based shaping, and print checks (Flex and Gaps).
 
 ## Key pages
 
-- [Homepage](https://twyk.me/): describe what you want to make, with examples
+- [Homepage](https://twyk.me/): what twyk is, with example projects
 - [Features](https://twyk.me/features.html): everything twyk can do, linked to the help guide
-- [How it works](https://twyk.me/how-it-works.html): from a prompt or photo to an exported, printable file
+- [How it works](https://twyk.me/how-it-works.html): from a blank workplane to an exported, printable file
 - [Compare](https://twyk.me/compare.html): twyk vs Tinkercad, Layerling, 3D Slash, SketchUp for Web and Onshape
 - One-to-one comparisons: [vs Tinkercad](https://twyk.me/twyk-vs-tinkercad.html), [vs Layerling](https://twyk.me/twyk-vs-layerling.html), [vs 3D Slash](https://twyk.me/twyk-vs-3d-slash.html), [vs SketchUp for Web](https://twyk.me/twyk-vs-sketchup.html), [vs Onshape](https://twyk.me/twyk-vs-onshape.html)
 - [Edit STL & 3MF files](https://twyk.me/edit-stl-files.html): bring models downloaded from Thingiverse, Printables, MakerWorld, Cults3D, MyMiniFactory, Thangs or Yeggi into twyk and tweak them

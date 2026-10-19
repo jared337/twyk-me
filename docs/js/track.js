@@ -1,31 +1,17 @@
-/* twyk.me: analytics (GA4, consent-gated) and the editor handoff.
+/* twyk.me: analytics (GA4, consent-gated).
 
    GA4 only loads after the visitor accepts the cookie banner. Until then events
    queue in window.dataLayer; if they decline, nothing is ever sent to Google.
 
    Usage:
-     track("prompt_submit", { source: "hero" })
+     track("cta_login", { source: "hero" })
      <a data-track="cta_editor" data-track-source="hero">  (auto-tracked on click)
 */
 
 // Paste the GA4 Measurement ID (Admin > Data streams > twyk.me). Empty = analytics off, no banner.
 export const GA_MEASUREMENT_ID = "";
 
-// The twyk app. Signed-out visitors go through sign-in and come back to this URL
-// (login keeps ?next=), so the app should read ?prompt= on load and hand it to AI twyk.
-export const EDITOR_URL = "https://twyk.me/";
-
-const CAMPAIGN_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "ref"];
 const CONSENT_KEY = "twyk_analytics_consent";
-
-/* ---- editor handoff: keeps campaign params so editor-side analytics can attribute too ---- */
-export function editorUrl(prompt = "") {
-  const url = new URL(EDITOR_URL);
-  if (prompt) url.searchParams.set("prompt", prompt);
-  const here = new URLSearchParams(location.search);
-  CAMPAIGN_KEYS.forEach(k => { if (here.get(k)) url.searchParams.set(k, here.get(k)); });
-  return url.toString();
-}
 
 /* ---- storage that never throws (private mode, blocked site data) ---- */
 function readConsent() {
@@ -88,7 +74,7 @@ function showBanner() {
   bar.setAttribute("role", "region");
   bar.setAttribute("aria-label", "Cookie choice");
   bar.innerHTML = `
-    <p>We use analytics cookies to see which ideas people make, so we can improve twyk. No ads, no selling data. <a href="privacy.html">Privacy</a></p>
+    <p>We use analytics cookies to see which pages help people, so we can improve twyk. No ads, no selling data. <a href="privacy.html">Privacy</a></p>
     <div class="consent-actions">
       <button type="button" class="btn btn-ghost" data-consent="denied">Decline</button>
       <button type="button" class="btn btn-primary" data-consent="granted">Accept</button>

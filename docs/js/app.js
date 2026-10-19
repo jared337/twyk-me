@@ -65,7 +65,7 @@ export function renderHeader(active = "") {
       </nav>
       <div class="header-actions">
         <a class="btn btn-ghost" href="https://twyk.me/login">Sign in</a>
-        <a class="btn btn-primary" href="https://twyk.me/">Start making <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-primary" href="https://twyk.me/login" data-track="cta_login" data-track-source="header">Start making <span class="arrow">&rarr;</span></a>
       </div>
     </div>`;
   document.body.prepend(el);
@@ -111,12 +111,11 @@ export function renderFooter({ prototypeNote = false } = {}) {
       <div class="footer-grid">
         <div>
           <a class="logo" href="index.html">${LOGO_SVG} twyk.me</a>
-          <p class="footer-tagline">Describe it. Print it. Make it yours.</p>
+          <p class="footer-tagline">Design it. Print it. Make it yours.</p>
         </div>
         <div>
           <h4>Product</h4>
           <ul>
-            <li><a href="index.html">Make with AI</a></li>
             <li><a href="features.html">Features</a></li>
             <li><a href="how-it-works.html">How it works</a></li>
             <li><a href="compare.html">Compare</a></li>
