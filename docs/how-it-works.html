@@ -7,134 +7,311 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>How it works | twyk.me</title>
-  <meta name="description" content="How twyk works, step by step: drop shapes on a workplane, set exact sizes in mm, combine and cut them, then export STL or 3MF or share to the community." />
+  <meta name="description" content="How twyk works, from a blank workplane to a printed part: drop in shapes, size them to the millimetre, sculpt, bend and repeat them, check the print with Flex and Gaps, then export STL or 3MF or share to the Community." />
   <link rel="canonical" href="https://twyk.me/how-it-works.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="twyk.me" />
   <meta property="og:title" content="How it works | twyk.me" />
-  <meta property="og:description" content="How twyk works, step by step: drop shapes on a workplane, set exact sizes in mm, combine and cut them, then export STL or 3MF or share to the community." />
+  <meta property="og:description" content="From a blank workplane to a printed part: shapes, exact sizes, Sculpt, Bend, Formula, print checks and STL/3MF export. Free, in your browser." />
   <meta property="og:url" content="https://twyk.me/how-it-works.html" />
-  <meta property="og:image" content="https://twyk.me/img/editor/full-editor.webp" />
+  <meta property="og:image" content="https://twyk.me/img/help/editor-overview.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="How it works | twyk.me" />
-  <meta name="twitter:description" content="How twyk works, step by step: drop shapes on a workplane, set exact sizes in mm, combine and cut them, then export STL or 3MF or share to the community." />
+  <meta name="twitter:description" content="From a blank workplane to a printed part: shapes, exact sizes, Sculpt, Bend, Formula, print checks and STL/3MF export. Free, in your browser." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
-  <script type="importmap">
-    { "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-    } }
-  </script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://twyk.me/"}, {"@type": "ListItem", "position": 2, "name": "How it works", "item": "https://twyk.me/how-it-works.html"}]}</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "twyk 3D editor",
-    "applicationCategory": "DesignApplication",
-    "operatingSystem": "Any (runs in a web browser)",
-    "url": "https://twyk.me/how-it-works.html",
-    "description": "A browser-based 3D design editor: build with solid and hole shapes in exact millimetres, then export STL or 3MF or share to the twyk.me community."
+    "@type": "HowTo",
+    "name": "Design a 3D printable part in twyk",
+    "description": "From a blank workplane to a part ready for your slicer, in a free browser 3D editor.",
+    "tool": [{"@type": "HowToTool", "name": "A web browser"}, {"@type": "HowToTool", "name": "A 3D printer and slicer"}],
+    "step": [
+      {"@type": "HowToStep", "name": "Start", "text": "Start an empty model, import an STL, 3MF or SVG up to 64 MB, or make your own copy of a Community model.", "url": "https://twyk.me/how-it-works.html#start"},
+      {"@type": "HowToStep", "name": "Build with shapes", "text": "Drop in shapes from a library of 80+, turn some into holes, and Merge them to cut slots and mounting holes.", "url": "https://twyk.me/how-it-works.html#build"},
+      {"@type": "HowToStep", "name": "Make it exact", "text": "Type sizes in millimetres or inches, snap down to 0.1 mm, measure gaps with the ruler and align parts.", "url": "https://twyk.me/how-it-works.html#exact"},
+      {"@type": "HowToStep", "name": "Shape it", "text": "Use Sculpt, Bend, Formula, Repeat, Lip, Cut, Text and turned shapes, each with a live preview before you apply it.", "url": "https://twyk.me/how-it-works.html#shape"},
+      {"@type": "HowToStep", "name": "Check it prints", "text": "Run Flex to test a flexible part in PLA, PETG or TPU, and Gaps to check moving parts will print apart.", "url": "https://twyk.me/how-it-works.html#check"},
+      {"@type": "HowToStep", "name": "Export", "text": "Merge holes, lay the part flat, then export 3MF with named, coloured parts or STL, in millimetres.", "url": "https://twyk.me/how-it-works.html#export"},
+      {"@type": "HowToStep", "name": "Share", "text": "Share to the Community, where anyone can make their own copy and change it.", "url": "https://twyk.me/how-it-works.html#share"}
+    ]
   }
   </script>
 </head>
 <body>
 
-  <section class="guide-hero">
+  <section class="guide-hero hw-hero">
     <div class="container">
       <h1>From an idea to a printed part</h1>
-      <p>Start from a blank workplane or a model you imported, and build it in a precise editor, right in your browser. Here is the whole workflow, start to finish.</p>
-      <div class="editor-frame reveal">
+      <p>A full 3D modelling studio in your browser. Start from a blank workplane, a downloaded file or someone else&rsquo;s model, make it exactly the size you need, check it will print, and send it to your slicer. Here&rsquo;s the whole journey.</p>
+      <nav class="jump-nav hw-jump" aria-label="Jump to a step">
+        <a href="#start"><b>1</b> Start</a>
+        <a href="#build"><b>2</b> Build</a>
+        <a href="#exact"><b>3</b> Make it exact</a>
+        <a href="#shape"><b>4</b> Shape it</a>
+        <a href="#check"><b>5</b> Check it prints</a>
+        <a href="#export"><b>6</b> Export</a>
+        <a href="#share"><b>7</b> Share</a>
+      </nav>
+
+      <figure class="editor-frame hw-tour reveal">
         <div class="frame-bar"><span></span><span></span><span></span></div>
-        <img src="img/editor/full-editor.webp" alt="The twyk.me editor: shape library on the left, workplane in the middle, properties panel on the right" />
+        <img src="img/help/editor-overview.webp" width="1440" height="860" alt="The twyk editor with a desk organiser on the workplane: numbered markers point to the top bar, left panel, workplane, view cube, properties and plate settings" />
+      </figure>
+      <ol class="hw-legend reveal">
+        <li><b>Top bar</b> Name, save status, Move, Rotate, Resize, Undo, Ruler, Import and Export.</li>
+        <li><b>Left panel</b> The Shapes tab to add things, and the Tools tab for everything that changes them.</li>
+        <li><b>Workplane</b> The plate your model stands on, with a grid that snaps.</li>
+        <li><b>View cube</b> Click a face to look from that side. Fit all, orthographic and full screen.</li>
+        <li><b>Properties</b> Exact sizes, position, rotation, colour and settings of whatever&rsquo;s selected.</li>
+        <li><b>Plate settings</b> Plate size, snap grid and camera, plus what just happened.</li>
+      </ol>
+
+      <div class="hw-stats reveal">
+        <div><b>80+</b><span>editable shapes</span></div>
+        <div><b>48</b><span>fonts, or your own</span></div>
+        <div><b>19</b><span>formula presets</span></div>
+        <div><b>0.1&nbsp;mm</b><span>snapping</span></div>
+        <div><b>~60</b><span>undo steps, kept after a reload</span></div>
+        <div><b>$0</b><span>no plans or payments</span></div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top: 32px;">
+  <section class="section hw-steps" style="padding-top: 24px;">
     <div class="container">
 
-      <div class="guide-row">
+      <!-- 1 Start -->
+      <div class="guide-row hw-step" id="start">
         <div class="guide-copy reveal">
-          <div class="guide-num"><b>1</b> Build with shapes</div>
-          <h2>Start from the shape library</h2>
-          <p>Click a shape to drop it on the workplane, or import an STL, 3MF or SVG to build on. The library goes far past the basics, organised into ten categories:</p>
-          <ul>
-            <li><b>Basic</b> &amp; <b>Curved</b> for boxes, cylinders, cones and smooth solids</li>
-            <li><b>Polyhedra</b> &amp; <b>Profiles</b> for dice, prisms and extrusion outlines</li>
-            <li><b>Symbols</b>, <b>Parts</b>, <b>Home</b>, <b>Building</b> and <b>Fun</b> for ready-made pieces</li>
-            <li><b>Text</b> for names, labels and embossing</li>
+          <div class="guide-num"><b>1</b> Start</div>
+          <h2>Start from nothing, a file, or someone else&rsquo;s model</h2>
+          <p>Sign in with Google and you land on Home: your models, and what&rsquo;s trending in the Community. Everything saves to your account about a second after you change it.</p>
+          <ul class="hw-ticks">
+            <li><b>New model</b> for an empty workplane, or <b>Duplicate</b> to try an idea on a copy.</li>
+            <li><b>Import</b> an STL, 3MF (with its colours) or SVG up to 64&nbsp;MB, like a model you downloaded from Thingiverse, Printables or MakerWorld.</li>
+            <li><b>Make my own copy</b> of any model shared in the Community, and change it however you like.</li>
           </ul>
-          <p>There is also a search box when you know what you're after.</p>
+          <p class="hw-links"><a href="https://twyk.me/help#/home">The Home page</a> <a href="https://twyk.me/help#/import-export">Importing and exporting</a> <a href="edit-stl-files.html">Tweak files from other sites</a></p>
         </div>
-        <div class="guide-shot reveal">
-          <img src="img/editor/shapes-menu.png" alt="The shape library categories: Basic, Curved, Polyhedra, Profiles, Symbols, Parts, Home, Building, Fun and Text" />
+        <div class="guide-shot hw-shot reveal">
+          <div class="hw-browser"><div class="frame-bar"><span></span><span></span><span></span></div><img src="img/help/home.webp" width="1440" height="860" loading="lazy" alt="The twyk Home page: your models, and models trending in the Community" /></div>
         </div>
       </div>
 
-      <div class="guide-row flip">
+      <!-- 2 Build -->
+      <div class="guide-row flip hw-step" id="build">
         <div class="guide-copy reveal">
-          <div class="guide-num"><b>2</b> Dial in the details</div>
-          <h2>Real dimensions, not guesswork</h2>
-          <p>Select any shape and the properties panel gives you exact control:</p>
-          <ul>
-            <li><b>Solid or Hole</b> &mdash; flip a shape into a cutter to carve cavities and slots</li>
-            <li><b>Size in mm</b> on all three axes, with keep-aspect and resize %</li>
-            <li><b>Position and rotation</b> typed in exactly, or dragged with handles</li>
-            <li><b>Colour per shape</b>, ready for multi-colour printing</li>
+          <div class="guide-num"><b>2</b> Build</div>
+          <h2>Drop in shapes. Cut with holes. Merge.</h2>
+          <p>Click a shape and it lands on the workplane. The library goes far past boxes and cylinders: ten categories, from gears and stars to symbols, parts, home and building pieces, plus text.</p>
+          <ul class="hw-ticks">
+            <li><b>Search</b> understands everyday words, so &ldquo;donut&rdquo; finds the torus.</li>
+            <li><b>Every shape stays editable:</b> a gear can get more teeth, a star more points, long after you placed it.</li>
+            <li><b>Solid, Hole or Hollow:</b> turn a shape into a hole, then Merge to cut it into the part.</li>
+            <li><b>Group</b> parts to move them together, or <b>Merge</b> them into one solid.</li>
           </ul>
-          <p>Parts fit the first time because you told them exactly how big to be.</p>
+          <p class="hw-links"><a href="https://twyk.me/help#/adding-shapes">Adding shapes</a> <a href="https://twyk.me/help#/holes">Holes, Group and Merge</a> <a href="https://twyk.me/help#/hollow">Hollow shapes</a></p>
         </div>
-        <div class="guide-shot reveal">
-          <img src="img/editor/properties.png" alt="The properties panel: Solid/Hole toggle, size in mm, keep aspect ratio, resize %, position, rotation and colour swatches" />
+        <div class="guide-shot hw-shot hw-panels reveal">
+          <img src="img/help/shapes-panel.webp" width="186" height="772" loading="lazy" alt="The Shapes tab: the Basic category with box, cylinder, sphere, cone and more" />
+          <img src="img/help/shape-search.webp" width="186" height="772" loading="lazy" alt="Searching the shapes for donut" />
+          <img src="img/help/properties.webp" width="250" height="772" loading="lazy" alt="The properties panel of a pen cup: Solid, Hole or Hollow, sizes and colours" />
         </div>
       </div>
 
-      <div class="guide-row">
+      <figure class="hw-merge reveal" aria-label="Merge before and after">
+        <div class="hw-merge-pane"><span class="hw-tag">Before</span><img src="img/help/merge-before.webp" width="1004" height="640" loading="lazy" alt="A 60 by 40 by 18 mm block with two see-through hole cylinders placed in it" /></div>
+        <div class="hw-merge-op" aria-hidden="true"><span>Merge</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+        <div class="hw-merge-pane"><span class="hw-tag ok">After</span><img src="img/help/merge-after.webp" width="1004" height="640" loading="lazy" alt="The same block with two clean bolt holes cut through it" /></div>
+        <figcaption>Your first model in five minutes: a plate with bolt holes. <a href="https://twyk.me/help#/t-first-model">Follow the tutorial &rsaquo;</a></figcaption>
+      </figure>
+
+      <!-- 3 Exact -->
+      <div class="guide-row hw-step" id="exact">
         <div class="guide-copy reveal">
-          <div class="guide-num"><b>3</b> Combine and edit</div>
-          <h2>One toolbar for the whole build</h2>
-          <p>Move, rotate and resize with direct handles, then shape the design with the tools that do the heavy lifting:</p>
-          <ul>
-            <li><b>Group</b> shapes to move them as one, <b>Merge</b> to fuse them into a single solid</li>
-            <li><b>Align</b> on any axis and <b>Duplicate</b> for repeats</li>
-            <li><b>Split</b> and <b>Cut</b> to take a design apart, <b>Push face</b> to pull a single face in or out</li>
+          <div class="guide-num"><b>3</b> Make it exact</div>
+          <h2>Type the size. Get exactly that size.</h2>
+          <p>Parts that fit first time aren&rsquo;t luck. Drag the grips for a rough size, then type the real numbers.</p>
+          <ul class="hw-ticks">
+            <li><b>Grips</b> on every object: corners resize width and depth, the top grip sets the height, the arcs turn it.</li>
+            <li><b>Click a measurement</b> on the model and type a new value, or use the properties panel.</li>
+            <li><b>Millimetres or inches</b>, snapping from 0.1 to 10&nbsp;mm, with plate presets for common printers.</li>
+            <li><b>The ruler</b> shows the size, the distance to the nearest parts, or the margins inside what it sits on.</li>
+            <li><b>Align</b> in nine ways on all three axes, mirror in place, or space parts evenly.</li>
           </ul>
-          <p>And the "Saved" badge on the left is doing exactly what it says: your work saves as you go.</p>
+          <p class="hw-links"><a href="https://twyk.me/help#/selecting">Moving and resizing</a> <a href="https://twyk.me/help#/measuring">The ruler</a> <a href="https://twyk.me/help#/align">Align and mirror</a></p>
         </div>
-        <div class="guide-shot wide reveal">
-          <img src="img/editor/toolbar.png" alt="The editor toolbar: Saved indicator, Move, Rotate, Resize, Group, Merge, Align, Split, Cut, Push face and Duplicate" />
+        <div class="guide-shot hw-shot hw-layer reveal">
+          <img class="hw-main" src="img/help/align-result.webp" width="1190" height="640" loading="lazy" alt="Four shapes lined up along their bottoms with the Align menu open, measured at 207.9 mm across" />
+          <img class="hw-float" src="img/help/ruler.webp" width="270" height="307" loading="lazy" alt="The Ruler menu: measure the size of the selection, the gaps to nearby parts, or margins" />
         </div>
       </div>
 
-      <div class="guide-row flip">
-        <div class="guide-copy reveal">
-          <div class="guide-num"><b>4</b> Export or publish</div>
-          <h2>Straight to your slicer, or straight to the world</h2>
-          <p>When the design is done, export it in the format your workflow needs:</p>
-          <ul>
-            <li><b>Export 3MF</b> &mdash; keeps the separate objects, ideal for multi-colour printing</li>
-            <li><b>Export STL</b> &mdash; one mesh that opens in any slicer or CAD tool</li>
-          </ul>
-          <p>Before you export, <b>Gaps</b> checks that moving parts won&rsquo;t fuse together and <b>Flex</b> tests whether a flexible part will spring back or snap.</p>
-          <p>Or share it to the Community, where anyone can make their own copy and change it.</p>
-          <p style="margin-top:16px;"><a class="learn" href="features.html#printing">See all the print checks <span class="chev">&rsaquo;</span></a></p>
+      <!-- 4 Shape it -->
+      <div class="hw-step hw-tools" id="shape">
+        <div class="hw-tools-head reveal">
+          <div class="guide-num"><b>4</b> Shape it</div>
+          <h2>Go far beyond blocks</h2>
+          <p>The Tools tab is where models get interesting. Every tool shows a see-through preview that updates as you change its settings, and nothing changes until you press Apply. Esc leaves the model exactly as it was.</p>
         </div>
-        <div class="guide-shot reveal">
-          <img src="img/editor/export-menu.png" alt="The Export menu offering Export 3MF (keeps the separate objects) and Export STL (one mesh, opens anywhere)" />
+        <div class="hw-explorer reveal" data-explorer>
+          <div class="hw-tabs" role="tablist" aria-label="Tools">
+            <button role="tab" aria-selected="true" data-img="sculpt" data-help="sculpt" data-w="1190" data-h="640" data-alt="A sphere sculpted into a box, with the Sculpt menu and its blend setting" data-text="Melt two or more shapes into one smooth piece, like clay, with joins that flow instead of seams. Set how soft or sharp the blend is.">Sculpt</button>
+            <button role="tab" aria-selected="false" data-img="bend" data-help="bend" data-w="1190" data-h="600" data-alt="A straight bar bent into a half ring with the Bend menu" data-text="Curl a bar into a ring, twist a column or taper a spike, watching it change as you drag the settings.">Bend &amp; twist</button>
+            <button role="tab" aria-selected="false" data-img="formula" data-help="formula" data-w="1190" data-h="700" data-alt="A spring made with the Formula tool, with its settings open" data-text="Springs, knots, shells, lattices and twisted pots from maths. Start from one of 19 presets and set your own sizes.">Formula</button>
+            <button role="tab" aria-selected="false" data-img="repeat-ring" data-help="duplicate-repeat" data-w="1190" data-h="772" data-alt="Curved panels repeated around a ring with an exact gap" data-text="Up to 200 copies along a line or round a ring, with an exact gap between each. It even tells you the biggest ring your plate fits.">Repeat</button>
+            <button role="tab" aria-selected="false" data-img="lip" data-help="lip" data-w="1004" data-h="772" data-alt="A cup with a rolled rim being added by the Lip tool" data-text="Add a rim to the top or base: a flat collar, a flare, or a rolled edge like a bin.">Lip</button>
+            <button role="tab" aria-selected="false" data-img="cut" data-help="cut" data-w="1004" data-h="772" data-alt="A cylinder being cut in two by a box, each piece shown in its own colour" data-text="Slice a model with a box you can move and turn. The preview shows each piece in its own colour before you cut.">Cut</button>
+            <button role="tab" aria-selected="false" data-img="fonts" data-help="text" data-w="1004" data-h="772" data-alt="Raised 3D text in Pacifico, Bebas Neue, Stencil, Playfair, Orbitron and Hebrew" data-text="48 fonts, from script to stencil, or load any .ttf or .otf. Raised or cut-through lettering, and Hebrew or Arabic right to left.">Text</button>
+            <button role="tab" aria-selected="false" data-img="turned" data-help="turned" data-w="1440" data-h="860" data-alt="The Turned shape window: drawing half a profile to spin into a solid" data-text="Draw half a profile and spin it into a vase, a knob or a bottle.">Turned shapes</button>
+          </div>
+          <div class="hw-stage">
+            <img data-stage src="img/help/sculpt.webp" width="1190" height="640" alt="A sphere sculpted into a box, with the Sculpt menu and its blend setting" />
+          </div>
+          <div class="hw-caption">
+            <p data-caption>Melt two or more shapes into one smooth piece, like clay, with joins that flow instead of seams. Set how soft or sharp the blend is.</p>
+            <a data-more href="https://twyk.me/help#/sculpt">How it works &rsaquo;</a>
+          </div>
+        </div>
+        <div class="hw-presets reveal">
+          <p><b>Formula presets</b> to start from</p>
+          <figure><img src="img/help/preset-spring.webp" width="400" height="250" loading="lazy" alt="" /><figcaption>Spring</figcaption></figure>
+          <figure><img src="img/help/preset-torus-knot.webp" width="400" height="250" loading="lazy" alt="" /><figcaption>Torus knot</figcaption></figure>
+          <figure><img src="img/help/preset-gyroid-cube.webp" width="400" height="250" loading="lazy" alt="" /><figcaption>Gyroid lattice</figcaption></figure>
+          <figure><img src="img/help/preset-ribbed-pot.webp" width="400" height="250" loading="lazy" alt="" /><figcaption>Ribbed pot</figcaption></figure>
+        </div>
+        <p class="hw-more-tools reveal">Also in the Tools tab: <a href="https://twyk.me/help#/split">Split</a> an imported model into editable parts, <a href="https://twyk.me/help#/push-face">Push face</a> to add or remove material, <a href="https://twyk.me/help#/lay-flat">Lay flat</a>, and <a href="https://twyk.me/help#/align">Align and mirror</a>.</p>
+      </div>
+
+      <!-- 5 Check -->
+      <div class="hw-step" id="check">
+        <div class="hw-tools-head reveal">
+          <div class="guide-num"><b>5</b> Check it prints</div>
+          <h2>Know it will print before you waste filament</h2>
+          <p>Built for the problems that actually ruin prints: parts that snap, parts that fuse, and parts you can&rsquo;t see to fix.</p>
+        </div>
+        <div class="hw-checks">
+          <a class="hw-check reveal" href="https://twyk.me/help#/flex">
+            <img src="img/help/flex.webp" width="1190" height="772" loading="lazy" alt="A square flexi ring under the Flex test, with its result" />
+            <h3>Flex</h3>
+            <p>Bend it in the computer first. It says whether it springs back, stays bent or snaps, in PLA, PETG or TPU, and where.</p>
+          </a>
+          <a class="hw-check reveal" href="https://twyk.me/help#/gaps">
+            <img class="hw-fit" src="img/help/gaps.webp" width="296" height="400" loading="lazy" alt="The Check gaps panel listing parts that are too close" />
+            <h3>Gaps</h3>
+            <p>Lists every pair of parts that touch or come too close, so hinges and print-in-place pieces come off the bed apart.</p>
+          </a>
+          <a class="hw-check reveal" href="https://twyk.me/help#/xray">
+            <img src="img/help/xray.webp" width="940" height="760" loading="lazy" alt="X-ray making a housing see-through to show the shaft inside" />
+            <h3>X-ray</h3>
+            <p>Everything else turns see-through, so a part hidden inside another can be picked, moved and cut.</p>
+          </a>
+          <a class="hw-check reveal" href="https://twyk.me/help#/t-magnet">
+            <img src="img/help/t-magnet.webp" width="940" height="700" loading="lazy" alt="A hidden magnet pocket measured inside a flat part" />
+            <h3>Hidden pockets</h3>
+            <p>Seal a magnet, a nut or a weight inside a print, exactly where you measured it.</p>
+          </a>
         </div>
       </div>
 
+      <!-- 6 Export -->
+      <div class="guide-row flip hw-step" id="export">
+        <div class="guide-copy reveal">
+          <div class="guide-num"><b>6</b> Export</div>
+          <h2>Straight to your slicer, in colour</h2>
+          <p>When it&rsquo;s ready, the last few clicks:</p>
+          <ol class="hw-checklist">
+            <li>Merge any holes into their solids.</li>
+            <li>Run <b>Gaps</b> on anything that moves, and <b>Flex</b> on anything that bends.</li>
+            <li><b>Lay flat:</b> click a face and the part turns so that side is down.</li>
+            <li><b>Export 3MF</b> to keep separate, named, coloured parts, or <b>STL</b> for one mesh that opens anywhere.</li>
+            <li>Open it in your slicer. It&rsquo;s already in millimetres.</li>
+          </ol>
+          <div class="hw-slicers"><span>Bambu Studio</span><span>PrusaSlicer</span><span>OrcaSlicer</span><span>Cura</span><span>any slicer</span></div>
+          <p class="hw-links"><a href="https://twyk.me/help#/t-print">From twyk to your printer</a> <a href="https://twyk.me/help#/t-cut-print">Cutting a big model in two</a></p>
+        </div>
+        <div class="guide-shot hw-shot hw-layer reveal">
+          <img class="hw-main" src="img/help/fonts-latin.webp" width="960" height="600" loading="lazy" alt="Multi-coloured 3D lettering in six fonts, ready for multi-colour printing" />
+          <img class="hw-float" src="img/help/export.webp" width="268" height="198" loading="lazy" alt="The Export menu: Export 3MF keeps the separate objects and their colours, Export STL is one mesh" />
+        </div>
+      </div>
+
+      <!-- 7 Share -->
+      <div class="guide-row hw-step" id="share">
+        <div class="guide-copy reveal">
+          <div class="guide-num"><b>7</b> Share</div>
+          <h2>Share it, and let others make it theirs</h2>
+          <p>Your models stay private until you choose to share them. Share one to the Community and anyone can open it, like it, and make their own copy to change for their gear.</p>
+          <ul class="hw-ticks">
+            <li><b>Trending and recent</b> models, ready to copy.</li>
+            <li><b>Make my own copy</b> opens a shared model as your own, every shape still editable.</li>
+            <li><b>Kept safe:</b> anyone can report a problem, and moderators check what&rsquo;s reported.</li>
+          </ul>
+          <p class="hw-links"><a href="https://twyk.me/help#/community">The Community</a> <a href="https://twyk.me/help#/visiting">Opening someone else&rsquo;s model</a></p>
+        </div>
+        <div class="guide-shot hw-shot reveal">
+          <div class="hw-browser"><div class="frame-bar"><span></span><span></span><span></span></div><img src="img/help/community.webp" width="1440" height="860" loading="lazy" alt="The twyk Community: a grid of shared models with likes" /></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- speed tips -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Speed tips</div>
+          <h2>Work faster once you&rsquo;re hooked</h2>
+          <p>A few of the shortcuts people learn first. The full list is a click away in the editor.</p>
+        </div>
+        <a class="btn btn-ghost" href="https://twyk.me/help#/shortcuts">All shortcuts <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="hw-keys">
+        <div class="reveal"><span><kbd>Shift</kbd> + click</span>Add to the selection, or <kbd>Shift</kbd> + drag to box-select</div>
+        <div class="reveal"><span><kbd>Alt</kbd> + click</span>Pick the object behind, one deeper each time</div>
+        <div class="reveal"><span><kbd>X</kbd></span>X-ray: see and select parts hidden inside others</div>
+        <div class="reveal"><span><kbd>&larr;</kbd><kbd>&rarr;</kbd><kbd>&uarr;</kbd><kbd>&darr;</kbd></span>Nudge one snap step, or ten with <kbd>Shift</kbd></div>
+        <div class="reveal"><span><kbd>Shift</kbd> while turning</span>Rotate in 1&deg; steps instead of 15&deg;</div>
+        <div class="reveal"><span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd></span>Switch Move, Rotate and Resize on or off</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- tutorials -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Learn by making</div>
+          <h2>Step-by-step projects</h2>
+          <p>Short tutorials that each teach a tool by making something real.</p>
+        </div>
+        <a class="btn btn-ghost" href="https://twyk.me/help">All help &amp; tutorials <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="hw-tuts">
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-first-model"><img src="img/help/merge-after.webp" width="1004" height="640" loading="lazy" alt="" /><b>Your first model</b><span>A plate with bolt holes: shapes, sizes, holes and Merge.</span></a>
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-pen-pot"><img src="img/help/lip.webp" width="1004" height="772" loading="lazy" alt="" /><b>A pen pot with a rolled rim</b><span>A hollow pot finished with a rolled rim from Lip.</span></a>
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-spring"><img src="img/help/preset-spring.webp" width="400" height="250" loading="lazy" alt="" /><b>A spring from a formula</b><span>Start from a preset and set your own coils.</span></a>
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-flexi-ring"><img src="img/help/flex.webp" width="1190" height="772" loading="lazy" alt="" /><b>A flexi ring that squeezes</b><span>Repeat round a ring with a gap, then test it with Flex.</span></a>
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-name-tag"><img src="img/help/fonts.webp" width="1004" height="772" loading="lazy" alt="" /><b>A name tag in your own font</b><span>Raised lettering in any of 48 fonts, or yours.</span></a>
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-magnet"><img src="img/help/t-magnet.webp" width="940" height="700" loading="lazy" alt="" /><b>A hidden pocket for a magnet</b><span>Seal a magnet inside a print, placed with X-ray.</span></a>
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-cut-print"><img src="img/help/cut.webp" width="1004" height="772" loading="lazy" alt="" /><b>Cutting a big model in two</b><span>Split a part that&rsquo;s too big for your printer.</span></a>
+        <a class="hw-tut reveal" href="https://twyk.me/help#/t-print"><img src="img/help/repeat-ring.webp" width="1190" height="772" loading="lazy" alt="" /><b>From twyk to your printer</b><span>Check the gaps, export and slice.</span></a>
+      </div>
     </div>
   </section>
 
   <section class="cta-band">
     <div class="container">
-      <h2>Now try it yourself</h2>
-      <p>No install. Sign in with Google and drop your first shape.</p>
+      <h2>Now make something real</h2>
+      <p>Free, in your browser. Sign in with Google and drop your first shape.</p>
       <div class="hero-cta" style="justify-content:center;">
         <a class="btn btn-primary btn-lg" href="https://twyk.me/login" data-track="cta_login" data-track-source="how_it_works">Start making <span class="arrow">&rarr;</span></a>
         <a class="btn btn-ghost btn-lg" href="features.html" style="background:transparent;border-color:rgba(255,255,255,0.35);color:#fff;">See every feature</a>
@@ -144,9 +321,57 @@
 
   <script type="module">
     import { renderHeader, renderFooter, observeReveals } from "./js/app.js";
+    import "./js/track.js";
     renderHeader("how");
     renderFooter();
     observeReveals();
+
+    /* ---- tool explorer: tabs swap the screenshot and caption; cycles until someone picks a tab ---- */
+    const ex = document.querySelector("[data-explorer]");
+    const tabs = [...ex.querySelectorAll("[role=tab]")];
+    const stage = ex.querySelector("[data-stage]");
+    const caption = ex.querySelector("[data-caption]");
+    const more = ex.querySelector("[data-more]");
+    // warm the cache so switching is instant
+    tabs.forEach(t => { const i = new Image(); i.src = `img/help/${t.dataset.img}.webp`; });
+
+    function show(tab) {
+      tabs.forEach(t => t.setAttribute("aria-selected", String(t === tab)));
+      stage.classList.add("swap");
+      setTimeout(() => {
+        stage.src = `img/help/${tab.dataset.img}.webp`;
+        stage.width = tab.dataset.w; stage.height = tab.dataset.h;
+        stage.alt = tab.dataset.alt;
+        caption.textContent = tab.dataset.text;
+        more.href = `https://twyk.me/help#/${tab.dataset.help}`;
+        stage.classList.remove("swap");
+      }, 160);
+    }
+
+    let timer = null;
+    const stop = () => { clearInterval(timer); timer = null; };
+    tabs.forEach(t => t.addEventListener("click", () => { stop(); show(t); }));
+    ex.addEventListener("keydown", e => {
+      const i = tabs.findIndex(t => t.getAttribute("aria-selected") === "true");
+      const next = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : null;
+      if (next === null) return;
+      stop();
+      const t = tabs[(next + tabs.length) % tabs.length];
+      show(t); t.focus();
+    });
+
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // only cycle while the explorer is on screen
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting && timer === null && !ex.dataset.touched) {
+          timer = setInterval(() => {
+            const i = tabs.findIndex(t => t.getAttribute("aria-selected") === "true");
+            show(tabs[(i + 1) % tabs.length]);
+          }, 4500);
+        } else if (!e.isIntersecting) stop();
+      }, { threshold: 0.4 }).observe(ex);
+      ["pointerdown", "focusin"].forEach(ev => ex.addEventListener(ev, () => { ex.dataset.touched = "1"; stop(); }));
+    }
   </script>
 </body>
 </html>
