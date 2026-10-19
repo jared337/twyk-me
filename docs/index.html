@@ -32,7 +32,7 @@
     "name": "twyk.me",
     "url": "https://twyk.me/",
     "logo": "https://twyk.me/img/editor/full-editor.webp",
-    "description": "twyk.me turns an idea or photo into a 3D model you can size to the millimetre, edit in plain language, print and remix, with credit tracked automatically."
+    "description": "twyk is a free browser 3D modelling tool for 3D printing. AI twyk builds models from a description or photo with real, editable shapes, which you refine to the millimetre, check with a flex test and clearance check, and export as STL or 3MF."
   }
   </script>
   <script type="application/ld+json">
@@ -40,12 +40,7 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "twyk.me",
-    "url": "https://twyk.me/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": { "@type": "EntryPoint", "urlTemplate": "https://twyk.me/explore.html?q={search_term_string}" },
-      "query-input": "required name=search_term_string"
-    }
+    "url": "https://twyk.me/"
   }
   </script>
   <script type="application/ld+json">
@@ -56,7 +51,8 @@
     "url": "https://twyk.me/",
     "applicationCategory": "DesignApplication",
     "operatingSystem": "Web browser",
-    "description": "Describe an object or upload a photo to generate a 3D model, size it to the millimetre with plain-language edits, and export STL or 3MF for 3D printing."
+    "description": "Describe an object or upload a photo to generate a 3D model, size it to the millimetre with plain-language edits, and export STL or 3MF for 3D printing.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
 </head>
@@ -71,7 +67,7 @@
     </div>
     <div class="hero-scene" id="hero-scene"></div>
     <div class="container">
-      <div class="early-pill"><span class="tag">New</span> AI generation is live in the editor</div>
+      <div class="early-pill"><span class="tag">New</span> Meet AI twyk: describe it, show it a photo, watch it build</div>
       <h1>What do you want to make?</h1>
       <p class="tagline">
         Describe it or start from a photo. twyk generates a 3D model you can size to the
@@ -83,7 +79,7 @@
         <textarea id="hero-prompt" name="prompt" rows="2" maxlength="400"
           placeholder="A headset stand for my Arctis Nova Pro, with my gamertag on the base…"></textarea>
         <div class="prompt-bar">
-          <a class="attach" href="https://editor.twyk.me/" data-photo-link data-track="photo_start" data-track-source="hero">
+          <a class="attach" href="https://twyk.me/" data-photo-link data-track="photo_start" data-track-source="hero">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
             <span>Start from a photo</span>
           </a>
@@ -101,7 +97,7 @@
         <button class="idea-chip" type="button" data-fill="Cable clips for 6, 9 and 12 mm cables that grip a 25 mm desk edge"><span class="seg-dot dot-build"></span>Cable clips for my desk edge</button>
       </div>
 
-      <p class="hero-sub">Rather build it yourself? <a href="https://editor.twyk.me/" data-track="cta_editor" data-track-source="hero">Start from scratch in the editor &rsaquo;</a></p>
+      <p class="hero-sub">Rather build it yourself? <a href="https://twyk.me/" data-track="cta_editor" data-track-source="hero">Start from scratch in the editor &rsaquo;</a></p>
       <p class="slicers">Exports STL and 3MF for Bambu Studio, PrusaSlicer, OrcaSlicer, Cura and any other slicer.</p>
     </div>
   </section>
@@ -138,20 +134,156 @@
           <span class="n">04</span>
           <div class="fi fi-filament"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h16v17"/><path d="M4 8h16"/><path d="M10 8v3h4V8M12 11v2"/><rect x="8.5" y="16" width="7" height="5" rx="1"/></svg></div>
           <h3>Print</h3>
-          <p>Export a clean STL or 3MF and send it to any slicer.</p>
+          <p>Check it bends without snapping and moving parts won&rsquo;t fuse, then export STL or 3MF.</p>
         </div>
         <div class="flow-step reveal">
           <span class="n">05</span>
           <div class="fi fi-pink"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="5" r="2.4"/><circle cx="18" cy="5" r="2.4"/><circle cx="12" cy="19" r="2.4"/><path d="M6 7.5v2c0 2 1.5 3 3.5 3h5c2 0 3.5-1 3.5-3v-2M12 12.5v4"/></svg></div>
-          <h3>Remix</h3>
-          <p>Publish it. Anyone can open it, make it theirs with AI, and you get the credit.</p>
+          <h3>Share</h3>
+          <p>Share it to the Community. Anyone can make their own copy and change it with AI twyk.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- real world: people and printers -->
+  <section class="section people" style="padding-top: 8px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" style="color: var(--filament-deep);">The print is the point</div>
+          <h2>It all ends with something real in your hands</h2>
+          <p>twyk is for the moment a design comes off the print bed: parts that fit, gifts with a name on them, and things that didn&rsquo;t exist this morning.</p>
+        </div>
+      </div>
+      <div class="people-grid">
+        <figure class="people-shot people-wide reveal">
+          <img src="img/people/kids-watching-print.jpg" width="1100" height="733" loading="lazy" alt="Three young people lean in to watch a red part being 3D printed" />
+          <figcaption>Watching a first print come to life</figcaption>
+        </figure>
+        <figure class="people-shot reveal">
+          <img src="img/people/removing-print.jpg" width="1100" height="734" loading="lazy" alt="A hand uses a scraper to lift freshly printed orange parts off a 3D printer bed" />
+          <figcaption>Fresh parts, straight off the bed</figcaption>
+        </figure>
+        <figure class="people-shot reveal">
+          <img src="img/people/maker-with-printer.jpg" width="1100" height="733" loading="lazy" alt="A woman holding a tablet stands beside an enclosed 3D printer in a workshop" />
+          <figcaption>From the screen to the printer</figcaption>
+        </figure>
+        <figure class="people-shot people-wide reveal">
+          <img src="img/people/fresh-print-plate.jpg" width="1100" height="734" loading="lazy" alt="A maker holds up a print plate with orange printed brackets in front of a workshop full of 3D printers" />
+          <figcaption>A plate of parts that fit first time</figcaption>
+        </figure>
+      </div>
+      <p class="people-credit">Photos: Vanessa Loring, Jakub Zerdzicki and Yusuf &Ccedil;elik on <a href="https://www.pexels.com/" rel="noopener">Pexels</a>.</p>
+    </div>
+  </section>
+
+  <!-- bring models from other sites: sites -> STL/3MF -> twyk -->
+  <section class="src-section" aria-labelledby="src-h">
+    <div class="container">
+      <div class="src-head reveal">
+        <div class="eyebrow">Already found a model?</div>
+        <h2 id="src-h">Bring it from your favourite site. Make it yours.</h2>
+        <p>Download the STL or 3MF from the sites you already use, import it into twyk, and change whatever doesn&rsquo;t fit, by hand or with AI twyk.</p>
+      </div>
+      <div class="src-flow reveal">
+        <div class="src-tiles" aria-label="Works with files from">
+          <span class="src-tile" style="--brand: #248BFB"><svg aria-hidden="true" focusable="false" fill="currentColor" width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.955.005C5.425-.152-.091 5.485.007 11.805c-.235 6.756 5.537 12.25 12.052 12.196C18.621 23.9 23.912 18.595 24 12.03 24.031 5.483 18.505-.18 11.955.005zm-.047 1.701a10.276 10.276 0 0 1 7.36 17.529 10.275 10.275 0 0 1-17.556-7.287C1.71 6.308 6.268 1.728 11.907 1.706zm-5.55 4.781c-.322 0-.358.033-.358.361v2.248c0 .351.04.391.398.391h3.823c.274 0 .274.004.274.265v9.736a.176.176 0 0 0 .051.146c.04.038.093.059.148.053h2.555c.247-.003.283-.035.283-.28v-9.32c0-.124.004-.239 0-.39s.055-.21.218-.21h3.9c.319.004.35-.032.35-.344V6.855c0-.34-.024-.363-.37-.363h-5.626z"/></svg><b>Thingiverse</b></span>
+          <span class="src-tile" style="--brand: #FA6831"><svg aria-hidden="true" focusable="false" fill="currentColor" width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.678 4.8 12 9.6v9.6l8.322-4.8V4.8L12 0ZM12 19.2l-8.322-4.8V24Z"/></svg><b>Printables</b></span>
+          <span class="src-tile src-tile-word" data-mark="M"><b>MakerWorld</b></span>
+          <span class="src-tile src-tile-word" data-mark="C"><b>Cults3D</b></span>
+          <span class="src-tile src-tile-word" data-mark="M"><b>MyMiniFactory</b></span>
+          <span class="src-tile" style="--brand: #D99A00"><svg aria-hidden="true" focusable="false" fill="currentColor" width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.18 13.902a1.902 1.902 0 1 1 0-3.804 1.902 1.902 0 0 1 0 3.804m0-5.722A3.82 3.82 0 0 0 16.36 12v3.82h3.82a3.82 3.82 0 1 0 0-7.64m-8.656 5.722A1.907 1.907 0 0 1 9.611 12c0-1.05.857-1.902 1.913-1.902s1.913.852 1.913 1.902c0 1.05-.857 1.902-1.913 1.902m-7.683 0A1.907 1.907 0 0 1 1.928 12c0-1.05.857-1.902 1.913-1.902 1.057 0 1.913.852 1.913 1.902 0 1.05-.856 1.902-1.913 1.902m11.514-2.107-.002-.032a3.76 3.76 0 0 0-.04-.37l-.004-.019a3.693 3.693 0 0 0-.081-.373V11a3.836 3.836 0 0 0-3.704-2.82H3.84a3.833 3.833 0 0 0-3.794 3.254l-.001.008c-.018.118-.03.236-.036.357l-.002.02v.016C.006 11.89 0 11.945 0 12c0 .07.007.137.01.206l.002.032c.008.124.021.248.041.37l.003.018a3.833 3.833 0 0 0 3.786 3.194h11.523V12c0-.07-.006-.137-.01-.205"/></svg><b>Thangs</b></span>
+          <span class="src-tile src-tile-word" data-mark="Y"><b>Yeggi</b></span>
+        </div>
+        <div class="src-pipe" aria-hidden="true">
+          <span class="src-file">STL</span>
+          <span class="src-file">3MF</span>
+          <span class="src-line"></span>
+        </div>
+        <div class="src-twyk">
+          <div class="src-twyk-top">
+            <svg width="30" height="30" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M13 1.5 24 7.5v11L13 24.5 2 18.5v-11L13 1.5Z" fill="#2563eb"/><path d="M13 1.5 24 7.5 13 13.5 2 7.5 13 1.5Z" fill="#5b8cf5"/><path d="M13 13.5v11L2 18.5v-11l11 6Z" fill="#1b46a8"/></svg>
+            <div><b>Your version in twyk</b><span>Imported, tweaked, ready to print</span></div>
+          </div>
+          <ul class="src-tweaks">
+            <li><span class="mono">72.00 mm</span> Resize it to fit your gear</li>
+            <li><span class="mono">&ldquo;NOVA&rdquo;</span> Add your name or a label</li>
+            <li><span class="mono">&Oslash;4 &times;2</span> Cut in mounting holes</li>
+            <li><span class="mono">AI</span> &ldquo;Add a wall mount to the back&rdquo;</li>
+          </ul>
+        </div>
+      </div>
+      <div class="src-foot">
+        <a class="btn btn-primary btn-lg" href="edit-stl-files.html" data-track="cta_import_page" data-track-source="home_sources">How to bring a model in <span class="arrow">&rarr;</span></a>
+        <span class="src-note">Not affiliated with these sites. Names and logos belong to their owners.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- breadth: what's actually inside -->
+  <section class="section section-soft" id="capabilities">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">What&rsquo;s inside</div>
+          <h2>More than a generator. A full modelling studio.</h2>
+          <p>AI twyk gets you started. Then you have the tools to make it exactly right, and the checks to know it will print.</p>
+        </div>
+        <a class="btn btn-ghost" href="features.html" data-track="cta_features" data-track-source="home_capabilities">See every feature <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-col reveal">
+          <div class="fi fi-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></div>
+          <h3>AI twyk</h3>
+          <ul>
+            <li>Builds from a description or up to three pictures</li>
+            <li>Realistic, detailed models from a single photo</li>
+            <li>Looks up real measurements on the web</li>
+            <li>Names every part, so you can change it by name</li>
+          </ul>
+          <a class="feat-more" href="features.html#ai">More about AI twyk &rsaquo;</a>
+        </div>
+        <div class="cap-col reveal">
+          <div class="fi fi-teal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18c3-1 4-4 4-7s2-6 6-6 6 3 6 6"/><circle cx="8" cy="18" r="2"/><path d="M14 13c0 3 2 5 5 5"/></svg></div>
+          <h3>Shape anything</h3>
+          <ul>
+            <li>80+ editable shapes and 48 fonts</li>
+            <li>Sculpt shapes together like clay</li>
+            <li>Springs, knots and lattices from formulas</li>
+            <li>Bend, twist, taper, rims and rings</li>
+          </ul>
+          <a class="feat-more" href="features.html#shaping">More shaping tools &rsaquo;</a>
+        </div>
+        <div class="cap-col reveal">
+          <div class="fi fi-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="2"/><path d="M6.5 8v3.5M10.5 8v2.5M14.5 8v3.5M18.5 8v2.5"/></svg></div>
+          <h3>Make it fit</h3>
+          <ul>
+            <li>Millimetres or inches, snapping to 0.1 mm</li>
+            <li>A ruler that measures the gaps between parts</li>
+            <li>X-ray to work on parts hidden inside others</li>
+            <li>Undo that survives a reload</li>
+          </ul>
+          <a class="feat-more" href="features.html#precision">More precision tools &rsaquo;</a>
+        </div>
+        <div class="cap-col reveal">
+          <div class="fi fi-filament"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h16v17"/><path d="M4 8h16"/><path d="M10 8v3h4V8M12 11v2"/><rect x="8.5" y="16" width="7" height="5" rx="1"/></svg></div>
+          <h3>Make sure it prints</h3>
+          <ul>
+            <li>Flex test in PLA, PETG or TPU</li>
+            <li>Clearance check for moving parts</li>
+            <li>Lay flat, and cut big models in two</li>
+            <li>STL, or 3MF with named, coloured parts</li>
+          </ul>
+          <a class="feat-more" href="features.html#printing">More print checks &rsaquo;</a>
+        </div>
+      </div>
+      <p class="cap-foot">Free, with no plans or payments. Sign in with Google and your models save as you go. <a href="compare.html">How twyk compares &rsaquo;</a></p>
+    </div>
+  </section>
+
   <!-- prompt -> object -->
-  <section class="section section-soft" id="examples">
+  <section class="section" id="examples">
     <div class="container">
       <div class="section-head">
         <div>
@@ -211,7 +343,7 @@
   </section>
 
   <!-- precision: why twyk, not just another generator -->
-  <section class="section">
+  <section class="section section-soft">
     <div class="container precision">
       <div class="reveal">
         <div class="eyebrow">AI that respects millimetres</div>
@@ -219,7 +351,7 @@
         <p class="lead">AI generators guess. Fit can&rsquo;t be a guess. twyk turns what you type into real editor operations, the same millimetre tools behind every model on twyk. Ask for 72&nbsp;mm and you get <span class="mono">72.00&nbsp;mm</span>.</p>
         <ul class="ticks">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Every AI edit is a normal editor step you can see, tweak or undo.</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Type the real measurements of your headset, controller, keyboard or desk.</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Name your gear and AI twyk can look up its real measurements online, and tells you where it found them.</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Prefer to do it by hand? <a href="how-it-works.html">The full editor</a> is right there.</span></li>
         </ul>
       </div>
@@ -245,7 +377,7 @@
   </section>
 
   <!-- who it's for -->
-  <section class="section section-soft">
+  <section class="section">
     <div class="container">
       <div class="section-head">
         <div>
@@ -272,8 +404,8 @@
           <p>Turn your mascot or emotes into figures your community can print, remix and show off.</p>
           <ul>
             <li>Channel mascots and emote figures</li>
-            <li>Models your fans can remix</li>
-            <li>Credit on every remix, automatically</li>
+            <li>Realistic figures from a photo with Build with code</li>
+            <li>Share to the Community so fans can copy and print</li>
           </ul>
           <a class="aud-cta" href="#top" data-fill="Our channel mascot, a fox with a crown, as a 60 mm desk figure" data-track="segment_cta" data-track-segment="creator">Make your mascot &rarr;</a>
         </div>
@@ -292,27 +424,27 @@
     </div>
   </section>
 
-  <!-- remix -->
-  <section class="section">
+  <!-- community: copy and change -->
+  <section class="section section-soft">
     <div class="container">
       <div class="section-head">
         <div>
           <div class="eyebrow">Community</div>
-          <h2>Remix anything. Make it fit.</h2>
-          <p>Every published model opens back up. Ask AI to resize it for your gear, add your name, or turn it into something new. The original maker gets credit automatically.</p>
+          <h2>Copy anything. Make it fit.</h2>
+          <p>Shared models aren&rsquo;t frozen files. Make your own copy of anything in the Community, then ask AI twyk to resize it for your gear, add your name, or turn it into something new.</p>
         </div>
-        <a class="btn btn-ghost" href="explore.html" data-track="cta_explore">Browse community models <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-ghost" href="https://twyk.me/community" data-track="cta_community">Browse the Community <span class="arrow">&rarr;</span></a>
       </div>
       <div class="remix-flow">
         <div class="rf-card reveal">
-          <span class="rf-label">Someone publishes</span>
+          <span class="rf-label">Someone shares</span>
           <span class="rf-render"><span class="mini-thumb" data-kind="stand"></span></span>
           <b>Phone stand</b>
           <span class="rf-sub">Built for a 72 mm phone</span>
         </div>
         <div class="rf-arrow" aria-hidden="true">&rarr;</div>
         <div class="rf-card rf-prompt reveal">
-          <span class="rf-label">You ask</span>
+          <span class="rf-label">You make a copy and ask</span>
           <span class="rf-bubble">&ldquo;Make it fit my phone in a 78&nbsp;mm case, and tilt it back 10&deg;&rdquo;</span>
           <span class="ed-op">resize(cradle, x = 78.00)<br />rotate(back, 10&deg;)</span>
         </div>
@@ -320,26 +452,8 @@
         <div class="rf-card reveal">
           <span class="rf-label">You get</span>
           <span class="rf-render rf-render-alt"><span class="mini-thumb" data-kind="stand"></span><span class="dim" style="top: 10%; right: 8%;">78.00 mm</span></span>
-          <b>Your remix</b>
-          <span class="rf-sub">Credit links back to the original</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- honest roadmap: these aren't live yet -->
-  <section class="section section-soft" style="padding: 56px 0;">
-    <div class="container">
-      <div class="coming">
-        <div class="coming-item reveal">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
-          <span><b>Automatic print checks</b> Watertight repair, wall thickness, overhangs and fit-your-bed checks before export.</span>
-          <span class="roadmap-tag">Coming soon</span>
-        </div>
-        <div class="coming-item reveal">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>
-          <span><b>No printer? Print &amp; ship</b> Have your design printed and delivered to your door.</span>
-          <span class="roadmap-tag">Coming later</span>
+          <b>Your version</b>
+          <span class="rf-sub">Private until you choose to share it</span>
         </div>
       </div>
     </div>
@@ -354,7 +468,7 @@
         <input id="cta-prompt" name="prompt" maxlength="400" placeholder="What do you want to make?" />
         <button class="btn btn-primary" type="submit">Generate <span class="arrow">&rarr;</span></button>
       </form>
-      <p class="cta-alt">Prefer to design by hand? <a href="https://editor.twyk.me/" data-track="cta_editor" data-track-source="footer_cta">Open the editor &rsaquo;</a></p>
+      <p class="cta-alt">Prefer to design by hand? <a href="https://twyk.me/" data-track="cta_editor" data-track-source="footer_cta">Open the editor &rsaquo;</a></p>
     </div>
   </section>
 

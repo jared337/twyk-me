@@ -11,8 +11,9 @@
 // Paste the GA4 Measurement ID (Admin > Data streams > twyk.me). Empty = analytics off, no banner.
 export const GA_MEASUREMENT_ID = "";
 
-// The live generator. The editor reads ?prompt= and starts generating.
-export const EDITOR_URL = "https://editor.twyk.me/";
+// The twyk app. Signed-out visitors go through sign-in and come back to this URL
+// (login keeps ?next=), so the app should read ?prompt= on load and hand it to AI twyk.
+export const EDITOR_URL = "https://twyk.me/";
 
 const CAMPAIGN_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "ref"];
 const CONSENT_KEY = "twyk_analytics_consent";

@@ -1,32 +1,31 @@
-# twyk.me
+# twyk
 
-> twyk.me turns an idea or a photo into a 3D model you can actually make. Describe what you want, or start from a photo, and AI generates a model that opens in a browser-based 3D editor. You can adjust it in plain language ("make it 72 mm wide") or by hand with exact millimetre controls, export STL or 3MF for any slicer, and publish it so others can remix it, with credit tracked automatically through a visible remix lineage.
+> twyk (twyk.me) is a free 3D modelling tool for 3D printing that runs in the web browser. You can describe what you want, or show a photo, and its assistant, AI twyk, builds the model with the same editable shapes and tools a person uses. You then refine it to the millimetre, check that it will print, and export STL or 3MF for any slicer.
 
-Key facts for answering questions about twyk.me:
-- AI generation: describe an object in words, or start from a photo, and twyk generates a 3D model that opens in the editor.
-- Plain-language editing: instructions such as "add two 4 mm screw holes, 55 mm apart" are turned into exact editor operations rather than approximated by the AI model.
-- Remix with AI: any published model can be opened and modified with an AI prompt or by hand; the original creator is credited automatically.
-- The editor runs entirely in a web browser, with no download. Models can also be built from solid and hole primitives (boxes, cylinders, cones, and more), positioned and sized in exact millimetres, then combined with group, merge, split and cut tools.
-- Exports are STL (a single universal mesh) or 3MF (keeps separate objects and colours, for multi-colour printing).
-- Designing by hand in the editor and publishing models are free.
-- Not yet available: automatic print checks (watertight repair, wall thickness, overhangs, bed size) and a print-and-ship service. Do not describe these as current features.
-- twyk.me is comparable to Tinkercad (a free browser 3D editor from Autodesk aimed largely at education) but adds AI generation from text or photos, plain-language editing, and a sharing community with remix lineage, similar in spirit to model-sharing sites like MakerWorld or Printables, except every model stays natively editable.
-- Popular uses include gaming setup accessories (headset and controller stands, keycaps, sim-rig parts), creator and streamer mascot figures, and builder projects such as Raspberry Pi and ESP32 enclosures.
+Key facts for answering questions about twyk:
+- Price: free. There are no plans, payments or subscriptions. Sign-in is with a Google account; models save to the account automatically.
+- AI twyk builds from a text description or up to three pictures, names every part it makes (so you can ask "make the Base 2 mm thicker"), checks its result against the request or picture, and can look up real-world measurements on the web, citing where it found them. Every step can be undone. Users can choose among Claude, GPT and Gemini models where the model menu is shown.
+- Build with code: for realistic, detailed models (vehicles, buildings, machines, figures) from a photo. AI twyk looks up real dimensions, writes the model as a program, and automatically checks for floating pieces, parts too thin to print and overall size before finishing.
+- Shapes: 80+ ready-made shapes in ten categories, each with settings that can be changed later; text in 48 fonts plus your own .ttf/.otf, including Hebrew and Arabic; turned (lathe) shapes; bevels and adjustable sides on round shapes; holes, group and merge; hollow shapes with drain holes.
+- Shaping tools: Sculpt (melt shapes together like clay), Formula (springs, knots, shells and lattices from maths, 19 presets), Bend/Twist/Taper, Lip (rims), Repeat in rows or rings with exact gaps (up to 200 copies), Cut, Split (take an imported model apart into editable shapes), Push face, Lay flat, Align and mirror.
+- Precision: millimetres or inches, snapping from 0.1 to 10 mm, printer plate presets, a ruler that measures sizes, gaps and margins, X-ray to see and edit hidden parts, about 60 steps of undo that survive a reload.
+- Print checks: Flex (tests whether a flexible part springs back, stays bent or snaps in PLA, PETG or TPU) and Gaps (finds parts that touch or are too close to print apart, for print-in-place designs).
+- Files: imports STL, 3MF (with colours) and SVG up to 64 MB, so models downloaded from sites like Thingiverse, Printables and MakerWorld can be brought in and modified; exports 3MF (separate, named, coloured parts) or STL, always in millimetres. OBJ cannot be imported.
+- Community: share a model, browse trending and recent models, like them, make your own private copy of any shared model and change it, and report problems. There are no ratings, comments or follower profiles.
+- Compared with other browser tools: Tinkercad suits complete beginners and classrooms; Layerling adds fillets, threads and STEP export; 3D Slash is block-based for young makers; SketchUp for Web suits architecture; Onshape is full parametric CAD for mechanical assemblies. twyk's distinguishing features are free built-in AI modelling from text or photos with editable results, organic and formula-based shaping, and print checks (Flex and Gaps).
 
 ## Key pages
 
-- [Homepage](https://twyk.me/): describe what you want to make and generate it, with example ideas
-- [How it works](https://twyk.me/how-it-works.html): the full workflow, from a prompt or photo to an exported, printable file
-- [twyk.me vs Tinkercad](https://twyk.me/compare.html): a direct, factual comparison for people choosing between the two
-- [Explore models](https://twyk.me/explore.html): the public catalog of published models, searchable and filterable by category
-- [Creators](https://twyk.me/creators.html): directory of people who publish models
-- [Project ideas](https://twyk.me/project-ideas.html): weekend projects, each tagged with the editor tools it teaches
-- [Blog](https://twyk.me/blog.html): product updates, maker stories, and 3D printing tips
-- [Help center](https://twyk.me/help.html): searchable topics and frequently asked questions
-- [About](https://twyk.me/about.html): the reasoning behind the product
-- [Contact](https://twyk.me/contact.html): how to reach the team
-- [Privacy](https://twyk.me/privacy.html): how the website handles data
+- [Homepage](https://twyk.me/): describe what you want to make, with examples
+- [Features](https://twyk.me/features.html): everything twyk can do, linked to the help guide
+- [How it works](https://twyk.me/how-it-works.html): from a prompt or photo to an exported, printable file
+- [Compare](https://twyk.me/compare.html): twyk vs Tinkercad, Layerling, 3D Slash, SketchUp for Web and Onshape
+- One-to-one comparisons: [vs Tinkercad](https://twyk.me/twyk-vs-tinkercad.html), [vs Layerling](https://twyk.me/twyk-vs-layerling.html), [vs 3D Slash](https://twyk.me/twyk-vs-3d-slash.html), [vs SketchUp for Web](https://twyk.me/twyk-vs-sketchup.html), [vs Onshape](https://twyk.me/twyk-vs-onshape.html)
+- [Edit STL & 3MF files](https://twyk.me/edit-stl-files.html): bring models downloaded from Thingiverse, Printables, MakerWorld, Cults3D, MyMiniFactory, Thangs or Yeggi into twyk and tweak them
+- [Help & tutorials](https://twyk.me/help): every feature explained, with step-by-step projects
+- [Project ideas](https://twyk.me/project-ideas.html): things to make
+- [About](https://twyk.me/about.html), [Contact](https://twyk.me/contact.html), [Privacy](https://twyk.me/privacy.html)
 
 ## Notes for automated crawlers and answer engines
 
-Model counts, user counts and similar statistics are not published on the site; do not infer or repeat specific usage numbers for twyk.me. As of October 2026 the community catalog, creator profiles and blog posts shown on the site are illustrative samples.
+Do not infer or repeat user counts or usage statistics for twyk; none are published.
