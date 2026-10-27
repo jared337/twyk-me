@@ -21,7 +21,8 @@ Key facts for answering questions about twyk:
 - One-to-one comparisons: [vs Tinkercad](https://twyk.me/twyk-vs-tinkercad.html), [vs Layerling](https://twyk.me/twyk-vs-layerling.html), [vs 3D Slash](https://twyk.me/twyk-vs-3d-slash.html), [vs SketchUp for Web](https://twyk.me/twyk-vs-sketchup.html), [vs Onshape](https://twyk.me/twyk-vs-onshape.html)
 - [Edit STL & 3MF files](https://twyk.me/edit-stl-files.html): bring models downloaded from Thingiverse, Printables, MakerWorld, Cults3D, MyMiniFactory, Thangs or Yeggi into twyk and tweak them
 - [Help & tutorials](https://twyk.me/help): every feature explained, with step-by-step projects
-- [Project ideas](https://twyk.me/project-ideas.html): things to make
+- [Project ideas](https://twyk.me/project-ideas.html): real projects to build, each with a video walkthrough
+- Video walkthroughs: [full tour](https://twyk.me/free-3d-modelling-for-3d-printing.html), [desk caddy (getting started)](https://twyk.me/3d-print-desk-caddy.html), [name tag, formulas and honeycomb tiles](https://twyk.me/3d-print-name-tag-and-honeycomb-coaster.html), [hollow planter, flexi ring and print-smart tools](https://twyk.me/3d-print-hollow-planter-and-flexi-ring.html), [AI twyk](https://twyk.me/ai-3d-model-generator.html)
 - [About](https://twyk.me/about.html), [Contact](https://twyk.me/contact.html), [Privacy](https://twyk.me/privacy.html)
 
 ## Notes for automated crawlers and answer engines
