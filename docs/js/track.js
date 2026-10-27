@@ -9,7 +9,7 @@
 */
 
 // Paste the GA4 Measurement ID (Admin > Data streams > twyk.me). Empty = analytics off, no banner.
-export const GA_MEASUREMENT_ID = "";
+export const GA_MEASUREMENT_ID = "G-31RX5G20KE";
 
 const CONSENT_KEY = "twyk_analytics_consent";
 
