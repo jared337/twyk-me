@@ -2758,3 +2758,4 @@ button.case:focus-visible { outline: 3px solid var(--purple); outline-offset: 3p
 .vid-mini:hover .vid-play-sm { transform: scale(1.1); background: var(--purple-deep); }
 @media (max-width: 960px) { .vid-minis-home { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .vid-minis-home { grid-template-columns: 1fr; } }
+.vid-note { margin: 18px 0 0; text-align: left; max-width: 760px; }

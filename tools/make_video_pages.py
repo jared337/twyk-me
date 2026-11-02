@@ -180,9 +180,43 @@ VIDEOS = [
             ("Is the video real time?", "The requests are real, but the waiting is sped up. Everything else runs at normal speed."),
         ],
     },
+    {
+        "id": "BeAlGxIzWno", "slug": "cut-and-align-twyk-vs-tinkercad", "kind": "Comparison",
+        "level": "beginner", "seconds": 221, "uploaded": "2026-11-02T01:35:26-08:00",
+        "card": "Cut and Align: twyk vs Tinkercad, filmed for real",
+        "title": "Cut and Align: twyk vs Tinkercad Compared (Free 3D Modelling)",
+        "h1": "Cut and Align: twyk vs Tinkercad, filmed for real",
+        "desc": "Cut and Align compared: the same two jobs in Tinkercad and in twyk, filmed for real. Cutting a part in two, centring, even margins and squaring to the grid.",
+        "lead": "Two tools you reach for all the time when designing for 3D printing: cutting a part in two, and lining parts up. This video tries both in Tinkercad and in twyk, filmed for real, so you can see how each one gets the job done before you pick your tool.",
+        "summary": "The same two jobs, cutting a part in two and lining parts up, done in Tinkercad and in twyk.",
+        "builds_h": "What the video compares", "steps_h": "Chapter by chapter", "learn_h": "What you will see",
+        "cta_h": "Want to try it yourself?", "cta_p": "twyk is free and runs in your browser. Sign in with Google, open the editor and try Cut and Align on your own model.",
+        "builds": ["Cutting a part in two, in Tinkercad and in twyk", "Lining parts up with each tool's Align", "Centring one part on the plate", "Even margins, and Square to the grid"],
+        "uses": ["Cut", "Align", "Even margins", "Tinkercad"],
+        "chapters": [
+            (0, "Intro", None),
+            (16, "Cutting in two: Tinkercad", "In the video Tinkercad has no Cut tool, so the usual way round it is used: hole boxes placed and sized to slice the part in two."),
+            (80, "Cutting in two: twyk", "The same job in twyk, using its Cut tool to split the part into two pieces."),
+            (113, "Lining up: Tinkercad", "Tinkercad's Align tool is good, and the video shows it at work."),
+            (134, "Lining up: twyk", "The same lining-up job in twyk, plus what twyk adds on top of Align, such as centring one part on the plate."),
+            (152, "Even margins", "One of the extras twyk adds to Align: Even margins."),
+            (176, "Square to the grid", "Another of twyk's extras: Square to the grid."),
+            (195, "Which does it better", "The video closes by weighing up which tool does each job better."),
+        ],
+        "learn": ["How to cut a part in two in Tinkercad and in twyk", "How Align works in each tool", "Centring a part on the plate", "Even margins and Square to the grid"],
+        "help": [("Cut for printing", "t-cut-print"), ("Align", "align"), ("twyk vs Tinkercad", "twyk-vs-tinkercad.html")],
+        "note": "Tinkercad is a trademark of Autodesk, Inc. This video is not made with or endorsed by Autodesk. Tinkercad as it was when this was filmed.",
+        "faq": [
+            ("Does Tinkercad have a Cut tool?", "Not in this video: Tinkercad has no Cut tool, so the usual way round it is used, with hole boxes. This is Tinkercad as it was when the video was filmed."),
+            ("What does twyk add on top of Align?", "As the video shows, twyk adds centring one part on the plate, Even margins, and Square to the grid."),
+            ("Do I need to know Tinkercad to follow this?", "No. The video shows each job in both tools, one after the other."),
+            ("Is this video made or endorsed by Autodesk?", "No. Tinkercad is a trademark of Autodesk, Inc. This video is not made with or endorsed by Autodesk."),
+        ],
+    },
 ]
 
 SERIES = [VIDEOS[1], VIDEOS[2], VIDEOS[3], VIDEOS[4]]
+COMPARE = [VIDEOS[5]]
 TOUR = VIDEOS[0]
 
 U = html.unescape
@@ -272,7 +306,8 @@ def ideas_page():
         {"@type": "ListItem", "position": 2, "name": "Project ideas", "item": url}]}
     itemlist = {"@context": "https://schema.org", "@type": "ItemList", "name": "twyk video projects",
                 "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": page_url(v), "name": U(v["card"])} for i, v in enumerate(VIDEOS)]}
-    cards = "\n".join(f"""        <article class="vid-card">
+    def card(v):
+        return f"""        <article class="vid-card">
           {thumb_card(v)}
           <div class="vid-card-body">
             <div class="idea-meta"><span class="vid-kind">{v['kind']}</span><span class="diff diff-{v['level']}">{v['level']}</span><span class="time">&#9201; {mmss(v['seconds'])}</span></div>
@@ -284,7 +319,10 @@ def ideas_page():
               <a class="btn btn-ghost" href="{v['slug']}.html">Read the walkthrough</a>
             </div>
           </div>
-        </article>""" for v in SERIES)
+        </article>"""
+
+    cards = "\n".join(card(v) for v in SERIES)
+    compare_cards = "\n".join(card(v) for v in COMPARE)
     return head(title, desc, url, thumb_url(TOUR), '  <meta property="og:type" content="website" />\n', [crumbs, itemlist]) + f"""
   <section class="explore-head">
     <div class="container">
@@ -316,6 +354,16 @@ def ideas_page():
       <p class="vid-sub">Four videos, each one a project you can print. Take them in order, or jump to the one you want.</p>
       <div class="vid-grid">
 {cards}
+      </div>
+    </div>
+  </section>
+
+  <section class="vid-series" style="padding-top: 0; padding-bottom: 80px;">
+    <div class="container">
+      <h2 class="vid-h2">twyk vs Tinkercad, filmed for real</h2>
+      <p class="vid-sub">The same job done in both tools, side by side. See also the <a href="compare.html">full comparison</a>.</p>
+      <div class="vid-grid">
+{compare_cards}
       </div>
       <p class="vid-more">All videos live on the <a href="{CHANNEL}" rel="noopener">twyk YouTube channel</a>.</p>
     </div>
@@ -364,7 +412,9 @@ def landing(v):
         f'            <li><a href="{watch}&amp;t={c[0]}s" data-seek="{c[0]}"><time>{mmss(c[0])}</time><span>{c[1]}</span></a></li>' for c in chapters)
     learn = "\n".join(f"            <li>{x}</li>" for x in v["learn"])
     builds = "\n".join(f"            <li>{x}</li>" for x in v["builds"])
-    help_links = " &middot; ".join(f'<a href="{HELP}{s}">{t}</a>' for t, s in v["help"])
+    help_links = " &middot; ".join(
+        f'<a href="{s if s.endswith(".html") else HELP + s}">{t}</a>' for t, s in v["help"])
+    note = f'\n          <p class="form-note vid-note">{v["note"]}</p>\n' if v.get("note") else ""
     faq = "\n".join(f"        <details><summary>{q}</summary><p>{a}</p></details>" for q, a in v["faq"])
     others = [o for o in VIDEOS if o is not v]
     more = "\n".join(f"""        <a class="vid-mini" href="{o['slug']}.html">
@@ -405,27 +455,27 @@ def landing(v):
     <div class="container">
       <div class="vid-layout">
         <article class="vid-article">
-          <h2>What you will make</h2>
+          <h2>{v.get('builds_h', 'What you will make')}</h2>
           <ul class="vs-list">
 {builds}
           </ul>
 
-          <h2>Step by step</h2>
+          <h2>{v.get('steps_h', 'Step by step')}</h2>
           <ol class="vid-steps">
 {steps}
           </ol>
 
-          <h2>What you will learn</h2>
+          <h2>{v.get('learn_h', 'What you will learn')}</h2>
           <ul class="vs-list">
 {learn}
           </ul>
-
+{note}
           <p class="vid-help"><b>Want the written version?</b> The help guide covers each tool in detail: {help_links}.</p>
 
           <div class="vid-inline-cta">
             <div>
-              <h2>Ready to build it?</h2>
-              <p>twyk is free and runs in your browser. Sign in with Google, open the editor and follow along.</p>
+              <h2>{v.get('cta_h', 'Ready to build it?')}</h2>
+              <p>{v.get('cta_p', 'twyk is free and runs in your browser. Sign in with Google, open the editor and follow along.')}</p>
             </div>
             <a class="btn btn-primary btn-lg" href="{LOGIN}" data-track="cta_login" data-track-source="{src}_inline">Start building <span class="arrow">&rarr;</span></a>
           </div>
