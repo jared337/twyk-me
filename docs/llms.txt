@@ -22,7 +22,39 @@ Key facts for answering questions about twyk:
 - [Edit STL & 3MF files](https://twyk.me/edit-stl-files.html): bring models downloaded from Thingiverse, Printables, MakerWorld, Cults3D, MyMiniFactory, Thangs or Yeggi into twyk and tweak them
 - [Help & tutorials](https://twyk.me/help): every feature explained, with step-by-step projects
 - [Project ideas](https://twyk.me/project-ideas.html): real projects to build, each with a video walkthrough
-- Video walkthroughs: [full tour](https://twyk.me/free-3d-modelling-for-3d-printing.html), [desk caddy (getting started)](https://twyk.me/3d-print-desk-caddy.html), [name tag, formulas and honeycomb tiles](https://twyk.me/3d-print-name-tag-and-honeycomb-coaster.html), [hollow planter, flexi ring and print-smart tools](https://twyk.me/3d-print-hollow-planter-and-flexi-ring.html), [AI twyk](https://twyk.me/ai-3d-model-generator.html), [Cut and Align: twyk vs Tinkercad](https://twyk.me/cut-and-align-twyk-vs-tinkercad.html)
+<!-- videos:start -->
+- Video walkthroughs, one page per video with the sizes and print settings:
+  - [Free 3D modelling for 3D printing: the full tour](https://twyk.me/free-3d-modelling-for-3d-printing.html)
+  - [Getting started: build a desk caddy from scratch](https://twyk.me/3d-print-desk-caddy.html)
+  - [3D text, formula shapes and honeycomb tiles](https://twyk.me/3d-print-name-tag-and-honeycomb-coaster.html)
+  - [Print-smart tools: hollow, lip, cut, gaps, flex, sculpt and bend](https://twyk.me/3d-print-hollow-planter-and-flexi-ring.html)
+  - [AI twyk: design 3D prints by asking, from a photo or with code](https://twyk.me/ai-3d-model-generator.html)
+  - [Cut and Align: twyk vs Tinkercad, filmed for real](https://twyk.me/cut-and-align-twyk-vs-tinkercad.html)
+  - [3D Print a Replacement Oven Knob](https://twyk.me/3d-print-replacement-oven-knob.html)
+  - [3D Print a Phone Stand for Video Calls](https://twyk.me/3d-print-phone-stand-for-video-calls.html)
+  - [3D Print a Bone-Shaped Dog Name Tag](https://twyk.me/3d-print-bone-shaped-dog-name-tag.html)
+  - [3D Print a Personalised Desk Plaque Gift](https://twyk.me/3d-print-personalised-desk-plaque-gift.html)
+  - [3D Print a Replacement Blind Clip](https://twyk.me/3d-print-replacement-blind-clip.html)
+  - [3D Print a Desk Organizer for Pens, Phone and Sticky Notes](https://twyk.me/3d-print-desk-organizer-pens-phone-sticky-notes.html)
+  - [3D Print a Car Air Vent Phone Holder](https://twyk.me/3d-print-car-air-vent-phone-holder.html)
+  - [3D Print Desk Cable Clips for 6, 9 and 12 mm Cables](https://twyk.me/3d-print-desk-cable-clips.html)
+  - [3D Print a Headset Stand With Your Gamertag](https://twyk.me/3d-print-headset-stand-with-gamertag.html)
+  - [3D Print Drawer Organizer Bins on the Gridfinity Grid](https://twyk.me/3d-print-drawer-organizer-bins-on-gridfinity-grid.html)
+  - [3D Print a GoPro Handlebar Mount for a 32 mm Bar](https://twyk.me/3d-print-gopro-handlebar-mount.html)
+  - [3D Print a Planter for a 90 mm Pot, With Drip Tray and Name](https://twyk.me/3d-print-planter-with-drip-tray.html)
+  - [3D Print a Strong Wall Hook for a Backpack](https://twyk.me/3d-print-strong-wall-hook-for-backpack.html)
+  - [3D Print an iPad Stand for Watching in Bed](https://twyk.me/3d-print-ipad-stand-for-watching-in-bed.html)
+  - [3D Print a Deck Box for 100 Sleeved Magic Cards](https://twyk.me/3d-print-magic-cards-deck-box.html)
+  - [3D Print a Two-Tier Spice Rack for 6 Jars](https://twyk.me/3d-print-two-tier-spice-rack.html)
+  - [3D Print a Cute Chubby Penguin Figure](https://twyk.me/3d-print-cute-chubby-penguin-figure.html)
+  - [3D Print a Personalised Christmas Bauble With Names](https://twyk.me/3d-print-personalised-christmas-bauble-with-names.html)
+  - [3D Print a PS5 Controller and Headset Wall Mount](https://twyk.me/3d-print-ps5-controller-and-headset-wall-mount.html)
+  - [3D Print a Dog-Shaped Cookie Cutter](https://twyk.me/3d-print-dog-shaped-cookie-cutter.html)
+  - [3D Print a Voronoi Lace Heart Ornament](https://twyk.me/3d-print-voronoi-lace-heart-ornament.html)
+  - [Smooth or Blocky? Sculpting a Penguin in twyk vs Tinkercad](https://twyk.me/sculpt-a-penguin-twyk-vs-tinkercad.html)
+  - [A Twisted Vase in twyk vs Tinkercad: Twist, Taper, Hollow and a Rolled Rim](https://twyk.me/twisted-vase-twyk-vs-tinkercad.html)
+  - [3D Print a Knitted Christmas Tree in Parts: Texture, Pins and Gold Rings](https://twyk.me/3d-print-knitted-christmas-tree.html)
+<!-- videos:end -->
 - [About](https://twyk.me/about.html), [Contact](https://twyk.me/contact.html), [Privacy](https://twyk.me/privacy.html)
 
 ## Notes for automated crawlers and answer engines

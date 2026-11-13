@@ -29,3 +29,16 @@ document.querySelectorAll("[data-seek]").forEach(link => {
     player.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 });
+
+/* project-ideas.html: filter the project gallery by group */
+const chips = document.querySelector(".proj-chips");
+if (chips) {
+  chips.addEventListener("click", e => {
+    const chip = e.target.closest("[data-cat]");
+    if (!chip) return;
+    chips.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c === chip));
+    document.querySelectorAll(".proj-card").forEach(card => {
+      card.hidden = chip.dataset.cat !== "all" && card.dataset.cat !== chip.dataset.cat;
+    });
+  });
+}
